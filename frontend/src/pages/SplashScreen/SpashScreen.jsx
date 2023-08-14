@@ -1,5 +1,5 @@
 import "./SplashScreen.css"
-
+import logo from "../../assets/img/Logo.svg";
 import { loadingContext,dataContext } from "../../context/Context";
 import { useContext } from "react";
 import  axios from "axios"
@@ -19,7 +19,7 @@ const SplashScreen = () => {
 	}, []);
 
     const DeactivateLoading = () => {
-		setTimeout(stopLoading, 2500);
+		setTimeout(stopLoading, 4100);
 	};
 
 	const stopLoading = () => {
@@ -31,9 +31,12 @@ const SplashScreen = () => {
     
     return ( 
         <>
-            <main>
-                <h2>SPLASH SCREEN PAGE</h2>
-            </main>
+        <section className="loading-section">
+            <article className="logo-container">
+                <img src={logo} alt="logo" />
+                <div className="custom-loader"></div>
+            </article>
+        </section>
         </>
      );
 }
