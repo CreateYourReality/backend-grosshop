@@ -2,7 +2,6 @@ import "./ProductListComponente.css"
 import { useContext, useEffect, useState } from "react";
 import { categoryContext, dataContext,priceContext } from "../../context/Context";
 import SelectSort from "../SelectSort/SelectSort";
-import { Link } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import SelectCategory from "../SelectCategory/SelectCategory";
 import SelectPriceRange from "../SelectPriceRange/SelectPriceRange";
@@ -40,9 +39,7 @@ const ProductListComponente = () => {
               {data? 
                 filteredData.map((product,index) => {
                     return(
-                        <Link key={index} to={"/detailproduct/"+product._id}>
-                            <ProductCard product={product}/>
-                        </Link>
+                        <ProductCard key={index} product={product}/>
                     )
                 })
                 : <p>fetch data...</p>
