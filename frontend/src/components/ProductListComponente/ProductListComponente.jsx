@@ -1,10 +1,12 @@
 import "./ProductListComponente.css"
 import { useContext, useEffect, useState } from "react";
-import { categoryContext, dataContext } from "../../context/Context";
+import { categoryContext, dataContext,priceContext } from "../../context/Context";
 import SelectSort from "../SelectSort/SelectSort";
 import { Link } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import SelectCategory from "../SelectCategory/SelectCategory";
+import SelectPriceRange from "../SelectPriceRange/SelectPriceRange";
+
 
 const ProductListComponente = () => {
     const {data} = useContext(dataContext)
@@ -13,19 +15,27 @@ const ProductListComponente = () => {
     const [filteredData,setFilteredData] = useState(data)
 
     useEffect(() => {
-        if(categoryFilter == "All")
-            setFilteredData(data)
-        else{
-            const filteredByCategory =  data.filter(filtered => filtered.category == categoryFilter)
-            setFilteredData(filteredByCategory)
+        let newFilteredData = data;
+        if(categoryFilter != "All"){
+            const filteredByCategory =  newFilteredData.filter(filtered => filtered.category == categoryFilter)
+            newFilteredData = filteredByCategory;
         }
-    },[data,categoryFilter])
+            const filteredByPrice = newFilteredData.filter(filtered => 
+                filtered.price >= priceFilter.min && 
+                filtered.price <= priceFilter.max
+            )
+
+            newFilteredData = filteredByPrice
+            setFilteredData(newFilteredData)
+        
+    },[data,categoryFilter,priceFilter])
 
 
     return ( 
         <>
             <SelectCategory/>
             <SelectSort/>
+            <SelectPriceRange/>
             <section className="product-list">
               {data? 
                 filteredData.map((product,index) => {

@@ -23,7 +23,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState()
   const [categoryFilter, setCategoryFilter] = useState("All")
-  const [priceFilter, setPriceFilter] = useState(0)
+  const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
 
   return (
     <> 
