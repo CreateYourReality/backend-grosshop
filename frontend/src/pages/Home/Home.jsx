@@ -13,7 +13,6 @@ const Home = () => {
             <h2>Home Page</h2>
               <ProductListComponente/>
                 <Link to="/productlist">Productlist</Link>
-                <Link to="/detailproduct/1">Detailproduct ID 1</Link>
             </main>
             <FooterNav/>
         </>

@@ -36,35 +36,35 @@ const FooterNav = () => {
       <nav className="navigation">
         <ul>
           <li className="list active">
-            <NavLink to="#">
+            <NavLink to="/home">
               <span className="icon">
                 <img src={homeActive} alt="home" />
               </span>
             </NavLink>
           </li>
           <li className="list">
-            <NavLink to="#">
+            <NavLink to="/orderhistory">
               <span className="icon">
                 <img src={orders} alt="orders" />
               </span>
             </NavLink>
           </li>
           <li className="list">
-            <NavLink to="#">
+            <NavLink to="/shoppingcart">
               <span className="icon">
                 <img className="cartActive" src={cartActive} alt="cart" />
               </span>
             </NavLink>
           </li>
           <li className="list">
-            <NavLink to="#">
+            <NavLink to="/favorites">
               <span className="icon">
                 <img src={heart} alt="heart" />
               </span>
             </NavLink>
           </li>
           <li className="list">
-            <NavLink to="#">
+            <NavLink to="/profile">
               <span className="icon">
                 <img src={profile} alt="profile" />
               </span>

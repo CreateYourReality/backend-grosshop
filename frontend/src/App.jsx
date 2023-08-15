@@ -16,7 +16,7 @@ import Profile from './pages/Profile/Profile';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
 
 //Context
-import {loadingContext, dataContext, categoryContext, priceContext} from "./context/Context";
+import {loadingContext, dataContext, categoryContext, priceContext, favoritesContext} from "./context/Context";
 
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
   const [data, setData] = useState()
   const [categoryFilter, setCategoryFilter] = useState("All")
   const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
+  const [favorites, setFavorites] = useState([])
 
   return (
     <> 
@@ -31,6 +32,7 @@ function App() {
           <dataContext.Provider value={{data,setData}}>
             <categoryContext.Provider value={{categoryFilter,setCategoryFilter}}>
             <priceContext.Provider value={{priceFilter,setPriceFilter}}>
+            <favoritesContext.Provider value={{favorites,setFavorites}}>
             <BrowserRouter>
               <Routes>
               {loading ? <Route path='*' element={<SplashScreen />}/> : (
@@ -51,6 +53,7 @@ function App() {
               )}
               </Routes>
             </BrowserRouter>
+            </favoritesContext.Provider>
             </priceContext.Provider>
             </categoryContext.Provider>
           </dataContext.Provider>

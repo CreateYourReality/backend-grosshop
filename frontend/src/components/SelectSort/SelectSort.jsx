@@ -16,10 +16,6 @@ const SelectSort = () => {
     const sortME = (sortType) => {
         let sortedArray = [...data];
         sortedArray = [...sortedArray].sort(getSortType(sortType));
-        
-      /*  filterArray.forEach(filter => {
-            newArray = newArray.filter(filter);
-        });*/
         setData(sortedArray);
     }
 
