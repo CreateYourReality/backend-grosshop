@@ -3,26 +3,15 @@ import { Link } from "react-router-dom";
 
 import FooterNav from "../../components/FooterNav/FooterNav";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
-import { useContext } from "react";
-import { dataContext } from "../../context/Context";
+import ProductListComponente from "../../components/ProductListComponente/ProductListComponente";
 
 const Home = () => {
-    const {data} = useContext(dataContext)
     return ( 
         <>
             <HeaderNav/>
             <main>
-                {data.data? 
-                data.data.map((product,index) => {
-                    return(
-                        <article key={index}>
-                            <h3>{product.productName}</h3>
-                        </article>
-                    )
-                })
-                : <p>fetch data...</p>
-            }
-                <h2>Home Page</h2>
+            <h2>Home Page</h2>
+              <ProductListComponente/>
                 <Link to="/productlist">Productlist</Link>
                 <Link to="/detailproduct/1">Detailproduct ID 1</Link>
             </main>

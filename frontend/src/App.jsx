@@ -25,7 +25,6 @@ function App() {
 
   return (
     <> 
-      <main>
         <loadingContext.Provider value={{ loading, setLoading }}>
           <dataContext.Provider value={{data,setData}}>
             <BrowserRouter>
@@ -50,7 +49,6 @@ function App() {
             </BrowserRouter>
           </dataContext.Provider>
         </loadingContext.Provider>
-      </main>
     </>
   )
 }
