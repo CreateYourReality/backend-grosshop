@@ -6,44 +6,41 @@ import { useContext, useEffect, useState } from "react"
 import { favoritesContext } from "../../context/Context"
 
 const ProductCard = ({product}) => {
-    const [isFav, setIsFav] = useState(false) //muss auch an detailsseite usw. ??? dann eventuell context array??
-    const {favorites, setFavorites} = useContext(favoritesContext)
+  const {favorites, setFavorites} = useContext(favoritesContext)
+  const isInFavArray = () => {
+    if(favorites.includes(product._id)){
+      return true
+    }
+    return false;
+  }
+    const [isFav, setIsFav] = useState(isInFavArray()) //muss auch an detailsseite usw. ??? dann eventuell context array??
 
     const toggleFavorite = () => {
       // isInFavArray ? (
       // >> lösche die ID aus favorites
+      // >> axios.update
       // >> setIsFav(false)
       // )
       //ansonsten : (
       // >> füge fav zu favorites hinzu
+      // >> axios.update
       // >> setIsFav(true)
       // )
     }
 
-    const isInFavArray = () => {
-      // wenn productId in favorites vorkommt
-      // return true
-      // ansonsten
-      // return false
-    }
-
-
-    const setStartToggle = () => {
-      console.log("ich starte einmalig pro card, right?");
-      //wenn productID in favorites vorkommt
-      //setze State auf True
-      //ansonsten
-      //setze State auf False
-    }
-
-    setStartToggle();
-
-    useEffect(() => {
-    },[isFav])
- 
+    
+    
     return ( 
         <>
         <article className="product-article">
+
+          {
+            /*
+              Wenn Favoriten oder ShoppingCart Page
+              >> Füge Select hinzu
+            */
+          }
+
           <Link  to={"/detailproduct/"+product._id}>
             <div>
               <h3>{product.productName}</h3>
@@ -51,9 +48,17 @@ const ProductCard = ({product}) => {
               <p>{product.rating}*</p>
             </div>
           </Link>
-            <a href="#" onClick={toggleFavorite()}>
+            <a href="#" onClick={toggleFavorite}>
               <img src={isFav?fullHearth:emtpyHearth} alt="hearth" />
             </a>
+
+          {
+            /*
+              Wenn Favoriten oder ShoppingCart Page
+              >> Füge - + hinzu
+            */
+          }
+
         </article>
         </>
      );
