@@ -1,10 +1,10 @@
 /* General Settings  */
-.signUp-wrapper {
+.signIn-wrapper {
   background: var(--signUp-bg-color);
   height: 100vh;
 }
 
-.newAccount-section {
+.existAccount-section {
   min-height: 75vh;
   display: flex;
   flex-direction: column;
@@ -13,61 +13,58 @@
   border-bottom-right-radius: 3rem;
 }
 
-.newAccount-wrapper {
+.existAccount-wrapper {
   margin: 0 2rem;
 }
 
-.newAccount-textBox {
+.existAccount-logoBox {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 20vh;
+  height: 30vh;
 }
 
-.newAccount-textBox h1 {
-  font-size: 2.2rem;
-  color: var(--h-tag-btn-color);
-}
-
-.newAccount-textBox h2 {
-  font-size: 1.6rem;
-  font-family: poppins-regular;
-  color: var(--p-tag-color);
-}
-
-.signUp-form {
+.signIn-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.signUp-form label {
+.signIn-form label {
   font-size: 1.4rem;
   color: var(--p-tag-color);
 }
 
-.signUp-form input {
+.signIn-form input {
   border-bottom: 1.5px solid rgb(203, 202, 202);
   padding: 0.4rem 0.2rem;
   font-size: 1.6rem;
   color: var(--h-tag-btn-color);
+}
+
+.signIn-form input:nth-of-type(1) {
   margin-bottom: 1.5rem;
 }
 
-.signUp-form input::placeholder {
+.signIn-form input::placeholder {
   color: var(--h-tag-btn-color);
 }
 
-.signUp-form input:focus {
+.signIn-form input:focus {
   outline: none;
 }
 
-.signUp-form input:nth-of-type(2) {
-  margin-bottom: 4rem;
+.signIn-form a {
+  text-align: center;
+  color: var(--h-tag-btn-color);
+  margin-bottom: 3rem;
 }
 
-.signUp-form button {
+.signIn-form a:hover {
+  color: rgb(139, 138, 138);
+}
+
+.signIn-form button {
   font-size: 1.8rem;
   color: var(--white-color);
   background: var(--main-green-color);
@@ -76,17 +73,17 @@
   cursor: pointer;
 }
 
-.signUp-form button:hover {
+.signIn-form button:hover {
   background: green;
 }
 
-.signInLink-section {
+.signUpLink-section {
   height: 25vh;
   display: flex;
   justify-content: center;
 }
 
-.signInLink-box {
+.signUpLink-box {
   display: flex;
   align-items: center;
   height: 20vh;
@@ -95,22 +92,21 @@
   font-family: poppins-regular;
 }
 
-.signInLink-box p {
+.signUpLink-box p {
   color: var(--p-tag-color);
 }
 
-.signInLink-box a {
+.signUpLink-box a {
   color: var(--white-color);
 }
 
-.signInLink-box a:hover {
+.signUpLink-box a:hover {
   color: green;
 }
-
 /* Media Querries */
 
 @media (min-width: 768px) and (max-width: 1920px) {
-  .newAccount-section {
+  .existAccount-section {
     align-items: center;
   }
 }

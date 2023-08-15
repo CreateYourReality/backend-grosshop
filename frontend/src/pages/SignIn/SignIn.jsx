@@ -1,19 +1,18 @@
-import "./SignUp.css";
 import { NavLink } from "react-router-dom";
-import PopUp from "../../components/Popup/PopUp";
+import "./SignIn.css";
+import logo from "../../assets/img/signinlogo.svg";
 
-const SignUp = () => {
+const SignIn = () => {
   const submit = async (e) => {};
 
   return (
-    <div className="signUp-wrapper">
-      <section className="newAccount-section">
-        <div className="newAccount-wrapper">
-          <article className="newAccount-textBox">
-            <h1>Create New Account</h1>
-            <h2>Enter Your details to create account</h2>
+    <div className="signIn-wrapper">
+      <section className="existAccount-section">
+        <div className="existAccount-wrapper">
+          <article className="existAccount-logoBox">
+            <img src={logo} alt="logo" />
           </article>
-          <form className="signUp-form" onSubmit={submit}>
+          <form className="signIn-form" onSubmit={submit}>
             <label htmlFor="email">Email</label>
             <input
               id="email"
@@ -30,18 +29,19 @@ const SignUp = () => {
               placeholder="************"
               required
             />
-            <button>Sign up</button>
+            <NavLink to="#">Forgot password?</NavLink>
+            <button>Sign in</button>
           </form>
         </div>
       </section>
-      <section className="signInLink-section">
-        <article className="signInLink-box">
-          <p>Already Have Account ?</p>
-          <NavLink to="/signin">Sign In</NavLink>
+      <section className="signUpLink-section">
+        <article className="signUpLink-box">
+          <p>Don't Have Account ?</p>
+          <NavLink to="/signup">Sign Up</NavLink>
         </article>
       </section>
     </div>
   );
 };
 
-export default SignUp;
+export default SignIn;
