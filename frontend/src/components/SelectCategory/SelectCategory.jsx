@@ -18,7 +18,7 @@ const SelectCategory = () => {
         <>
             <section className="category-section">
                 {categoryList?.map((category,index) => {
-                   return <a onClick={selectCategory} key={index} href="#">{category}</a>
+                   return <a className={category==categoryFilter?"active": null} onClick={selectCategory} key={index}>{category}</a>
                 })}
             </section>
         </>

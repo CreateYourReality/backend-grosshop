@@ -1,3 +1,16 @@
+.category-section a{
+    margin: 5px;
+    font-size: clamp(1.2rem,1.5vw,2rem);
+    text-decoration: none;
+    color: gray;
+}
+
 .category-section{
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-section .active{
+    color: red;
 }

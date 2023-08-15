@@ -29,8 +29,8 @@ const SelectSort = () => {
             case "cba": return sortZA;break;
             case "$": return sortPriceLow;break;
             case "$$$": return sortPriceHigh;break;
-            case "*": return sortRatingHigh;break;
-            case "***": return sortRatingLow;break;
+            case "***": return sortRatingHigh;break;
+            case "*": return sortRatingLow;break;
             default : return;break;
         }
     }

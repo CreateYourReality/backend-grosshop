@@ -1,21 +1,30 @@
 import { priceContext } from "../../context/Context";
 import "./SelectPriceRange.css"
 import { useContext, useState } from "react";
-const SelectPriceRange = () => {
+import Slider from "rc-slider"
+import 'rc-slider/assets/index.css';
 
-    const [priceRange, setPriceRange] = useState({min:0,max:9999})
+const SelectPriceRange = () => {
+    const [priceRange, setPriceRange] = useState({min:0,max:999})
     const {priceFilter,setPriceFilter} = useContext(priceContext)
 
-    const handleMinPrice = (event) => {
-        setPriceFilter({min:event.target.value,max:9999})
-    }
+    const handleSliderChange = (values) => {
+        setPriceFilter({min:values[0],max:values[1]});
+  };
 
     return (
         <>
         <section className="price-range-section">
             <p>{priceFilter.min}</p>
-            <input step={1} onChange={handleMinPrice} type="Range" min={priceRange.min} max={priceRange.max}/>
-            <p>{}</p>
+            <Slider
+                range
+                min={priceRange.min}
+                max={priceRange.max}
+                value={[priceFilter.min, priceFilter.max]}
+                onChange={handleSliderChange} //auf on apply ändern
+                allowCross={false}
+            />
+            <p>{priceFilter.max}</p>
         </section>
         </>
      );
