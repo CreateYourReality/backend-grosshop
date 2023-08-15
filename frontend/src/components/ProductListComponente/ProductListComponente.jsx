@@ -1,30 +1,37 @@
 import "./ProductListComponente.css"
-import { useContext, useEffect } from "react";
-import { dataContext } from "../../context/Context";
+import { useContext, useEffect, useState } from "react";
+import { categoryContext, dataContext } from "../../context/Context";
 import SelectSort from "../SelectSort/SelectSort";
 import { Link } from "react-router-dom";
+import ProductCard from "../ProductCard/ProductCard";
+import SelectCategory from "../SelectCategory/SelectCategory";
 
 const ProductListComponente = () => {
     const {data} = useContext(dataContext)
+    const {categoryFilter} = useContext(categoryContext)
+    const {priceFilter} = useContext(priceContext)
+    const [filteredData,setFilteredData] = useState(data)
 
     useEffect(() => {
-        console.log(data);
-    },[data])
+        if(categoryFilter == "All")
+            setFilteredData(data)
+        else{
+            const filteredByCategory =  data.filter(filtered => filtered.category == categoryFilter)
+            setFilteredData(filteredByCategory)
+        }
+    },[data,categoryFilter])
 
 
     return ( 
         <>
+            <SelectCategory/>
             <SelectSort/>
             <section className="product-list">
               {data? 
-                data.map((product,index) => {
+                filteredData.map((product,index) => {
                     return(
                         <Link key={index} to={"/detailproduct/"+product._id}>
-                        <article className="product-article">
-                            <h3>{product.productName}</h3>
-                            <p>{product.description}</p>
-                            <p>{product.price}</p>
-                        </article>
+                            <ProductCard product={product}/>
                         </Link>
                     )
                 })

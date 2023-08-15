@@ -16,17 +16,21 @@ import Profile from './pages/Profile/Profile';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
 
 //Context
-import {loadingContext, dataContext} from "./context/Context";
+import {loadingContext, dataContext, categoryContext, priceContext} from "./context/Context";
 
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState()
+  const [categoryFilter, setCategoryFilter] = useState("All")
+  const [priceFilter, setPriceFilter] = useState(0)
 
   return (
     <> 
         <loadingContext.Provider value={{ loading, setLoading }}>
           <dataContext.Provider value={{data,setData}}>
+            <categoryContext.Provider value={{categoryFilter,setCategoryFilter}}>
+            <priceContext.Provider value={{priceFilter,setPriceFilter}}>
             <BrowserRouter>
               <Routes>
               {loading ? <Route path='*' element={<SplashScreen />}/> : (
@@ -47,6 +51,8 @@ function App() {
               )}
               </Routes>
             </BrowserRouter>
+            </priceContext.Provider>
+            </categoryContext.Provider>
           </dataContext.Provider>
         </loadingContext.Provider>
     </>
