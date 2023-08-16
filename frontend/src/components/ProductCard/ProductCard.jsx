@@ -27,14 +27,17 @@ const ProductCard = ({product,increaseAmountCart}) => {
     if(location.pathname == "/favorites"){
       const foundFavItem = favorites.find(fav => fav.id === product._id);
       setFavItem(foundFavItem);
-    }else if(location.pathname == "/shoppingcart"){
+    }
+    setIsFav(isInFavArray());
+  }, [favorites]);
+
+  useEffect(()=> {
+    if(location.pathname == "/shoppingcart"){
+      console.log("SHOPPINGCARTITEM GEUPDATED");
       const foundCartItem = userShoppingCart.find(cartItem => cartItem.id === product._id);
       setShoppingCartItem(foundCartItem)
-     }
-    setIsFav(isInFavArray());
-  }, [
-    favorites,userShoppingCart
-  ]);
+    }
+  },userShoppingCart)
 
     const toggleFavorite = () => {
       // isInFavArray ? (
@@ -49,9 +52,7 @@ const ProductCard = ({product,increaseAmountCart}) => {
       // )
     }
 
-    console.log("ich bin "+product.productName+" und habe den state "+isFav);
-
-
+    //console.log("ich bin "+product.productName+" und habe den state "+isFav); // TODO FALSCHER PREV AM ANFANG
 
     const increaseAmountFav = (incOrDecrement) => {
       setFavorites(prevFavorites => {
@@ -64,13 +65,10 @@ const ProductCard = ({product,increaseAmountCart}) => {
       });
   };
 
-
   const handleIncreaseAmountCart = (incOrDecrement) => {
-    // Rufe die übergebene Funktion auf
     increaseAmountCart(incOrDecrement, product._id);
-};
+  }
 
-    
     return ( 
         <>
         <article className={`product-article ${location.pathname=="/favorites"?
