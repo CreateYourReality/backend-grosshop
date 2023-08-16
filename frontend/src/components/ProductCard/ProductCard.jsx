@@ -33,7 +33,6 @@ const ProductCard = ({product,increaseAmountCart}) => {
 
   useEffect(()=> {
     if(location.pathname == "/shoppingcart"){
-      console.log("SHOPPINGCARTITEM GEUPDATED");
       const foundCartItem = userShoppingCart.find(cartItem => cartItem.id === product._id);
       setShoppingCartItem(foundCartItem)
     }
@@ -82,7 +81,7 @@ const ProductCard = ({product,increaseAmountCart}) => {
           </div>
         : null }
           <div>
-            <Link  to={"/detailproduct/"+product._id}>
+            <Link to={"/detailproduct/"+product._id}>
               <div>
                 <h3>{product.productName}</h3>
                 <p>{product.price}$</p>
