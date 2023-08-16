@@ -17,7 +17,7 @@ import Profile from "./pages/Profile/Profile";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 
 //Context
-import {loadingContext, dataContext, categoryContext, priceContext, favoritesContext} from "./context/Context";
+import {loadingContext, dataContext, categoryContext, priceContext, favoritesContext,userShoppingCartContext} from "./context/Context";
 
 
 function App() {
@@ -25,6 +25,12 @@ function App() {
   const [data, setData] = useState()
   const [categoryFilter, setCategoryFilter] = useState("All")
   const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
+  const [userShoppingCart, setUserShoppingCart] = useState([
+    {
+      id:"64da41a2da5607a595466d39",
+      amount:10
+    }
+  ])
   const [favorites, setFavorites] = useState([ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
     {
       id:"64da41b6da5607a595466d3a",
@@ -43,6 +49,7 @@ function App() {
             <categoryContext.Provider value={{categoryFilter,setCategoryFilter}}>
             <priceContext.Provider value={{priceFilter,setPriceFilter}}>
             <favoritesContext.Provider value={{favorites,setFavorites}}>
+            <userShoppingCartContext.Provider value={{userShoppingCart,setUserShoppingCart}}>
             <BrowserRouter>
               <Routes>
                 {loading ? (
@@ -69,6 +76,7 @@ function App() {
                 )}
               </Routes>
             </BrowserRouter>
+            </userShoppingCartContext.Provider>
             </favoritesContext.Provider>
             </priceContext.Provider>
             </categoryContext.Provider>

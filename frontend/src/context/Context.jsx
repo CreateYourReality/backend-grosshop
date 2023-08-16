@@ -6,3 +6,4 @@ export const NavContext = createContext();
 export const categoryContext = createContext();
 export const priceContext = createContext();
 export const favoritesContext = createContext();
+export const userShoppingCartContext = createContext();

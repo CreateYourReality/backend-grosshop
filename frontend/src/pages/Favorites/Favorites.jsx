@@ -8,7 +8,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 
 const Favorites = () => {
     const {favorites, setFavorites} = useContext(favoritesContext)
-    const {data, setData} = useContext(dataContext)
+    const {data} = useContext(dataContext)
 
     const findFavoriteById = (favID) => {
         return data.find(favoriteItem => favoriteItem._id === favID);
@@ -42,9 +42,6 @@ const Favorites = () => {
                         )
                     : <p>loading favorites...</p>
                 }
-
-                   
-
                 </section>
             </main>
             <FooterNav/>
