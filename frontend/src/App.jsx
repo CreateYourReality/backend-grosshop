@@ -29,6 +29,10 @@ function App() {
     {
       id:"64da41a2da5607a595466d39",
       amount:10
+    },
+    {
+      id:"64da415eda5607a595466d38",
+      amount:7
     }
   ])
   const [favorites, setFavorites] = useState([ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"

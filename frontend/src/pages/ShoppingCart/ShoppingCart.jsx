@@ -30,17 +30,15 @@ const ShoppingCart = () => {
         setUpdateTotal(prev => !prev)
       };
 
-    const updateTotalCost = () => {
-        console.log("FIRE");
-      }
-  
-      useEffect(()=>{
-        updateTotalCost()
-      },[updateTotal])
-  
-      let totalCost = 0;
-     
-  
+    
+      const updateTotalCost = () => {
+        return userShoppingCart.reduce((total, cartItem) => {
+            const product = findShoppingItemBy(cartItem.id); // Funktion, um Produktinformationen zu erhalten
+            const itemTotal = product.price * cartItem.amount;
+            return total + itemTotal;
+        }, 0);
+    };
+
 
     return ( 
         <>
@@ -57,7 +55,7 @@ const ShoppingCart = () => {
                                 </article>
                             )
                         )}
-                        <button>CHECKOUT - Total ${totalCost}</button>
+                        <button>CHECKOUT - Total ${updateTotalCost()}</button>
                         </>
                         )
 
