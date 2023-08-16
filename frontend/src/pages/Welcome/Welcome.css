@@ -1,81 +1,80 @@
 /* General Style */
 .welcome-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo-box {
-    height: clamp(50rem, 65vh, 65rem);
-    display: flex;
+  height: clamp(50rem, 65vh, 65rem);
+  display: flex;
 }
 
 .welcome-content {
-    height: clamp(15rem, 10vh, 8rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
+  height: clamp(15rem, 10vh, 8rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
 }
 
 .welcome-content h1 {
-    color: lightgrey;
-    font-size: clamp(1.8rem, 5vw, 5rem);
+  color: lightgrey;
+  font-size: clamp(1.8rem, 5vw, 5rem);
 }
 
 .welcome-content h2 {
-    color: #555555;
-    width: clamp(20rem, 65vw, 65rem);
-    font-size: clamp(1.4rem, 3vw, 3rem);
+  color: #555555;
+  width: clamp(20rem, 65vw, 65rem);
+  font-size: clamp(1.4rem, 3vw, 3rem);
 }
 
 .link-container {
-    min-height: clamp(5rem, 40vh, 30rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    font-size: clamp(1.8rem, 2.5vw, 3rem);
+  min-height: clamp(5rem, 40vh, 30rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: clamp(1.8rem, 2.5vw, 3rem);
 }
 
 .link-container a {
-    padding: 1.5vw 17vw;
-    border-radius: 1.5vw;
+  padding: 1.5vw 17vw;
+  border-radius: 1.5vw;
 }
 
 .link-container a:nth-child(1) {
-    color: var(--h-tag-btn-color);
-    background-color: var(--second-color);
-    padding: 1rem 5rem;
-    border-radius: 1rem;
+  color: var(--h-tag-btn-color);
+  background-color: var(--main-green-color);
+  padding: 1rem 5rem;
+  border-radius: 1rem;
 }
 
 .link-container a:nth-child(1):hover {
-    /* background-color: var(--main-green-color); */
-    color: var(--main-green-color);
+  background-color: var(--second-color);
 }
 
 .link-container a:nth-child(2) {
-    background-color: var(--second-color);
-    color: var(--h-tag-btn-color);
+  background-color: var(--second-color);
+  color: var(--h-tag-btn-color);
 }
 
 .link-container a:nth-child(2):hover {
-    background-color: var(--main-green-color);
-    color: var(--white-color);
+  background-color: var(--main-green-color);
+  color: var(--white-color);
 }
 
 .link-container a:nth-child(3) {
-    background-color: var(--p-tag-color);
-    color: var(--white-color);
+  background-color: var(--p-tag-color);
+  color: var(--white-color);
 }
 
 .link-container a:nth-child(3):hover {
-    background-color: #555555;
-    color: var(--main-green-color);
+  background-color: #555555;
+  color: var(--main-green-color);
 }

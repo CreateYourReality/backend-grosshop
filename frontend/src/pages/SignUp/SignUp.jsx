@@ -1,6 +1,7 @@
 import "./SignUp.css";
 import { NavLink } from "react-router-dom";
 import PopUp from "../../components/Popup/PopUp";
+import BackBtn from "../../components/BackBtn/BackBtn";
 
 const SignUp = () => {
   const submit = async (e) => {};
@@ -9,6 +10,7 @@ const SignUp = () => {
     <div className="signUp-wrapper">
       <section className="newAccount-section">
         <div className="newAccount-wrapper">
+          <BackBtn />
           <article className="newAccount-textBox">
             <h1>Create New Account</h1>
             <h2>Enter Your details to create account</h2>

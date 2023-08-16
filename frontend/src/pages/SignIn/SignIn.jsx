@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./SignIn.css";
 import logo from "../../assets/img/signinlogo.svg";
+import BackBtn from "../../components/BackBtn/BackBtn";
 
 const SignIn = () => {
   const submit = async (e) => {};
@@ -9,6 +10,7 @@ const SignIn = () => {
     <div className="signIn-wrapper">
       <section className="existAccount-section">
         <div className="existAccount-wrapper">
+          <BackBtn />
           <article className="existAccount-logoBox">
             <img src={logo} alt="logo" />
           </article>

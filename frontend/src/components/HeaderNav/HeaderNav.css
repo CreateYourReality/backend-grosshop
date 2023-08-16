@@ -1,0 +1,14 @@
+.headerNav-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem 0 0 2rem;
+}
+
+.backBtn-box {
+  margin: -3.5rem 0 0 0;
+}
+
+.location-name h2 {
+  font-size: 1.5rem;
+}
