@@ -19,17 +19,10 @@ const FooterNav = () => {
   const list = document.querySelectorAll(".list");
   list.forEach((item) =>
     item.addEventListener("click", function (e) {
-      list.forEach((li) => li.classList.remove("active"));
-      e.currentTarget.classList.add("active");
+      list.forEach((li) => li.classList.remove("claim"));
+      e.currentTarget.classList.add("claim");
     })
   );
-
-  // list.forEach((item) =>
-  //     item.addEventListener("click", function (e) {
-  //         list.forEach((li) => li.classList.remove("clip"));
-  //         e.currentTarget.classList.add("clip");
-  //     })
-  // );
 
   return (
     <footer className="footer-navBar">
@@ -42,28 +35,28 @@ const FooterNav = () => {
               </span>
             </NavLink>
           </li>
-          <li className="list">
+          <li className="list active">
             <NavLink to="/orderhistory">
               <span className="icon">
                 <img src={orders} alt="orders" />
               </span>
             </NavLink>
           </li>
-          <li className="list">
+          <li className="list active">
             <NavLink to="/shoppingcart">
               <span className="icon">
                 <img className="cartActive" src={cartActive} alt="cart" />
               </span>
             </NavLink>
           </li>
-          <li className="list">
+          <li className="list active">
             <NavLink to="/favorites">
               <span className="icon">
                 <img src={heart} alt="heart" />
               </span>
             </NavLink>
           </li>
-          <li className="list">
+          <li className="list active">
             <NavLink to="/profile">
               <span className="icon">
                 <img src={profile} alt="profile" />

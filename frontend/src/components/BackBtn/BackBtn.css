@@ -1,0 +1,14 @@
+/* General Settings */
+.backBtn-section {
+  cursor: pointer;
+  display: inline-block;
+  margin: 4rem 0 0 0;
+}
+
+.backBtn-section:hover {
+  opacity: 40%;
+}
+
+.backBtn-section img {
+  height: 1.5rem;
+}

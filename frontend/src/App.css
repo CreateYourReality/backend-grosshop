@@ -1,51 +1,55 @@
 /* General Settings */
 @font-face {
-    font-family: "poppins-medium";
-    src: url("../src/assets/fonts/Poppins-Medium.ttf");
+  font-family: "poppins-medium";
+  src: url("../src/assets/fonts/Poppins-Medium.ttf");
 }
 
 @font-face {
-    font-family: "poppins-regular";
-    src: url("../src/assets/fonts/Poppins-Regular.ttf");
+  font-family: "poppins-regular";
+  src: url("../src/assets/fonts/Poppins-Regular.ttf");
 }
 
 @font-face {
-    font-family: "roboto-regular";
-    src: url("../src/assets/fonts/Roboto-Regular.ttf");
+  font-family: "roboto-regular";
+  src: url("../src/assets/fonts/Roboto-Regular.ttf");
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 html {
-    font-size: 62.5%;
-    font-family: poppins-medium, Arial, Helvetica, sans-serif;
+  font-size: 62.5%;
+  font-family: poppins-medium, Arial, Helvetica, sans-serif;
 }
 
 :root {
-    --main-green-color: #40aa54;
-    --second-color: rgba(216, 238, 220, 0.303);
-    --white-color: #ffffff;
-    --h-tag-btn-color: #2c3066;
-    --p-tag-color: #777777;
-    --signUp-bg-color: #9e9e9e;
-    --pending-color: #04d9d2;
-    --processing-color: #ff960c;
-    --canceled-color: #d90504;
-    --refunded-color: #deffe4;
-    --picked-color: #0459d9;
-    --shipped-color: #c73bd6;
-    --profile-color: linear-gradient(
-        142deg,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(64, 170, 84, 1) 100%
-    );
+  --main-green-color: #40aa54;
+  --second-color: rgb(216, 238, 220);
+  --white-color: #ffffff;
+  --h-tag-btn-color: #2c3066;
+  --p-tag-color: #777777;
+  --signUp-bg-color: #9e9e9e;
+  --pending-color: #04d9d2;
+  --processing-color: #ff960c;
+  --canceled-color: #d90504;
+  --refunded-color: #deffe4;
+  --picked-color: #0459d9;
+  --shipped-color: #c73bd6;
+  --profile-color: linear-gradient(
+    142deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(64, 170, 84, 1) 100%
+  );
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
 }
