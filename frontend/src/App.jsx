@@ -24,7 +24,16 @@ function App() {
   const [data, setData] = useState()
   const [categoryFilter, setCategoryFilter] = useState("All")
   const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
-  const [favorites, setFavorites] = useState(["64da41b6da5607a595466d3a"])
+  const [favorites, setFavorites] = useState([ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
+    {
+      id:"64da41b6da5607a595466d3a",
+      amount:7
+    },
+    {
+      id:"64da41d2da5607a595466d3b",
+      amount:3
+    } 
+  ])
 
   return (
     <> 

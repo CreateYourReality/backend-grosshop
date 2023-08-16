@@ -1,0 +1,47 @@
+.product-article{
+    border: 1px solid whitesmoke;
+    max-width: 33.3vw;
+    min-width: 33.3vw;
+    min-height: 33.3vw;
+    max-height: 33.3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.product-card-favorites{
+    min-width: 80vw;
+    max-width: 80vw;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 5px;
+}
+
+.product-card-amount{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 35%;
+}
+
+.product-card-amount button{
+    font-size: clamp(2rem,3vw,5rem);
+    background-color: white;
+    border: gray 2px solid;
+    color: green;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+
+
+.product-card-select{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+}

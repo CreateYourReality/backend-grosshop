@@ -2,26 +2,49 @@ import "./Favorites.css"
 
 import FooterNav from "../../components/FooterNav/FooterNav";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
-import { favoritesContext } from "../../context/Context";
+import { dataContext, favoritesContext } from "../../context/Context";
 import { useContext } from "react";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 const Favorites = () => {
     const {favorites, setFavorites} = useContext(favoritesContext)
+    const {data, setData} = useContext(dataContext)
+
+    const findFavoriteById = (favID) => {
+        return data.find(favoriteItem => favoriteItem._id === favID);
+    };
+
+
     return ( 
         <>
             <HeaderNav/>
             <main>
                 <h2>Favorites Page</h2>
                 <section className="favorites-section">
-                {favorites? (
+                {favorites? 
                     favorites.length != 0 ? (
-                        favorites.map((fav,index) => {
-                            <article key={index}>
-                                <h2>{fav}</h2>
-                            </article>
-                        })) : <h3>NO FAVORITES IMG</h3>
-                    ) : <p>loading favorites...</p>
+                    <>
+                        {favorites.map((fav,index) => (
+                                <article key={index}>
+                                    {<ProductCard product={findFavoriteById(fav.id)}/>}
+                                </article>
+                            )
+                        )}
+                        <button>ADD TO CART</button>
+                        </>
+                        )
+
+                        : (
+                            <>
+                                <h3>NO FAVORITES IMG</h3>
+                                <button>Continue Shopping</button>
+                            </>
+                        )
+                    : <p>loading favorites...</p>
                 }
+
+                   
+
                 </section>
             </main>
             <FooterNav/>
