@@ -20,15 +20,12 @@ await mongoose.connection.syncIndexes();
 
 const PORT = process.env.PORT;
 const app = express();
-<<<<<<< HEAD
 //Cloudinary data
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_CLOUDNAME,
 	api_key: process.env.CLOUDINARY_API_KEY,
 	api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-=======
->>>>>>> 74bd28171d2c5fbeef01afb218747e3bb1758a65
 
 app.use(express.json());
 app.use(cookieParser());
