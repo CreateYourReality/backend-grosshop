@@ -32,10 +32,8 @@ const ProductCard = ({product}) => {
     }
 
     useEffect(() => {
-      if(location.pathname == "/favorites"){
         const foundFavItem = favorites.find(fav => fav.id === product._id);
         setFavItem(foundFavItem);
-      }
     }, [favorites]);
 
     //console.log("ich bin "+product.productName+" und habe den state "+isFav); // TODO FALSCHER PREV AM ANFANG
@@ -66,7 +64,7 @@ const ProductCard = ({product}) => {
               </a>
           </div>
 
-          <ChangeAmount product={product} setFavorites={setFavorites}/>
+          <ChangeAmount favItem={favItem} product={product} setFavorites={setFavorites}/>
 
         </article>
       </>

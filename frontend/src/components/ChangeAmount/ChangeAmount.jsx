@@ -2,29 +2,28 @@ import "./ChangeAmount.css"
 import { useContext, useState } from "react"
 import { favoritesContext, userShoppingCartContext } from "../../context/Context"
 import { useEffect } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import { dataContext } from "../../context/Context"
 
-const ChangeAmount = ({product}) => {
+const ChangeAmount = ({product,setFavorites,favItem}) => {
     const {userShoppingCart,setUserShoppingCart} = useContext(userShoppingCartContext)
     const [shoppingCartItem, setShoppingCartItem] = useState("")
 
+    const findShoppingItemBy = (prodID) => {
+        return userShoppingCart.find(cartItem => cartItem._id === prodID);
+    };
+
     const location = useLocation()
-    const detailProduct = "/" + location.pathname.split('/')[1];
+    const detailProduct = "/" + location.pathname.split('/')[1]; //useParams id
 
     useEffect(()=> {
-      if(location.pathname == "/shoppingcart"){
+      if(location.pathname == "/shoppingcart" || detailProduct == "/detailproduct"){
         const foundCartItem = userShoppingCart.find(cartItem => cartItem.id === product._id);
         setShoppingCartItem(foundCartItem)
       }
     },userShoppingCart)
 
-    const findShoppingItemBy = (favID) => {
-        return data.find(favoriteItem => favoriteItem._id === favID);
-    };
 
-
-    
     const increaseAmountCart = (incOrDecrement) => {
         setUserShoppingCart(prevCartItem => {
             return prevCartItem.map(cartItem => {
@@ -50,16 +49,13 @@ const ChangeAmount = ({product}) => {
     return (
         <>
                   { // Wenn Favoriten oder ShoppingCart Page >> Füge - + hinzu
-        location.pathname == "/favorites" || location.pathname == "/shoppingcart" || detailProduct == "/detailproduct"
-        ? 
+        location.pathname == "/favorites" || location.pathname == "/shoppingcart" || detailProduct == "/detailproduct" ? 
           <div className="product-card-amount">
             <button onClick={() => location.pathname=="/favorites"?increaseAmountFav(-1):increaseAmountCart(-1)}>-</button>
-                    <p>AMOUNT</p>
+            <p>{location.pathname=="/favorites"?favItem?favItem.amount:null:shoppingCartItem.amount}</p>
             <button onClick={() => location.pathname=="/favorites"?increaseAmountFav(+1):increaseAmountCart(+1)}>+</button>
-
-
           </div>
-        : null }
+        : null}
 
 
 
