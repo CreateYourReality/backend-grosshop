@@ -25,6 +25,20 @@ const Favorites = () => {
         setSelectedFavs([])
     }
 
+    //TODO DESELECT ALL, CHECKBOX
+    const selectAll= () => {
+        console.log("SELECT ALL BTN");
+        let selectAll = []
+        favorites.forEach(fav => {
+            selectAll.push(fav.id)
+        })
+        setSelectedFavs(selectAll)
+    }
+
+    const isSelected = () => {
+        
+    }
+
     useEffect(()=>{
     },[selectedFavs])
 
@@ -34,7 +48,10 @@ const Favorites = () => {
             <main>
                 <h2>Favorites Page</h2>
                 <section className="favorites-section">
+                    <div className="favorite-selection-btns">
+                        <a onClick={selectAll}>SELECT ALL</a>
                         <a onClick={deleteSelectedFavs}>DELETE</a>
+                    </div>
                     {favorites? 
                         favorites.length != 0 ? (
                             <>
@@ -44,7 +61,7 @@ const Favorites = () => {
                                     </article> 
                                     )
                                 )}
-                                <button>ADD TO CART</button>
+                                <button className="add-to-cart-btn">ADD TO CART</button>
                             </>
                             ) : (
                             <>
