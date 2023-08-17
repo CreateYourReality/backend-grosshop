@@ -7,13 +7,23 @@ import { useContext, useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 const Favorites = () => {
-    const {favorites, setFavorites} = useContext(favoritesContext)
     const {data} = useContext(dataContext)
+    const {favorites, setFavorites} = useContext(favoritesContext)
     const [selectedFavs, setSelectedFavs] = useState([])
 
     const findFavoriteById = (favID) => {
         return data.find(favoriteItem => favoriteItem._id === favID);
     };
+
+    //TODO GEHT,ABER CHECKBOX IS DANACH FALSCH
+    const deleteSelectedFavs = () => {
+        let updatedFavorites = [...favorites];
+        selectedFavs.forEach(id => {
+            updatedFavorites = updatedFavorites.filter(fav => fav.id !== id);
+        });
+        setFavorites(updatedFavorites);
+        setSelectedFavs([])
+    }
 
     useEffect(()=>{
     },[selectedFavs])
@@ -24,6 +34,7 @@ const Favorites = () => {
             <main>
                 <h2>Favorites Page</h2>
                 <section className="favorites-section">
+                        <a onClick={deleteSelectedFavs}>DELETE</a>
                     {favorites? 
                         favorites.length != 0 ? (
                             <>
