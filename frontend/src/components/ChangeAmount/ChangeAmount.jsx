@@ -52,7 +52,10 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         location.pathname == "/favorites" || location.pathname == "/shoppingcart" || detailProduct == "/detailproduct" ? 
           <div className="product-card-amount">
             <button onClick={() => location.pathname=="/favorites"?increaseAmountFav(-1):increaseAmountCart(-1)}>-</button>
-            <p>{location.pathname=="/favorites"?favItem?favItem.amount:null:shoppingCartItem.amount}</p>
+            <p>{
+                location.pathname=="/favorites"?
+                    favItem?favItem.amount:null 
+                :shoppingCartItem?shoppingCartItem.amount:null}</p>
             <button onClick={() => location.pathname=="/favorites"?increaseAmountFav(+1):increaseAmountCart(+1)}>+</button>
           </div>
         : null}
