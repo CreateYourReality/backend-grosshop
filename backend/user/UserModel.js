@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
 	},
 	salt: { type: String, required: true, select: false },
 	hash: { type: String, required: true, select: false },
-	productCard: [
+	ProductCart: [
 		{
 			productId: { type: mongoose.Types.ObjectId, ref: "Product" },
 			count: { type: Number, default: 1 },
@@ -81,7 +81,7 @@ userSchema.path("favProducts").validate(function (value) {
 		objectIdSet.add(objectId.toString());
 	}
 	return true;
-}, "Duplicate ObjectId value found in the favProducts array.");
+}, "Duplicate ObjectId values found in the favProducts array.");
 
 export const User = mongoose.model("User", userSchema);
 

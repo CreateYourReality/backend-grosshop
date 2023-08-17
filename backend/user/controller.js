@@ -137,9 +137,9 @@ export const deleteUser = async (req, res) => {
 	}
 };
 
-//todo productcard?
+//todo ProductCart?
 
-export const updateUserProductCard = async (req, res) => {
+export const updateUserProductCart = async (req, res) => {
 	const id = req.params.id;
 	const { productId, count } = req.body;
 	try {
@@ -147,7 +147,7 @@ export const updateUserProductCard = async (req, res) => {
 		const updateUserProduct = await User.findOneAndUpdate(
 			{ _id: id },
 			{
-				$push: { productCard: { productId: productId, count: countAsNumber } },
+				$push: { ProductCart: { productId: productId, count: countAsNumber } },
 			},
 			{ new: true }
 		);
@@ -158,13 +158,13 @@ export const updateUserProductCard = async (req, res) => {
 	}
 };
 
-export const deleteOneUserProductCard = async (req, res) => {
+export const deleteOneUserProductCart = async (req, res) => {
 	const id = req.params.id;
 	const { productId } = req.body;
 	try {
 		const updateUserProduct = await User.findByIdAndUpdate(
 			{ _id: id },
-			{ $pull: { productCard: { productId: productId } } }
+			{ $pull: { ProductCart: { productId: productId } } }
 		);
 		res.status(200).send(updateUserProduct);
 	} catch (err) {

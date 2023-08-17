@@ -10,8 +10,8 @@ import {
 	resetPassword,
 	putUser,
 	deleteUser,
-	updateUserProductCard,
-	deleteOneUserProductCard,
+	updateUserProductCart,
+	deleteOneUserProductCart,
 	updateUserFavProducts,
 	deleteUserFavProducts,
 } from "./controller.js";
@@ -29,12 +29,12 @@ router.post("/resetPassword", resetPassword); //password reset
 router.put("/:id", upload.single("image"), putUser); //update userprofile by id
 router.delete("/:id", deleteUser); // delete User
 
-//todo productCard?
-router.put("/updateUserProductCard/:id", upload.none(), updateUserProductCard);
+//todo ProductCart?
+router.put("/updateUserProductCart/:id", upload.none(), updateUserProductCart);
 router.delete(
-	"/updateUserProductCard/:id",
+	"/updateUserProductCart/:id",
 	upload.none(),
-	deleteOneUserProductCard
+	deleteOneUserProductCart
 );
 
 router.put("/updateUserFavProducts/:id", upload.none(), updateUserFavProducts);
