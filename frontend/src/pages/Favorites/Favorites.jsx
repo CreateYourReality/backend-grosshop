@@ -20,27 +20,24 @@ const Favorites = () => {
             <main>
                 <h2>Favorites Page</h2>
                 <section className="favorites-section">
-                {favorites? 
-                    favorites.length != 0 ? (
-                    <>
-                        {favorites.map((fav,index) => (
-                                <article key={index}>
-                                    {<ProductCard setFavorites={setFavorites} product={findFavoriteById(fav.id)}/>}
-                                </article>
-                            )
-                        )}
-                        <button>ADD TO CART</button>
-                        </>
-                        )
-
-                        : (
+                    {favorites? 
+                        favorites.length != 0 ? (
+                            <>
+                                {favorites.map((fav,index) => (
+                                    <article key={index}>
+                                        {<ProductCard setFavorites={setFavorites} product={findFavoriteById(fav.id)}/>}
+                                    </article> 
+                                    )
+                                )}
+                                <button>ADD TO CART</button>
+                            </>
+                            ) : (
                             <>
                                 <h3>NO FAVORITES IMG</h3>
                                 <button>Continue Shopping</button>
                             </>
-                        )
-                    : <p>loading favorites...</p>
-                }
+                        ) : <p>loading favorites...</p>
+                    }
                 </section>
             </main>
             <FooterNav/>
