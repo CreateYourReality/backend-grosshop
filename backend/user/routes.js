@@ -12,6 +12,8 @@ import {
 	deleteUser,
 	updateUserProductCard,
 	deleteOneUserProductCard,
+	updateUserFavProducts,
+	deleteUserFavProducts,
 } from "./controller.js";
 export const router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -28,9 +30,16 @@ router.put("/:id", upload.single("image"), putUser); //update userprofile by id
 router.delete("/:id", deleteUser); // delete User
 
 //todo productCard?
-router.put("/updateProductCard/:id", upload.none(), updateUserProductCard);
+router.put("/updateUserProductCard/:id", upload.none(), updateUserProductCard);
 router.delete(
-	"/updateProductCard/:id",
+	"/updateUserProductCard/:id",
 	upload.none(),
 	deleteOneUserProductCard
+);
+
+router.put("/updateUserFavProducts/:id", upload.none(), updateUserFavProducts);
+router.delete(
+	"/updateUserFavProducts/:id",
+	upload.none(),
+	deleteUserFavProducts
 );

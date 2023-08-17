@@ -140,9 +140,67 @@ export const deleteUser = async (req, res) => {
 //todo productcard?
 
 export const updateUserProductCard = async (req, res) => {
-	return null;
+	const id = req.params.id;
+	const { productId, count } = req.body;
+	try {
+		const countAsNumber = Number(count);
+		const updateUserProduct = await User.findOneAndUpdate(
+			{ _id: id },
+			{
+				$push: { productCard: { productId: productId, count: countAsNumber } },
+			},
+			{ new: true }
+		);
+		res.status(200).send(updateUserProduct);
+	} catch (err) {
+		console.log(err);
+		res.status(500).send(err);
+	}
 };
 
 export const deleteOneUserProductCard = async (req, res) => {
-	return null;
+	const id = req.params.id;
+	const { productId } = req.body;
+	try {
+		const updateUserProduct = await User.findByIdAndUpdate(
+			{ _id: id },
+			{ $pull: { productCard: { productId: productId } } }
+		);
+		res.status(200).send(updateUserProduct);
+	} catch (err) {
+		console.log(err);
+		res.status(500).send(err);
+	}
+};
+
+export const updateUserFavProducts = async (req, res) => {
+	const id = req.params.id;
+	const { productId } = req.body;
+	try {
+		const updateUserProduct = await User.findOneAndUpdate(
+			{ _id: id },
+			{ $push: { favProducts: productId } },
+			{ new: true }
+		);
+		res.status(200).send(updateUserProduct);
+	} catch (err) {
+		console.log(err);
+		res.status(500).send(err);
+	}
+};
+
+export const deleteUserFavProducts = async (req, res) => {
+	const id = req.params.id;
+	const { productId } = req.body;
+
+	try {
+		const updateUserProduct = await User.findByIdAndUpdate(
+			{ _id: id },
+			{ $pull: { favProducts: productId } }
+		);
+		res.status(200).send(updateUserProduct);
+	} catch (err) {
+		console.log(err);
+		res.status(500).send(err);
+	}
 };

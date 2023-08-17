@@ -39,11 +39,17 @@ const userSchema = new mongoose.Schema({
 	},
 	salt: { type: String, required: true, select: false },
 	hash: { type: String, required: true, select: false },
-	productCard: [{ type: mongoose.Types.ObjectId, ref: "products" }],
-	favProducts: [{ type: mongoose.Types.ObjectId, ref: "products" }],
+	productCard: [
+		{
+			productId: { type: mongoose.Types.ObjectId, ref: "Product" },
+			count: { type: Number, default: 1 },
+		},
+	],
+	favProducts: [{ type: mongoose.Types.ObjectId, ref: "Product" }],
 	role: {
 		type: String,
 		enum: ["admin", "user"],
+		default: "user",
 	},
 });
 
@@ -62,6 +68,20 @@ userSchema.methods.verifyPassword = function (password) {
 
 	return this.hash === hash;
 };
+
+//todo validierung?!?!?
+userSchema.index({ favProducts: 1 }, { unique: true });
+userSchema.path("favProducts").validate(function (value) {
+	const objectIdSet = new Set();
+	console.log("hi");
+	for (const objectId of value) {
+		if (objectIdSet.has(objectId.toString())) {
+			return false;
+		}
+		objectIdSet.add(objectId.toString());
+	}
+	return true;
+}, "Duplicate ObjectId value found in the favProducts array.");
 
 export const User = mongoose.model("User", userSchema);
 
