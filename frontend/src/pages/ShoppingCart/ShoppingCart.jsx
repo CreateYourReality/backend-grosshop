@@ -11,10 +11,15 @@ import TotalCost from "../../components/TotalCost/TotalCost";
 const ShoppingCart = () => {
     const {userShoppingCart, setUserShoppingCart} = useContext(userShoppingCartContext)
     const {data} = useContext(dataContext)
+    const [selectedCartItems, setSelectedCartItems] = useState([])
 
     const findShoppingItemBy = (favID) => {
         return data.find(favoriteItem => favoriteItem._id === favID);
     };
+
+    useEffect(()=>{
+    },[selectedCartItems])
+
 
     return ( 
         <>
@@ -27,14 +32,12 @@ const ShoppingCart = () => {
                     <>
                         {userShoppingCart.map((cartItem,index) => (
                                 <article key={index}>
-                                    {<ProductCard product={findShoppingItemBy(cartItem.id)}/>}
+                                    {<ProductCard setSelectedCartItems={setSelectedCartItems} product={findShoppingItemBy(cartItem.id)}/>}
                                 </article>
                             )
                         )}
                         </>
-                        )
-
-                        : (
+                        ) : (
                             <>
                                 <h3>NO SHOPPINGCARTITEMS IMG</h3>
                                 <button>Start Shopping</button>

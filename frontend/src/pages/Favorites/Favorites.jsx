@@ -3,16 +3,20 @@ import "./Favorites.css"
 import FooterNav from "../../components/FooterNav/FooterNav";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import { dataContext, favoritesContext } from "../../context/Context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 const Favorites = () => {
     const {favorites, setFavorites} = useContext(favoritesContext)
     const {data} = useContext(dataContext)
+    const [selectedFavs, setSelectedFavs] = useState([])
 
     const findFavoriteById = (favID) => {
         return data.find(favoriteItem => favoriteItem._id === favID);
     };
+
+    useEffect(()=>{
+    },[selectedFavs])
 
     return ( 
         <>
@@ -25,7 +29,7 @@ const Favorites = () => {
                             <>
                                 {favorites.map((fav,index) => (
                                     <article key={index}>
-                                        {<ProductCard setFavorites={setFavorites} product={findFavoriteById(fav.id)}/>}
+                                        {<ProductCard setSelectedFavs={setSelectedFavs} setFavorites={setFavorites} product={findFavoriteById(fav.id)}/>}
                                     </article> 
                                     )
                                 )}
