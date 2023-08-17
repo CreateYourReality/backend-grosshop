@@ -2,6 +2,9 @@ import { useContext } from "react";
 import "./DetailProduct.css"
 import { dataContext } from "../../context/Context";
 import { useLocation } from "react-router-dom";
+import FooterNav from "../../components/FooterNav/FooterNav";
+import ChangeAmount from "../../components/ChangeAmount/ChangeAmount";
+
 const DetailProduct = () => {
     const {data} = useContext(dataContext)
     const location = useLocation();
@@ -24,11 +27,14 @@ const DetailProduct = () => {
                             <p className="detailProduct-name">{product.productName}</p>
                             <p className="detailProduct-rating">*{product.rating}</p> 
                             <div className="detailProduct-div">
-                                
+                                <ChangeAmount product={product}/>
                             </div>
+
+
                         </>
                     : null} 
                 </section>
+                <FooterNav/>
             </main>
         </>
      );

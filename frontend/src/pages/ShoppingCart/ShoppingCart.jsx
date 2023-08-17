@@ -6,39 +6,15 @@ import { useContext } from "react";
 import { userShoppingCartContext, dataContext } from "../../context/Context";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { useState, useEffect } from "react";
+import TotalCost from "../../components/TotalCost/TotalCost";
 
 const ShoppingCart = () => {
     const {userShoppingCart, setUserShoppingCart} = useContext(userShoppingCartContext)
-
-    const [updateTotal,setUpdateTotal] = useState(false) //toogle refresher
-
     const {data} = useContext(dataContext)
 
     const findShoppingItemBy = (favID) => {
         return data.find(favoriteItem => favoriteItem._id === favID);
     };
-
-    const increaseAmountCart = (incOrDecrement, productID) => {
-        setUserShoppingCart(prevCartItem => {
-            return prevCartItem.map(cartItem => {
-                if (cartItem.id === productID) {
-                    return { ...cartItem, amount: cartItem.amount + incOrDecrement <= 0 ? 1 : cartItem.amount + incOrDecrement  };
-                }
-                return cartItem;
-            });
-        });
-        setUpdateTotal(prev => !prev)
-      };
-
-    
-      const updateTotalCost = () => {
-        return userShoppingCart.reduce((total, cartItem) => {
-            const product = findShoppingItemBy(cartItem.id); // Funktion, um Produktinformationen zu erhalten
-            const itemTotal = product.price * cartItem.amount;
-            return total + itemTotal;
-        }, 0);
-    };
-
 
     return ( 
         <>
@@ -51,11 +27,10 @@ const ShoppingCart = () => {
                     <>
                         {userShoppingCart.map((cartItem,index) => (
                                 <article key={index}>
-                                    {<ProductCard increaseAmountCart={increaseAmountCart} product={findShoppingItemBy(cartItem.id)}/>}
+                                    {<ProductCard product={findShoppingItemBy(cartItem.id)}/>}
                                 </article>
                             )
                         )}
-                        <button>CHECKOUT - Total ${updateTotalCost()}</button>
                         </>
                         )
 
@@ -67,6 +42,9 @@ const ShoppingCart = () => {
                         )
                     : <p>loading shopping items...</p>
                 }
+
+                <TotalCost/>
+
                 </section>   
             </main>    
             <FooterNav/>

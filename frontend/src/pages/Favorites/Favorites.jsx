@@ -14,7 +14,6 @@ const Favorites = () => {
         return data.find(favoriteItem => favoriteItem._id === favID);
     };
 
-
     return ( 
         <>
             <HeaderNav/>
@@ -26,7 +25,7 @@ const Favorites = () => {
                     <>
                         {favorites.map((fav,index) => (
                                 <article key={index}>
-                                    {<ProductCard product={findFavoriteById(fav.id)}/>}
+                                    {<ProductCard setFavorites={setFavorites} product={findFavoriteById(fav.id)}/>}
                                 </article>
                             )
                         )}

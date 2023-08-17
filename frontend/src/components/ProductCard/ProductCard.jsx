@@ -2,16 +2,14 @@ import "./ProductCard.css"
 import emtpyHearth from "../../assets/img/heart.svg"
 import fullHearth from "../../assets/img/heartActive.svg"
 import { Link } from "react-router-dom"
-import { useContext, useState } from "react"
-import { favoritesContext, userShoppingCartContext } from "../../context/Context"
-import { useEffect } from "react"
-import { useLocation } from "react-router-dom"
+import { useState, useContext,useEffect } from "react"
+import { favoritesContext } from "../../context/Context"
 
-const ProductCard = ({product,increaseAmountCart}) => {
+import ChangeAmount from "../ChangeAmount/ChangeAmount"
+
+const ProductCard = ({product}) => {
   const {favorites, setFavorites} = useContext(favoritesContext)
-  const {userShoppingCart,setUserShoppingCart} = useContext(userShoppingCartContext)
-  
-  const location = useLocation()
+  const [favItem, setFavItem] = useState(undefined)
 
   const isInFavArray = () => {
     return favorites.some(fav => fav.id === product._id)
@@ -19,24 +17,6 @@ const ProductCard = ({product,increaseAmountCart}) => {
 
   // TODO ### favItem wird gesetzt wenn das item einmalgefunden wurde. abfragen hier starten. ###
 
-  const [isFav, setIsFav] = useState(false) //muss auch an detailsseite usw. ??? dann eventuell context array??
-  const [favItem, setFavItem] = useState("")
-  const [shoppingCartItem, setShoppingCartItem] = useState("")
-
-  useEffect(() => {
-    if(location.pathname == "/favorites"){
-      const foundFavItem = favorites.find(fav => fav.id === product._id);
-      setFavItem(foundFavItem);
-    }
-    setIsFav(isInFavArray());
-  }, [favorites]);
-
-  useEffect(()=> {
-    if(location.pathname == "/shoppingcart"){
-      const foundCartItem = userShoppingCart.find(cartItem => cartItem.id === product._id);
-      setShoppingCartItem(foundCartItem)
-    }
-  },userShoppingCart)
 
     const toggleFavorite = () => {
       // isInFavArray ? (
@@ -51,22 +31,15 @@ const ProductCard = ({product,increaseAmountCart}) => {
       // )
     }
 
+    useEffect(() => {
+      if(location.pathname == "/favorites"){
+        const foundFavItem = favorites.find(fav => fav.id === product._id);
+        setFavItem(foundFavItem);
+      }
+    }, [favorites]);
+
     //console.log("ich bin "+product.productName+" und habe den state "+isFav); // TODO FALSCHER PREV AM ANFANG
 
-    const increaseAmountFav = (incOrDecrement) => {
-      setFavorites(prevFavorites => {
-          return prevFavorites.map(fav => {
-              if (fav.id === product._id) {
-                  return { ...fav, amount: fav.amount + incOrDecrement <= 0 ? 1 : fav.amount + incOrDecrement  };
-              }
-              return fav;
-          });
-      });
-  };
-
-  const handleIncreaseAmountCart = (incOrDecrement) => {
-    increaseAmountCart(incOrDecrement, product._id);
-  }
 
     return ( 
         <>
@@ -89,17 +62,12 @@ const ProductCard = ({product,increaseAmountCart}) => {
               </div>
            </Link>
               <a href="#" onClick={toggleFavorite}>
-                <img src={isFav?fullHearth:emtpyHearth} alt="hearth" />
+                <img src={favItem!=undefined?fullHearth:emtpyHearth} alt="hearth" />
               </a>
           </div>
-      { // Wenn Favoriten oder ShoppingCart Page >> Füge - + hinzu
-        location.pathname == "/favorites" || location.pathname == "/shoppingcart" ? 
-          <div className="product-card-amount">
-            <button onClick={() => location.pathname=="/favorites"?increaseAmountFav(-1):handleIncreaseAmountCart(-1)}>-</button>
-            <p>{location.pathname == "/favorites" ? favItem.amount : shoppingCartItem.amount}</p>
-            <button onClick={() => location.pathname=="/favorites"?increaseAmountFav(+1):handleIncreaseAmountCart(+1)}>+</button>
-          </div>
-        : null }
+
+          <ChangeAmount product={product} setFavorites={setFavorites}/>
+
         </article>
       </>
      );
