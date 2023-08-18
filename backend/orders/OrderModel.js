@@ -28,7 +28,12 @@ export const orderSchema = new mongoose.Schema({
 			count: { type: Number, default: 1 },
 		},
 	],
-	user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
+	user: {
+		type: mongoose.Types.ObjectId,
+		ref: "User",
+		required: true,
+		immutable: true,
+	},
 });
 
 export const Order = mongoose.model("Order", orderSchema);
