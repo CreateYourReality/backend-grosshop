@@ -34,6 +34,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                 return cartItem;
             });
         });
+        increaseTempAmountCart(incOrDecrement)
         setUpdateTotal(prev => !prev)
       }
 
@@ -66,15 +67,17 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
             setTempShoppingCartItem({id:product._id,amount:amount})
             return;
         }
-        return tempShoppingCartItem.amount
     }
 
+
     useEffect(()=>{
+        getTempShoppingCartItem() 
         if(location.pathname == "/shoppingcart" || detailProduct == "/detailproduct" ){
             if(shoppingCartItem != undefined && tempShoppingCartItem.amount != shoppingCartItem.amount){
-                setTempShoppingCartItem({id:product._id,amount:shoppingCartItem.amount})
+                setTempShoppingCartItem({id:product._id,amount:shoppingCartItem.amount}) //TODO
+
             }
-        }   
+        }  
     },[tempShoppingCartItem])
 
 
@@ -95,7 +98,9 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                     favItem?
                         favItem.amount
                         :null 
-                    :getTempShoppingCartItem()      
+                    :tempShoppingCartItem?
+                        tempShoppingCartItem.amount
+                        :0 
                 }
             </p>
             <button onClick={() => 
