@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom"
 
 const ChangeAmount = ({product,setFavorites,favItem}) => {
     const {userShoppingCart,setUserShoppingCart} = useContext(userShoppingCartContext)
-    const [shoppingCartItem, setShoppingCartItem] = useState("")
+    const [shoppingCartItem, setShoppingCartItem] = useState(undefined)
     const [tempShoppingCartItem, setTempShoppingCartItem] = useState(undefined)
     const [updateTotal,setUpdateTotal] = useState(false) //toogle refresher
 
@@ -58,16 +58,25 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         setUpdateTotal(prev => !prev)
     };
 
+
+
     const getTempShoppingCartItem = () => {
         if(tempShoppingCartItem == undefined) {
-            setTempShoppingCartItem({id:product._id,amount:1})
+            const amount = 1;
+            setTempShoppingCartItem({id:product._id,amount:amount})
             return;
         }
         return tempShoppingCartItem.amount
     }
 
     useEffect(()=>{
+        if(location.pathname == "/shoppingcart" || detailProduct == "/detailproduct" ){
+            if(shoppingCartItem != undefined && tempShoppingCartItem.amount != shoppingCartItem.amount){
+                setTempShoppingCartItem({id:product._id,amount:shoppingCartItem.amount})
+            }
+        }   
     },[tempShoppingCartItem])
+
 
     return (
         <>
@@ -78,15 +87,15 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                 increaseAmountFav(-1)
                 :!shoppingCartItem?
                     increaseTempAmountCart(-1)
-                    :increaseAmountCart(-1)}>
+                    :detailProduct=="/detailproduct"?
+                        increaseTempAmountCart(-1)
+                        :increaseAmountCart(-1)}>
             -</button>
             <p>{location.pathname=="/favorites"?
                     favItem?
                         favItem.amount
                         :null 
-                    :shoppingCartItem?
-                        shoppingCartItem.amount
-                        :getTempShoppingCartItem()
+                    :getTempShoppingCartItem()      
                 }
             </p>
             <button onClick={() => 
@@ -94,7 +103,9 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                     increaseAmountFav(+1)
                     :!shoppingCartItem?
                         increaseTempAmountCart(+1)
-                        :increaseAmountCart(+1)}>
+                        :detailProduct=="/detailproduct"?
+                            increaseTempAmountCart(+1)
+                            :increaseAmountCart(+1)}>
             +</button>
           </div>
         : null}
