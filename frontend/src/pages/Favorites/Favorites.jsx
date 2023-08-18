@@ -10,7 +10,7 @@ const Favorites = () => {
     const {data} = useContext(dataContext)
     const {favorites, setFavorites} = useContext(favoritesContext)
     const [selectedFavs, setSelectedFavs] = useState([])
-
+    
     const findFavoriteById = (favID) => {
         return data.find(favoriteItem => favoriteItem._id === favID);
     };
@@ -25,21 +25,28 @@ const Favorites = () => {
         setSelectedFavs([])
     }
 
-    //TODO DESELECT ALL, CHECKBOX
+    const [selectAllText,setSelectAllText] = useState("SELECT ALL")
+
     const selectAll= () => {
-        console.log("SELECT ALL BTN");
         let selectAll = []
-        favorites.forEach(fav => {
-            selectAll.push(fav.id)
-        })
+        if(selectedFavs.length < favorites.length){
+            favorites.forEach(fav => {
+                selectAll.push(fav.id)
+            })
+        }
         setSelectedFavs(selectAll)
     }
 
-    const isSelected = () => {
-        
+    const isSelected = (id) => {
+        return selectedFavs.some(fav => fav == id);
     }
 
     useEffect(()=>{
+        if(selectedFavs.length == favorites.length){
+            setSelectAllText("DESELECT ALL")
+        }else{
+            setSelectAllText("SELECT ALL")
+        }
     },[selectedFavs])
 
     return ( 
@@ -49,7 +56,7 @@ const Favorites = () => {
                 <h2>Favorites Page</h2>
                 <section className="favorites-section">
                     <div className="favorite-selection-btns">
-                        <a onClick={selectAll}>SELECT ALL</a>
+                        <a onClick={selectAll}>{selectAllText}</a>
                         <a onClick={deleteSelectedFavs}>DELETE</a>
                     </div>
                     {favorites? 
@@ -57,7 +64,7 @@ const Favorites = () => {
                             <>
                                 {favorites.map((fav,index) => (
                                     <article key={index}>
-                                        {<ProductCard setSelectedFavs={setSelectedFavs} setFavorites={setFavorites} product={findFavoriteById(fav.id)}/>}
+                                        {<ProductCard isSelected={isSelected} setSelectedFavs={setSelectedFavs} setFavorites={setFavorites} product={findFavoriteById(fav.id)}/>}
                                     </article> 
                                     )
                                 )}

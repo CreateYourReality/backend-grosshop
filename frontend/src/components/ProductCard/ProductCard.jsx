@@ -6,11 +6,21 @@ import ChangeAmount from "../ChangeAmount/ChangeAmount"
 import emtpyHearth from "../../assets/img/heart.svg"
 import fullHearth from "../../assets/img/heartActive.svg"
 
-const ProductCard = ({product,setSelectedFavs,setSelectedCartItems}) => {
+const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) => {
   const {favorites, setFavorites} = useContext(favoritesContext)
   const [favItem, setFavItem] = useState(undefined)
 
   const location = useLocation()
+  const locationFavorites = "/favorites"
+  const locationDetails = "/detailproduct"
+  const locationShoppingCart = "/shoppingcart"
+  const productID = product._id;
+
+  let isThisProductSelected = false;
+
+  if(location.pathname == "/favorites"){
+    isThisProductSelected = isSelected(productID)
+  }
 
   const removeFromFavorites = (idToRemove) => {
     //TODO AXIOS, setFavorites nur wenn erfolgreich
@@ -51,6 +61,8 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems}) => {
       });
   };
 
+ 
+
   useEffect(() => { //TODO ? FavItem nur setzen wenn noch nicht gesetzt?
       const foundFavItem = favorites.find(fav => fav.id === product._id);
       setFavItem(foundFavItem);
@@ -65,7 +77,7 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems}) => {
       { // Wenn Favoriten oder ShoppingCart Page>> Füge Select hinzu
       location.pathname == "/favorites" || location.pathname == "/shoppingcart" ? 
         <div className="product-card-select">
-          <input name="fav-select" type="checkbox" onChange={location.pathname == "/favorites"? handleFavItemSelect : handleCartItemSelect}/>
+          <input checked={isThisProductSelected} name="fav-select" type="checkbox" onChange={location.pathname == "/favorites"? handleFavItemSelect : handleCartItemSelect}/>
         </div>
       : null }
         <div>
