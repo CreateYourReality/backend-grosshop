@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom"
 const ChangeAmount = ({product,setFavorites,favItem}) => {
     const {userShoppingCart,setUserShoppingCart} = useContext(userShoppingCartContext)
     const [shoppingCartItem, setShoppingCartItem] = useState("")
+    const [tempShoppingCartItem, setTempShoppingCartItem] = useState(undefined)
     const [updateTotal,setUpdateTotal] = useState(false) //toogle refresher
 
     const findShoppingItemBy = (prodID) => {
@@ -36,6 +37,15 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         setUpdateTotal(prev => !prev)
       }
 
+      const increaseTempAmountCart = (incOrDecrement) => {
+        setTempShoppingCartItem(prevCartItem => {
+                if (prevCartItem.id === product._id) {
+                    return { ...prevCartItem, amount: prevCartItem.amount + incOrDecrement <= 0 ? 1 : prevCartItem.amount + incOrDecrement  };
+                }
+                return prevCartItem;
+            });
+      }
+
       const increaseAmountFav = (incOrDecrement) => {
         setFavorites(prevFavorites => {
             return prevFavorites.map(fav => {
@@ -48,23 +58,53 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         setUpdateTotal(prev => !prev)
     };
 
+    const getTempShoppingCartItem = () => {
+        if(tempShoppingCartItem == undefined) {
+            setTempShoppingCartItem({id:product._id,amount:1})
+            return;
+        }
+        return tempShoppingCartItem.amount
+    }
+
+    useEffect(()=>{
+    },[tempShoppingCartItem])
+
     return (
         <>
                   { // Wenn Favoriten oder ShoppingCart Page >> Füge - + hinzu
         location.pathname == "/favorites" || location.pathname == "/shoppingcart" || detailProduct == "/detailproduct" ? 
           <div className="product-card-amount">
-            <button onClick={() => location.pathname=="/favorites"?increaseAmountFav(-1):increaseAmountCart(-1)}>-</button>
-            <p>{
+            <button onClick={() => location.pathname=="/favorites"?
+                increaseAmountFav(-1)
+                :!shoppingCartItem?
+                    increaseTempAmountCart(-1)
+                    :increaseAmountCart(-1)}>
+            -</button>
+            <p>{location.pathname=="/favorites"?
+                    favItem?
+                        favItem.amount
+                        :null 
+                    :shoppingCartItem?
+                        shoppingCartItem.amount
+                        :getTempShoppingCartItem()
+                }
+            </p>
+            <button onClick={() => 
                 location.pathname=="/favorites"?
-                    favItem?favItem.amount:null 
-                :shoppingCartItem?shoppingCartItem.amount:null}</p>
-            <button onClick={() => location.pathname=="/favorites"?increaseAmountFav(+1):increaseAmountCart(+1)}>+</button>
+                    increaseAmountFav(+1)
+                    :!shoppingCartItem?
+                        increaseTempAmountCart(+1)
+                        :increaseAmountCart(+1)}>
+            +</button>
           </div>
         : null}
-
-
-
-
+        <div>
+            {detailProduct == "/detailproduct"?
+                shoppingCartItem?
+                    <button>UPDATE CART</button>
+                    :<button>PUT IN CART</button>
+            :null}
+        </div>
         </>
     );
 }

@@ -53,7 +53,6 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
     }
   }
 
-
   const handleCheckbox = () => {
     locationIsFavorites()? handleItemSelect(setSelectedFavs) : handleItemSelect(setSelectedCartItems)
   }
