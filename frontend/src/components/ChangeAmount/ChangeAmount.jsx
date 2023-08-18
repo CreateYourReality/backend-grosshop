@@ -1,13 +1,13 @@
 import "./ChangeAmount.css"
 import { useContext, useState } from "react"
-import { favoritesContext, userShoppingCartContext } from "../../context/Context"
+import { userShoppingCartContext } from "../../context/Context"
 import { useEffect } from "react"
-import { useLocation, useParams } from "react-router-dom"
-import { dataContext } from "../../context/Context"
+import { useLocation } from "react-router-dom"
 
 const ChangeAmount = ({product,setFavorites,favItem}) => {
     const {userShoppingCart,setUserShoppingCart} = useContext(userShoppingCartContext)
     const [shoppingCartItem, setShoppingCartItem] = useState("")
+    const [updateTotal,setUpdateTotal] = useState(false) //toogle refresher
 
     const findShoppingItemBy = (prodID) => {
         return userShoppingCart.find(cartItem => cartItem._id === prodID);
@@ -33,6 +33,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                 return cartItem;
             });
         });
+        setUpdateTotal(prev => !prev)
       }
 
       const increaseAmountFav = (incOrDecrement) => {
@@ -44,6 +45,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                 return fav;
             });
         });
+        setUpdateTotal(prev => !prev)
     };
 
     return (

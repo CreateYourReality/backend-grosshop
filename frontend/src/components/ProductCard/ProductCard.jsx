@@ -10,15 +10,27 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
   const {favorites, setFavorites} = useContext(favoritesContext)
   const [favItem, setFavItem] = useState(undefined)
 
-  const location = useLocation()
-  const locationFavorites = "/favorites"
-  const locationDetails = "/detailproduct"
-  const locationShoppingCart = "/shoppingcart"
+  let isThisProductSelected = false;
   const productID = product._id;
 
-  let isThisProductSelected = false;
+  //TODO ####### AUSLAGERN ? ##############
+  const location = useLocation()
 
-  if(location.pathname == "/favorites"){
+  const locationIsFavorites = () => {
+    const locationFavorites = "/favorites"
+    return location.pathname == locationFavorites;
+  }
+  const locationIsDetailProduct = () => {
+    const locationDetails = "/detailproduct"
+    return location.pathname == locationDetails;
+  }
+  const locationIsShoppingCart = () => {
+    const locationShoppingCart = "/shoppingcart"
+    return location.pathname == locationShoppingCart;
+  }
+//TODO #######################################
+
+  if(locationIsFavorites()){
     isThisProductSelected = isSelected(productID)
   }
 
@@ -33,55 +45,48 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
   }
 
   const toggleFavorite = () => {
-    if(favItem != undefined && favItem.id == product._id) {
+    if(favItem != undefined && favItem.id == productID) {
       removeFromFavorites(favItem.id)
       setFavItem(undefined)
     }else{
-      addToFavorites({id:product._id,amount:1})
+      addToFavorites({id:productID,amount:1})
     }
   }
 
-  const handleFavItemSelect = () => {
-    setSelectedFavs(prev => {
-        if (prev.includes(product._id)) {
-            return prev.filter(id => id !== product._id);
-        } else {
-            return [...prev, product._id];
-        }
-    });
-};
 
-  const handleCartItemSelect = () => {
-      setSelectedCartItems(prev => {
-          if (prev.includes(product._id)) {
-              return prev.filter(id => id !== product._id);
-          } else {
-              return [...prev, product._id];
-          }
-      });
-  };
+  const handleCheckbox = () => {
+    locationIsFavorites()? handleItemSelect(setSelectedFavs) : handleItemSelect(setSelectedCartItems)
+  }
 
- 
+  const handleItemSelect = (setFunction) => {
+    setFunction(prev => {
+      if (prev.includes(productID)) {
+          return prev.filter(id => id !== productID);
+      } else {
+          return [...prev, productID];
+      }
+    })
+  }
 
   useEffect(() => { //TODO ? FavItem nur setzen wenn noch nicht gesetzt?
-      const foundFavItem = favorites.find(fav => fav.id === product._id);
+      const foundFavItem = favorites.find(fav => fav.id === productID);
       setFavItem(foundFavItem);
-  }, [favorites,favItem,product._id]);
+  }, [favorites,favItem,productID]);
+
 
   return ( 
     <>
       {product?
-      <article className={`product-article ${location.pathname=="/favorites"?
-      "product-card-favorites":location.pathname=="/shoppingcart"?
-      "product-card-userShoppingCart" : ""}`}>
+      <article className={`product-article ${locationIsFavorites()?"product-card-favorites"
+      :locationIsShoppingCart()?"product-card-userShoppingCart" : ""}`}>
       { // Wenn Favoriten oder ShoppingCart Page>> Füge Select hinzu
-      location.pathname == "/favorites" || location.pathname == "/shoppingcart" ? 
+      locationIsFavorites() || locationIsShoppingCart() ? 
         <div className="product-card-select">
-          <input checked={isThisProductSelected} name="fav-select" type="checkbox" onChange={location.pathname == "/favorites"? handleFavItemSelect : handleCartItemSelect}/>
+          <input checked={isThisProductSelected} name="fav-select" type="checkbox" onChange={handleCheckbox}/>
         </div>
       : null }
         <div>
-          <Link to={"/detailproduct/"+product._id}>
+          <Link to={"/detailproduct/"+productID}>
             <div>
               <h3>{product.productName}</h3>
               <p>{product.price}$</p>

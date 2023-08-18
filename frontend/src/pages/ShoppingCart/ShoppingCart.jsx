@@ -9,9 +9,10 @@ import { useState, useEffect } from "react";
 import TotalCost from "../../components/TotalCost/TotalCost";
 
 const ShoppingCart = () => {
-    const {userShoppingCart, setUserShoppingCart} = useContext(userShoppingCartContext)
     const {data} = useContext(dataContext)
+    const {userShoppingCart, setUserShoppingCart} = useContext(userShoppingCartContext)
     const [selectedCartItems, setSelectedCartItems] = useState([])
+
 
     const findShoppingItemBy = (favID) => {
         return data.find(favoriteItem => favoriteItem._id === favID);
@@ -19,7 +20,6 @@ const ShoppingCart = () => {
 
     useEffect(()=>{
     },[selectedCartItems])
-
 
     return ( 
         <>
@@ -46,7 +46,7 @@ const ShoppingCart = () => {
                     : <p>loading shopping items...</p>
                 }
 
-                <TotalCost/>
+                <TotalCost />
 
                 </section>   
             </main>    
