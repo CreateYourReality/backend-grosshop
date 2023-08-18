@@ -55,13 +55,12 @@ const Favorites = () => {
             <main>
                 <h2>Favorites Page</h2>
                 <section className="favorites-section">
-                    <div className="favorite-selection-btns">
-                        <a onClick={selectAll}>{selectAllText}</a>
-                        <a onClick={deleteSelectedFavs}>DELETE</a>
-                    </div>
-                    {favorites? 
-                        favorites.length != 0 ? (
-                            <>
+                {favorites? favorites.length != 0 ? (
+                    <>
+                        <div className="favorite-selection-btns">
+                            <a onClick={selectAll}>{selectAllText}</a>
+                            <a onClick={deleteSelectedFavs}>DELETE</a>
+                        </div>
                                 {favorites.map((fav,index) => (
                                     <article key={index}>
                                         {<ProductCard isSelected={isSelected} setSelectedFavs={setSelectedFavs} setFavorites={setFavorites} product={findFavoriteById(fav.id)}/>}
