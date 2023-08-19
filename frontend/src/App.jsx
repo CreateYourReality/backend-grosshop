@@ -17,8 +17,14 @@ import Profile from "./pages/Profile/Profile";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 
 //Context
-import {loadingContext, dataContext, categoryContext, priceContext, favoritesContext,userShoppingCartContext} from "./context/Context";
-
+import {
+  loadingContext,
+  dataContext,
+  categoryContext,
+  priceContext, 
+  favoritesContext,
+  userShoppingCartContext
+} from "./context/Context";
 
 function App() {
   const [loading, setLoading] = useState(true);

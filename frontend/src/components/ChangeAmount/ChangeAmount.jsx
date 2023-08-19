@@ -9,6 +9,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
     const [shoppingCartItem, setShoppingCartItem] = useState(undefined)
     const [tempShoppingCartItem, setTempShoppingCartItem] = useState(undefined)
     const [updateTotal,setUpdateTotal] = useState(false) //toogle refresher
+    const [stop,setStop] = useState(false)
 
     const findShoppingItemBy = (prodID) => {
         return userShoppingCart.find(cartItem => cartItem._id === prodID);
@@ -45,6 +46,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                 }
                 return prevCartItem;
             });
+            setUpdateTotal(prev => !prev)
       }
 
       const increaseAmountFav = (incOrDecrement) => {
@@ -65,17 +67,18 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         if(tempShoppingCartItem == undefined) {
             const amount = 1;
             setTempShoppingCartItem({id:product._id,amount:amount})
-            return;
+            setStop(false)
         }
+        console.log(tempShoppingCartItem);
     }
 
 
     useEffect(()=>{
         getTempShoppingCartItem() 
         if(location.pathname == "/shoppingcart" || detailProduct == "/detailproduct" ){
-            if(shoppingCartItem != undefined && tempShoppingCartItem.amount != shoppingCartItem.amount){
+            if(shoppingCartItem != undefined && tempShoppingCartItem.amount != shoppingCartItem.amount && stop == false){
                 setTempShoppingCartItem({id:product._id,amount:shoppingCartItem.amount}) //TODO
-
+                setStop(true);
             }
         }  
     },[tempShoppingCartItem])
