@@ -17,23 +17,34 @@ import Favorites from "./pages/Favorites/Favorites";
 import Admin from "./pages/Admin/Admin";
 import Profile from "./pages/Profile/Profile";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
+import Filter from "./pages/Filter/Filter";
 
 //Context
 import {
   loadingContext,
   dataContext,
   categoryContext,
-  priceContext,
+  priceContext, 
   favoritesContext,
+  userShoppingCartContext
 } from "./context/Context";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState();
-  const [categoryFilter, setCategoryFilter] = useState("All");
-  const [priceFilter, setPriceFilter] = useState({ min: 0, max: Infinity });
-  const [favorites, setFavorites] = useState([
-    //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
+  const [data, setData] = useState()
+  const [categoryFilter, setCategoryFilter] = useState("All")
+  const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
+  const [userShoppingCart, setUserShoppingCart] = useState([
+    {
+      id:"64da41a2da5607a595466d39",
+      amount:10
+    },
+    {
+      id:"64da415eda5607a595466d38",
+      amount:7
+    }
+  ])
+  const [favorites, setFavorites] = useState([ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
     {
       id: "64da41b6da5607a595466d3a",
       amount: 7,
@@ -55,6 +66,7 @@ function App() {
                 <UserProvider>
                   <favoritesContext.Provider
                     value={{ favorites, setFavorites }}>
+            <userShoppingCartContext.Provider value={{userShoppingCart,setUserShoppingCart}}>
                     <Routes>
                       {loading ? (
                         <Route path="*" element={<SplashScreen />} />
@@ -77,6 +89,7 @@ function App() {
                             element={<ShoppingCart />}
                           />
                           <Route path="/favorites" element={<Favorites />} />
+                    <Route path="/filter" element={<Filter/>} />
 
                           <Route path="/profile" element={<Profile />} />
                           <Route path="/admin" element={<Admin />} />
@@ -92,6 +105,7 @@ function App() {
                         </>
                       )}
                     </Routes>
+            </userShoppingCartContext.Provider>
                   </favoritesContext.Provider>
                 </UserProvider>
               </priceContext.Provider>

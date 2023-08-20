@@ -10,7 +10,7 @@
     flex-direction: column;
 }
 
-.product-card-favorites{
+.product-card-favorites,.product-card-userShoppingCart{
     min-width: 80vw;
     max-width: 80vw;
     flex-direction: row;

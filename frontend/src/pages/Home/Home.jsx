@@ -13,17 +13,18 @@ const Home = () => {
     return <div>Loading...</div>;
   }
   console.log(isLoggedIn);
-  return (
-    <>
-      <HeaderNav />
-      <main>
-        <h2>Home Page</h2>
-        <ProductListComponente />
-        <Link to="/productlist">Productlist</Link>
-      </main>
-      <FooterNav />
-    </>
-  );
-};
-
+    return ( 
+        <>
+            <HeaderNav/>
+            <Link to="/filter">Filter</Link>
+            <main>
+            <h2>Home Page</h2>
+              <ProductListComponente/>
+                <Link to="/productlist">Productlist</Link>
+            </main>
+            <FooterNav/>
+        </>
+     );
+}
+ 
 export default Home;
