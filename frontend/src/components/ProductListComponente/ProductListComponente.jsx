@@ -1,10 +1,9 @@
 import "./ProductListComponente.css"
 import { useContext, useEffect, useState } from "react";
 import { categoryContext, dataContext,priceContext } from "../../context/Context";
-import SelectSort from "../SelectSort/SelectSort";
 import ProductCard from "../ProductCard/ProductCard";
-import SelectCategory from "../SelectCategory/SelectCategory";
-import SelectPriceRange from "../SelectPriceRange/SelectPriceRange";
+
+
 
 
 const ProductListComponente = () => {
@@ -32,9 +31,6 @@ const ProductListComponente = () => {
 
     return ( 
         <>
-            <SelectCategory/>
-            <SelectSort/>
-            <SelectPriceRange/>
             <section className="product-list">
               {data? 
                 filteredData.map((product,index) => {

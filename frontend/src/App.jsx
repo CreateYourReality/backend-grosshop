@@ -15,6 +15,7 @@ import Favorites from "./pages/Favorites/Favorites";
 import Admin from "./pages/Admin/Admin";
 import Profile from "./pages/Profile/Profile";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
+import Filter from "./pages/Filter/Filter";
 
 //Context
 import {
@@ -73,6 +74,7 @@ function App() {
                     <Route path="/productlist" element={<ProductList />} />
                     <Route path="/shoppingcart" element={<ShoppingCart />} />
                     <Route path="/favorites" element={<Favorites />} />
+                    <Route path="/filter" element={<Filter/>} />
 
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/admin" element={<Admin />} />
