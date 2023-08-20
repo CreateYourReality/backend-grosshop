@@ -4,7 +4,6 @@ export const productSchema = new mongoose.Schema({
 	productName: {
 		type: String,
 		minlength: 1,
-		maxlength: 50,
 		required: true,
 	},
 	description: {
@@ -26,7 +25,6 @@ export const productSchema = new mongoose.Schema({
 	rating: {
 		type: Number,
 		required: true,
-		immutable: true,
 	},
 });
 

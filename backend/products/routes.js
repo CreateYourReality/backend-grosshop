@@ -7,7 +7,7 @@ import {
 	postProduct,
 	putProduct,
 	deleteProduct,
-} from "./Controller.js";
+} from "./controller.js";
 export let router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
 

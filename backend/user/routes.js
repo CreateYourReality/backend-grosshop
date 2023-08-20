@@ -10,8 +10,10 @@ import {
 	resetPassword,
 	putUser,
 	deleteUser,
-	updateUserProductCard,
-	deleteOneUserProductCard,
+	updateUserProductCart,
+	deleteOneUserProductCart,
+	updateUserFavProducts,
+	deleteUserFavProducts,
 } from "./controller.js";
 
 export const router = Router();
@@ -28,10 +30,17 @@ router.post("/resetPassword", resetPassword); //password reset
 router.put("/:id", upload.single("image"), putUser); //update userprofile by id
 router.delete("/:id", deleteUser); // delete User
 
-//todo productCard?
-router.put("/updateProductCard/:id", upload.none(), updateUserProductCard);
+//todo ProductCart?
+router.put("/updateUserProductCart/:id", upload.none(), updateUserProductCart);
 router.delete(
-	"/updateProductCard/:id",
+	"/updateUserProductCart/:id",
 	upload.none(),
-	deleteOneUserProductCard
+	deleteOneUserProductCart
+);
+
+router.put("/updateUserFavProducts/:id", upload.none(), updateUserFavProducts);
+router.delete(
+	"/updateUserFavProducts/:id",
+	upload.none(),
+	deleteUserFavProducts
 );

@@ -9,6 +9,7 @@ import cors from "cors";
 import { setup } from "./setup.js";
 import { router as UserRouting } from "./user/routes.js";
 import { router as ProductRouting } from "./products/routes.js";
+import { router as OrderRouting } from "./orders/routes.js";
 /* import { Product } from "./products/ProductModel.js";
  */
 dotenv.config({
@@ -42,6 +43,7 @@ app.get("/api/status", (req, res) => {
 });
  */
 app.use("/api/users", UserRouting);
+app.use("/api/orders", OrderRouting);
 
 app.use("/api/products", ProductRouting);
 
