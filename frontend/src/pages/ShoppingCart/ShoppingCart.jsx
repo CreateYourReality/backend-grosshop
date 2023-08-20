@@ -13,13 +13,45 @@ const ShoppingCart = () => {
     const {userShoppingCart, setUserShoppingCart} = useContext(userShoppingCartContext)
     const [selectedCartItems, setSelectedCartItems] = useState([])
 
+    const deleteSelectedShoppingItems = () => {
+        let updatedShoppingItems = [...userShoppingCart];
+        selectedCartItems.forEach(id => {
+            updatedShoppingItems = updatedShoppingItems.filter(cartItem => cartItem.id !== id);
+        });
+        setUserShoppingCart(updatedShoppingItems);
+        setSelectedCartItems([])
+    }
+
+    const [selectAllText,setSelectAllText] = useState("SELECT ALL")
+
+    const selectAll= () => {
+        let selectAll = []
+        if(selectedCartItems.length < userShoppingCart.length){
+            userShoppingCart.forEach(cartItem => {
+                selectAll.push(cartItem.id)
+            })
+        }
+        setSelectedCartItems(selectAll)
+    }
+
+    const isSelected = (id) => {
+        return selectedCartItems.some(cartItem => cartItem == id);
+    }
+
+    useEffect(()=>{
+        if(selectedCartItems.length == userShoppingCart.length){
+            setSelectAllText("DESELECT ALL")
+        }else{
+            setSelectAllText("SELECT ALL")
+        }
+    },[selectedCartItems])
 
     const findShoppingItemBy = (favID) => {
         return data.find(favoriteItem => favoriteItem._id === favID);
     };
 
-    useEffect(()=>{
-    },[selectedCartItems])
+  /*  useEffect(()=>{
+    },[selectedCartItems]) */
 
     return ( 
         <>
@@ -30,9 +62,13 @@ const ShoppingCart = () => {
                 {userShoppingCart? 
                     userShoppingCart.length != 0 ? (
                     <>
+                         <div className="favorite-selection-btns">
+                            <a onClick={selectAll}>{selectAllText}</a>
+                            <a onClick={deleteSelectedShoppingItems}>DELETE</a>
+                        </div>
                         {userShoppingCart.map((cartItem,index) => (
                                 <article key={index}>
-                                    {<ProductCard setSelectedCartItems={setSelectedCartItems} product={findShoppingItemBy(cartItem.id)}/>}
+                                    {<ProductCard isSelected={isSelected} setSelectedCartItems={setSelectedCartItems} product={findShoppingItemBy(cartItem.id)}/>}
                                 </article>
                             )
                         )}

@@ -69,7 +69,6 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
             setTempShoppingCartItem({id:product._id,amount:amount})
             setStop(false)
         }
-        console.log(tempShoppingCartItem);
     }
 
 

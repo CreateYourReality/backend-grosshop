@@ -30,7 +30,7 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
   }
 //TODO #######################################
 
-  if(locationIsFavorites()){
+  if(locationIsFavorites() || locationIsShoppingCart()){
     isThisProductSelected = isSelected(productID)
   }
 
