@@ -1,0 +1,13 @@
+/* General Settings */
+.backBtn3-section {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.backBtn3-section:hover {
+  opacity: 40%;
+}
+
+.backBtn3-section img {
+  height: 1.5rem;
+}

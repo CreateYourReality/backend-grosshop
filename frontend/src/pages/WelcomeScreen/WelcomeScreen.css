@@ -1,0 +1,44 @@
+/* General setting */
+.welcome-grosShop {
+  background: var(--signUp-bg-color);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-contentWrapper {
+  background: var(--white-color);
+  width: 32rem;
+  height: 30rem;
+  border-radius: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.welcome-svgBox {
+  margin: 0 3rem 0 0;
+}
+
+.welcome-textBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 30rem;
+  gap: 1rem;
+}
+
+.welcome-textBox h1 {
+  font-size: 2.4rem;
+  color: var(--h-tag-btn-color);
+}
+.welcome-textBox h2 {
+  font-family: poppins-regular;
+  font-size: 1.8rem;
+  color: var(--p-tag-color);
+}

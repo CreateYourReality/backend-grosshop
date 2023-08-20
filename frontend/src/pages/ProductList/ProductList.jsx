@@ -1,12 +1,15 @@
-import "./ProductList.css"
+import FooterNav from "../../components/FooterNav/FooterNav";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import "./ProductList.css";
 const ProductList = () => {
-    return ( 
-        <>
-            <main>
-                <h2>Product List Page</h2>
-            </main>
-        </>
-     );
-}
- 
+  return (
+    <>
+      <main>
+        <HeaderNav />
+        <h2>Product List Page</h2>
+      </main>
+    </>
+  );
+};
+
 export default ProductList;

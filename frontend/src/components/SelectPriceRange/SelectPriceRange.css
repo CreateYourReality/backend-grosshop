@@ -1,0 +1,10 @@
+.price-range-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price-range-section .rc-slider{
+    width: 60%;
+    margin: 10px;
+}

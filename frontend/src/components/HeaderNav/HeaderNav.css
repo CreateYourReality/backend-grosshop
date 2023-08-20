@@ -1,0 +1,34 @@
+.headerNav-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 4rem 0 0 2rem;
+}
+
+.location-name h2 {
+  font-size: 1.8rem;
+}
+
+.headerNav-searchBox {
+  width: 33rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.headerNav-searchBox input {
+  border: 1px solid grey;
+  border-radius: 3px;
+  font-size: 1.1rem;
+  margin: -0.5rem 0 0 1rem;
+  padding: 0.5rem 5rem;
+}
+
+.myCart-navBox {
+  display: flex;
+  justify-content: space-between;
+  width: 33rem;
+}
+
+.myCart-navBox button {
+  cursor: pointer;
+}

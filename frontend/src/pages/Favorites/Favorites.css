@@ -1,0 +1,19 @@
+.favorites-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 80vh;
+}
+
+.favorite-selection-btns{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.add-to-cart-btn{
+    padding: 10px 15px;
+    background-color: green;
+}
