@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import "./SelectSort.css"
 import { dataContext } from "../../context/Context";
 
-const SelectSort = () => {
-    const {data, setData} = useContext(dataContext)
+const SelectSort = ({sortArray,setSortArray}) => {
+ //   const {data, setData} = useContext(dataContext)
     const [sortBy, setSortBy] = useState("abc")
 
     const sortAZ = (a, b) => a.productName.localeCompare(b.productName);
@@ -14,9 +14,9 @@ const SelectSort = () => {
     const sortRatingHigh = (a, b) => b.rating - a.rating;
 
     const sortME = (sortType) => {
-        let sortedArray = [...data];
+        let sortedArray = [...sortArray];
         sortedArray = [...sortedArray].sort(getSortType(sortType));
-        setData(sortedArray);
+        setSortArray(sortedArray);
     }
 
     const getSortType = (sortType) => {
