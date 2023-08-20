@@ -92,6 +92,27 @@ export const resetPassword = async (req, res) => {
 	}
 };
 
+export const resetPasswordConfirm = async (req, res) => {
+	const { id, token, password } = req.body;
+	const isValidResetProcess = validateResetToken(id, token);
+	try {
+		if (!isValidResetProcess) {
+			throw new Error("NonValidResetProcess");
+		}
+
+		const user = await User.findById(id);
+		user.setPassword(password);
+
+		await user.save();
+		return res.send({
+			data: { message: "New password confirmed" },
+		});
+	} catch (e) {
+		console.log(e);
+		res.status(500).send({ error: "Something went wrong" });
+	}
+};
+
 export const putUser = async (req, res) => {
 	try {
 		const id = req.params.id;

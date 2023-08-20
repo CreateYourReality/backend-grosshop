@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 import User from "./UserModel.js";
+import { passwordResetMailTemplate } from "../lib/mailTemplates.js";
+import { sendMail } from "../lib/sendMail.js";
+import crypto from "crypto";
 
 const resetTokenSchema = new mongoose.Schema({
 	userId: {
