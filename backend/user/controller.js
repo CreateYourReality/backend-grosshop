@@ -1,11 +1,11 @@
 import { User } from "./UserModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import { createResetToken } from "./ResetTokenModel.js";
-import { generateAccessToken } from "./authToken.js";
+import { authenticateToken, generateAccessToken } from "./authToken.js";
 
 const hoursInMillisec = (hours) => {
 	return 1000 * 60 * 60 * hours;
-  };
+};
 
 export const getAllUser = async (req, res) => {
 	const data = await User.find();
@@ -229,4 +229,8 @@ export const deleteUserFavProducts = async (req, res) => {
 		console.log(err);
 		res.status(500).send(err);
 	}
+};
+
+export const secureUser = (req, res) => {
+	res.send({ email: req.userEmail });
 };

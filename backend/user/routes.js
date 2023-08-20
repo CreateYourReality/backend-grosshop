@@ -1,6 +1,8 @@
 import { Router } from "express";
 import multer from "multer";
 import User from "./UserModel.js";
+import { authenticateToken } from "./authToken.js";
+
 import {
 	getAllUser,
 	getOneUser,
@@ -14,6 +16,7 @@ import {
 	deleteOneUserProductCart,
 	updateUserFavProducts,
 	deleteUserFavProducts,
+	secureUser,
 } from "./controller.js";
 
 export const router = Router();
@@ -37,6 +40,7 @@ router.delete(
 	upload.none(),
 	deleteOneUserProductCart
 );
+router.get("/secure", authenticateToken, secureUser);
 
 router.put("/updateUserFavProducts/:id", upload.none(), updateUserFavProducts);
 router.delete(

@@ -11,7 +11,7 @@ const SplashScreen = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const newData = await axios.get("http://localhost:3001/api/products")
+            const newData = await axios.get("/api/products")
             setData(newData.data)
         }
 

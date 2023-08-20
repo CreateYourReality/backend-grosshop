@@ -12,14 +12,14 @@ export const UserProvider = ({ children }) => {
   const refetch = () => _refetch((prev) => !prev);
 
   const logout = async () => {
-    await axios.get("/api/user/logout");
+    await axios.get("/api/users/logout");
     setUser(null);
     nav("/");
   };
 
-  useEffect(() => {
+/*   useEffect(() => {
     axios
-      .get("/api/user/secure")
+      .get("/api/users/secure")
       .then(({ data }) => setUser(data))
       .catch((e) => {
         setUser(null);
@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
         console.error("Error fetching user:", e);
         setUser(null);
       });
-  }, [shouldRefetch]);
+  }, [shouldRefetch]); */
 
   return (
     <UserContext.Provider
