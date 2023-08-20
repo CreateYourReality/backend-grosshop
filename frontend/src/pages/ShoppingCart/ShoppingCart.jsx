@@ -13,11 +13,19 @@ const ShoppingCart = () => {
     const {userShoppingCart, setUserShoppingCart} = useContext(userShoppingCartContext)
     const [selectedCartItems, setSelectedCartItems] = useState([])
 
+    const findShoppingItemBy = (favID) => {
+        return data.find(favoriteItem => favoriteItem._id === favID);
+    };
+
+    //TODO BEIM LÖSCHEN VON WENIGER ALS ALLEN CARTITEMS KOMMT N FEHLER OHNE ABBRUCH
+    //TODO >>> sort auf filteredData anwenden fixt das ?
     const deleteSelectedShoppingItems = () => {
         let updatedShoppingItems = [...userShoppingCart];
         selectedCartItems.forEach(id => {
             updatedShoppingItems = updatedShoppingItems.filter(cartItem => cartItem.id !== id);
         });
+        console.log(userShoppingCart);
+        console.log(updatedShoppingItems);
         setUserShoppingCart(updatedShoppingItems);
         setSelectedCartItems([])
     }
@@ -45,13 +53,6 @@ const ShoppingCart = () => {
             setSelectAllText("SELECT ALL")
         }
     },[selectedCartItems])
-
-    const findShoppingItemBy = (favID) => {
-        return data.find(favoriteItem => favoriteItem._id === favID);
-    };
-
-  /*  useEffect(()=>{
-    },[selectedCartItems]) */
 
     return ( 
         <>

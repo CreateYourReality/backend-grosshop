@@ -21,6 +21,8 @@ const Favorites = () => {
         selectedFavs.forEach(id => {
             updatedFavorites = updatedFavorites.filter(fav => fav.id !== id);
         });
+        console.log(favorites);
+        console.log(updatedFavorites);
         setFavorites(updatedFavorites);
         setSelectedFavs([])
     }
