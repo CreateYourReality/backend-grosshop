@@ -1,16 +1,42 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./SignIn.css";
 import logo from "../../assets/img/signinlogo.svg";
-import BackBtn from "../../components/BackBtn/BackBtn";
+import BackBtn from "../../components/BackBtnWelcome/BackBtn";
+import { useContext, useState } from "react";
+import axios from "axios";
+import { UserContext } from "../../context/UserContext";
 
-const SignIn = () => {
-  const submit = async (e) => {};
+export default function SignIn() {
+  const { refetch } = useContext(UserContext);
+  const nav = useNavigate();
+  const [error, setError] = useState(null);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setError(null);
+
+    const data = new FormData(e.currentTarget);
+    try {
+      await axios.post("http://localhost:3001/api/users/login", data);
+      refetch();
+      setTimeout(() => {
+        nav("/home");
+      }, 2000);
+      e.target.reset();
+    } catch (e) {
+      console.log(e);
+      setError("Please check your Password and Email");
+      e.target.reset();
+    }
+  };
 
   return (
     <div className="signIn-wrapper">
       <section className="existAccount-section">
         <div className="existAccount-wrapper">
-          <BackBtn />
+          <article className="backBtn2-section-box">
+            <BackBtn />
+          </article>
           <article className="existAccount-logoBox">
             <img src={logo} alt="logo" />
           </article>
@@ -31,6 +57,7 @@ const SignIn = () => {
               placeholder="************"
               required
             />
+            {error && <small style={{ color: "red" }}>{error}</small>}
             <NavLink to="#">Forgot password?</NavLink>
             <button>Sign in</button>
           </form>
@@ -44,6 +71,4 @@ const SignIn = () => {
       </section>
     </div>
   );
-};
-
-export default SignIn;
+}

@@ -17,7 +17,7 @@ const isEmail = (string) => {
 };
 
 const userSchema = new mongoose.Schema({
-	nickname: { type: String, required: [true, "Please specify your Nickame"] },
+	nickname: { type: String },
 	image: {
 		type: {
 			url: String,

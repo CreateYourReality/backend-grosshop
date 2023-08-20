@@ -6,7 +6,7 @@
 }
 
 .navigation {
-  position: relative;
+  /* position: relative; */
   width: 100vw;
   height: 70px;
   background: white;
@@ -30,7 +30,8 @@
 .navigation ul li {
   list-style: none;
   position: relative;
-  width: 70px;
+  /* width: 70px; */
+  width: 100vw;
   height: 60px;
   z-index: 2;
 }
@@ -46,7 +47,12 @@
   height: 100%;
 }
 
-.navigation ul li a .icon {
+.cartActive {
+  width: 100%;
+  transform: translateY(-30px);
+}
+
+/* .navigation ul li a .icon {
   position: relative;
   background: #fff;
   display: block;
@@ -59,16 +65,16 @@
   font-size: 1.5em;
   transition: 0.5s;
   transition-delay: 0s;
-}
+} */
 
-.navigation ul li.active a .icon:hover {
+/* .navigation ul li.active a .icon {
   background: white;
   color: #fff;
   transform: translatey(-28px);
   transition-delay: 0.15s;
-}
+} */
 
-.navigation ul li a .icon:before {
+/* .navigation ul li a .icon:before {
   content: "";
   position: absolute;
   top: 10px;
@@ -81,14 +87,13 @@
   opacity: 0;
   transition: 0.5s;
   transition-delay: 0.15s;
-}
+} */
 
-.navigation ul li.active a .icon:before {
-  /* opacity: 0.5; */
+/* .navigation ul li.active a .icon:before {
   transition-delay: 0.25s;
-}
+} */
 
-.indicator {
+/* .indicator {
   position: absolute;
   top: -35px;
   width: 70px;
@@ -121,36 +126,14 @@
   height: 30px;
   border-radius: 50%;
   box-shadow: -15px 18px #fff;
-}
+} */
 
-.cartActive {
-  width: 100%;
-  transform: translateY(-6px);
-}
-
-/* Default Animation Settings */
-/* .navigation ul li:nth-child(1).active ~ .indicator {
-    transform: translatex(calc(70px * 0));
-}
-
-.navigation ul li:nth-child(2).active ~ .indicator {
-    transform: translatex(calc(70px * 1));
-}
-
-.navigation ul li:nth-child(3).active ~ .indicator {
-    transform: translatex(calc(70px * 2));
-}
-
-.navigation ul li:nth-child(4).active ~ .indicator {
-    transform: translatex(calc(70px * 3));
-}
-
-.navigation ul li:nth-child(5).active ~ .indicator {
-    transform: translatex(calc(70px * 4));
+/* .cart {
+  transform: translateY(-10px);
 } */
 
 /* Media Querries Animation*/
-@media only screen and (min-width: 375px) and (max-width: 450px) {
+/* @media only screen and (min-width: 375px) and (max-width: 450px) {
   .navigation ul li:nth-child(1).active:hover ~ .indicator {
     transform: translatex(calc(19.8vw * (-2)));
   }
@@ -306,4 +289,4 @@
   .navigation ul li:nth-child(5).active:hover ~ .indicator {
     transform: translatex(calc(17.35vw * 2));
   }
-}
+} */

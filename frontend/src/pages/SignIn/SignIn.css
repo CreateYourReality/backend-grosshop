@@ -1,11 +1,12 @@
 /* General Settings  */
 .signIn-wrapper {
   background: var(--signUp-bg-color);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .existAccount-section {
-  min-height: 75vh;
+  min-height: 68rem;
+  /* min-height: 75vh; */
   display: flex;
   flex-direction: column;
   background: var(--white-color);
@@ -17,11 +18,16 @@
   margin: 0 2rem;
 }
 
+.backBtn2-section-box {
+  padding-top: 4rem;
+}
+
 .existAccount-logoBox {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 25vh;
+  height: 25rem;
+  /* height: 25vh; */
 }
 
 .signIn-form {
@@ -78,7 +84,8 @@
 }
 
 .signUpLink-section {
-  height: 25vh;
+  /* height: 25vh; */
+  height: 15rem;
   display: flex;
   justify-content: center;
 }
@@ -86,7 +93,8 @@
 .signUpLink-box {
   display: flex;
   align-items: center;
-  height: 20vh;
+  /* height: 20vh; */
+  height: 13rem;
   gap: 0.5rem;
   font-size: 1.4rem;
   font-family: poppins-regular;
@@ -105,8 +113,12 @@
 }
 /* Media Querries */
 
-@media (min-width: 768px) and (max-width: 1920px) {
+@media (min-width: 481px) and (max-width: 1920px) {
   .existAccount-section {
     align-items: center;
+  }
+
+  .existAccount-wrapper {
+    width: 38rem;
   }
 }

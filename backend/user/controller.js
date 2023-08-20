@@ -1,6 +1,11 @@
 import { User } from "./UserModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import { createResetToken } from "./ResetTokenModel.js";
+import { generateAccessToken } from "./authToken.js";
+
+const hoursInMillisec = (hours) => {
+	return 1000 * 60 * 60 * hours;
+  };
 
 export const getAllUser = async (req, res) => {
 	const data = await User.find();
@@ -22,7 +27,7 @@ export const loginUser = async (req, res) => {
 	const { email, password } = req.body;
 	const user = await User.findOne({ email }).select("+hash").select("+salt");
 
-	const passwordIsValid = user.verfyPassword(password);
+	const passwordIsValid = user.verifyPassword(password);
 
 	if (passwordIsValid) {
 		const token = generateAccessToken({ email });

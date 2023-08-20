@@ -40,7 +40,7 @@ html {
   --picked-color: #0459d9;
   --shipped-color: #c73bd6;
   --profile-color: linear-gradient(
-    142deg,
+    160deg,
     rgba(255, 255, 255, 1) 0%,
     rgba(64, 170, 84, 1) 100%
   );

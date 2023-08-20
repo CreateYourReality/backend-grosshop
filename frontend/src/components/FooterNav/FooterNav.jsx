@@ -4,62 +4,94 @@ import orders from "../../assets/img/document.svg";
 import cart from "../../assets/img/cart.svg";
 import heart from "../../assets/img/heart.svg";
 import profile from "../../assets/img/profile.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import homeActive from "../../assets/img/homeActive.svg";
 import ordersActive from "../../assets/img/documentActive.svg";
 import cartActive from "../../assets/img/cartActive.svg";
 import heartActive from "../../assets/img/heartActive.svg";
 import profileActive from "../../assets/img/profileActive.svg";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { NavContext } from "../../context/Context";
 
 const FooterNav = () => {
+  const location = useLocation();
   //   const { nav, setNav } = useContext(NavContext);
 
-  const list = document.querySelectorAll(".list");
-  list.forEach((item) =>
-    item.addEventListener("click", function (e) {
-      list.forEach((li) => li.classList.remove("claim"));
-      e.currentTarget.classList.add("claim");
-    })
-  );
+  // useEffect(() => {
+  //   const list = document.querySelectorAll(".list");
+  //   list.forEach((item) =>
+  //     item.addEventListener("click", function (e) {
+  //       list.forEach((li) => li.classList.remove("active"));
+  //       e.currentTarget.classList.add("active");
+  //     })
+  //   );
+  // }, [location]);
 
   return (
     <footer className="footer-navBar">
       <nav className="navigation">
         <ul>
-          <li className="list active">
+          <li className="list">
             <NavLink to="/home">
               <span className="icon">
-                <img src={homeActive} alt="home" />
+                {location.pathname == "/home" ? (
+                  <img src={homeActive} alt="home" />
+                ) : (
+                  <img src={home} alt="home" />
+                )}
               </span>
             </NavLink>
           </li>
-          <li className="list active">
+          <li className="list">
             <NavLink to="/orderhistory">
               <span className="icon">
-                <img src={orders} alt="orders" />
+                {location.pathname == "/orderhistory" ? (
+                  <img src={ordersActive} alt="orders" />
+                ) : (
+                  <img src={orders} alt="orders" />
+                )}
               </span>
             </NavLink>
           </li>
-          <li className="list active">
+          <li className="list">
             <NavLink to="/shoppingcart">
               <span className="icon">
-                <img className="cartActive" src={cartActive} alt="cart" />
+                <img
+                  src={cartActive}
+                  alt="shoppingcart"
+                  className="cartActive"
+                />
+                {/* {location.pathname == "/shoppingcart" ? (
+                  <img
+                    src={cartActive}
+                    alt="shoppingcart"
+                    className="cartActive"
+                  />
+                ) : (
+                  <img src={cart} alt="shoppingcart" className="cart" />
+                )} */}
               </span>
             </NavLink>
           </li>
-          <li className="list active">
+          <li className="list">
             <NavLink to="/favorites">
               <span className="icon">
-                <img src={heart} alt="heart" />
+                {location.pathname == "/favorites" ? (
+                  <img src={heartActive} alt="favorites" />
+                ) : (
+                  <img src={heart} alt="favorites" />
+                )}
               </span>
             </NavLink>
           </li>
-          <li className="list active">
+          <li className="list">
             <NavLink to="/profile">
               <span className="icon">
-                <img src={profile} alt="profile" />
+                {location.pathname == "/profile" ? (
+                  <img src={profileActive} alt="profile" />
+                ) : (
+                  <img src={profile} alt="profile" />
+                )}
               </span>
             </NavLink>
           </li>
