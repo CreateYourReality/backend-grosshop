@@ -16,7 +16,6 @@ const Home = () => {
     return ( 
         <>
             <HeaderNav/>
-            <Link to="/filter">Filter</Link>
             <main>
             <h2>Home Page</h2>
               <ProductListComponente/>

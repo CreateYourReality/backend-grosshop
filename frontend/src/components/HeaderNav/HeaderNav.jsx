@@ -17,7 +17,7 @@ const HeaderNav = () => {
         <section className="backBtn-box">
           {/* Home Filter-Popup */}
           {location.pathname == "/home" ? (
-            <NavLink to="#">Filter-Popup</NavLink>
+            <NavLink to="/filter">Filter-Popup</NavLink>
           ) : (
             ""
           )}
