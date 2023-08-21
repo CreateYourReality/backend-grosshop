@@ -5,10 +5,13 @@ import { favoritesContext } from "../../context/Context"
 import ChangeAmount from "../ChangeAmount/ChangeAmount"
 import emtpyHearth from "../../assets/img/heart.svg"
 import fullHearth from "../../assets/img/heartActive.svg"
+import axios from "axios"
+import { UserContext } from "../../context/UserContext"
 
 const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) => {
   const {favorites, setFavorites} = useContext(favoritesContext)
   const [favItem, setFavItem] = useState(undefined)
+  const {user} = useContext(UserContext)
 
   let isThisProductSelected = false;
   const productID = product._id;
@@ -34,14 +37,22 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
     isThisProductSelected = isSelected(productID)
   }
 
-  const removeFromFavorites = (idToRemove) => {
-    //TODO AXIOS, setFavorites nur wenn erfolgreich
-    setFavorites(prevFavorites => prevFavorites.filter(fav => fav.id !== idToRemove));
+  const removeFromFavorites = async (idToRemove) => {
+    try{
+      await axios.delete(`/api/users/deleteUserFavProducts/${user._id}`, idToRemove )
+      setFavorites(prevFavorites => prevFavorites.filter(fav => fav.id !== idToRemove));
+    }catch(e){
+   //   console.error(e);
+    }
   }
 
-  const addToFavorites = (newFavorite) => {
-    //TODO AXIOS, setFavorites nur wenn erfolgreich
-    setFavorites(prevFavorites => [...prevFavorites, newFavorite]);
+  const addToFavorites = async (newFavorite) => {
+    try{
+      await axios.put(`/api/users/updateUserFavProducts/${user._id}`, newFavorite )
+          setFavorites(prevFavorites => [...prevFavorites, newFavorite]);
+    }catch(e){
+          //   console.error(e);
+    }
   }
 
   const toggleFavorite = () => {

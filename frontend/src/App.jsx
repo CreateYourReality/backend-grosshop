@@ -48,8 +48,9 @@ function App() {
     }
   ])
   const [favorites, setFavorites] = useState(user ? user.favProducts : []);
-  console.log(user?user:"nix da");
-  console.log(user?user.favProducts:"nix da");
+  
+  //console.log(user?user:"nix da");
+  //console.log(user?user.favProducts:"nix da");
 
   /* [ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
     {

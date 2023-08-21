@@ -13,7 +13,7 @@ export const getAllUser = async (req, res) => {
 };
 
 export const secureUser = async (req, res) => {
-	//console.log(req.user);
+	console.log(req.user);
 	res.send(req.user);
 };
 

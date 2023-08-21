@@ -10,7 +10,7 @@ import OrderItem from "../../components/OrderItem/OrderItem";
 const OrderHistory = () => {
     const {user} = useContext(UserContext);
     const [orders, setOrders] = useState([])
-    //console.log(user);
+    console.log(user);
 
     useEffect(()=>{
         const getOrders = async () => {
