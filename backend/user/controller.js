@@ -175,13 +175,13 @@ export const deleteUser = async (req, res) => {
 
 export const updateUserProductCart = async (req, res) => {
 	const id = req.params.id;
-	const { productId, count } = req.body;
+	const { productId, amount } = req.body;
 	try {
-		const countAsNumber = Number(count);
+		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(
 			{ _id: id },
 			{
-				$push: { ProductCart: { productId: productId, count: countAsNumber } },
+				$push: { ProductCart: { productId: productId, amount: countAsNumber } },
 			},
 			{ new: true }
 		);
@@ -209,11 +209,14 @@ export const deleteOneUserProductCart = async (req, res) => {
 
 export const updateUserFavProducts = async (req, res) => {
 	const id = req.params.id;
-	const { productId } = req.body;
+	const { productId, amount } = req.body;
 	try {
+		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(
 			{ _id: id },
-			{ $push: { favProducts: productId } },
+			{
+				$push: { favProducts: { productId: productId, amount: countAsNumber } },
+			},
 			{ new: true }
 		);
 		res.status(200).send(updateUserProduct);
@@ -230,7 +233,7 @@ export const deleteUserFavProducts = async (req, res) => {
 	try {
 		const updateUserProduct = await User.findByIdAndUpdate(
 			{ _id: id },
-			{ $pull: { favProducts: productId } }
+			{ $pull: { favProducts: { productId: productId } } }
 		);
 		res.status(200).send(updateUserProduct);
 	} catch (err) {

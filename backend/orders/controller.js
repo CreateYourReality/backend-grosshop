@@ -44,3 +44,14 @@ export const deleteOrder = async (req, res) => {
 		res.status(500).send(error);
 	}
 };
+
+export const getOrderByUserId = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const orders = await Order.find({ user: { $in: id } });
+		console.log(orders);
+		res.status(200).send(orders);
+	} catch (e) {
+		res.status(500).send(e);
+	}
+};

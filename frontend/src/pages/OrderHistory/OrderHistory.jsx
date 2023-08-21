@@ -2,17 +2,35 @@ import "./OrderHistory.css"
 
 import FooterNav from "../../components/FooterNav/FooterNav";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
+import axios from "axios";
+import OrderItem from "../../components/OrderItem/OrderItem";
 
 const OrderHistory = () => {
     const {user} = useContext(UserContext);
-    console.log(user);
+    const [orders, setOrders] = useState([])
+    //console.log(user);
+
+    useEffect(()=>{
+        const getOrders = async () => {
+            if (user) {
+                const order = await axios.get(`/api/orders/userId/${user._id}`)
+                setOrders(order.data)
+                console.log(orders);
+            }
+        }
+        getOrders();
+    }, [])
+
     return (
         <>
             <HeaderNav/>
             <main>
                 <h2>Order History Page</h2>
+                <section className="orderHistory">
+                    {orders?.map((order, i) => <OrderItem order={order} key={i}/>)}
+                </section>
             </main>
             <FooterNav/>
         </>

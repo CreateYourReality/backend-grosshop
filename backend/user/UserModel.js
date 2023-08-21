@@ -42,10 +42,15 @@ const userSchema = new mongoose.Schema({
 	ProductCart: [
 		{
 			productId: { type: mongoose.Types.ObjectId, ref: "Product" },
-			count: { type: Number, default: 1 },
+			amount: { type: Number, default: 1 },
 		},
 	],
-	favProducts: [{ type: mongoose.Types.ObjectId, ref: "Product" }],
+	favProducts: [
+		{
+			productId: { type: mongoose.Types.ObjectId, ref: "Product" },
+			amount: { type: Number, default: 1 },
+		},
+	],
 	role: {
 		type: String,
 		enum: ["admin", "user"],
