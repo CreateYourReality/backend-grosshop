@@ -23,7 +23,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         const foundCartItem = userShoppingCart.find(cartItem => cartItem.id === product._id);
         setShoppingCartItem(foundCartItem)
       }
-    },userShoppingCart)
+    },[userShoppingCart])
 
 
     const increaseAmountCart = (incOrDecrement) => {
