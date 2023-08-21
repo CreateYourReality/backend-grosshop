@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const UserContext = createContext();
@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [shouldRefetch, _refetch] = useState(true);
   const [user, setUser] = useState(null);
 
+
   const refetch = () => _refetch((prev) => !prev);
 
   const logout = async () => {
@@ -16,6 +17,8 @@ export const UserProvider = ({ children }) => {
     setUser(null);
     nav("/");
   };
+
+ 
 
 /*   useEffect(() => {
     axios

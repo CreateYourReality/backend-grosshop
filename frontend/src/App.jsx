@@ -1,7 +1,7 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import { UserProvider } from "./context/UserContext";
+import {  Routes, Route } from "react-router-dom";
+import { useContext, useState } from "react";
+import { UserContext, UserProvider } from "./context/UserContext";
 
 //Pages
 import SplashScreen from "./pages/SplashScreen/SplashScreen";
@@ -23,6 +23,7 @@ import Filter from "./pages/Filter/Filter";
 import {
   loadingContext,
   dataContext,
+  sortContext,
   categoryContext,
   priceContext, 
   favoritesContext,
@@ -32,8 +33,10 @@ import {
 function App() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState()
+  const {user} = useContext(UserContext)
   const [categoryFilter, setCategoryFilter] = useState("All")
   const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
+  const [sortBy, setSortBy] = useState("abc")
   const [userShoppingCart, setUserShoppingCart] = useState([
     {
       id:"64da41a2da5607a595466d39",
@@ -44,7 +47,9 @@ function App() {
       amount:7
     }
   ])
-  const [favorites, setFavorites] = useState([ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
+  const [favorites, setFavorites] = useState( user?user.favProducts:[]
+    
+    /*[ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
     {
       id: "64da41b6da5607a595466d3a",
       amount: 7,
@@ -52,18 +57,17 @@ function App() {
     {
       id: "64da41d2da5607a595466d3b",
       amount: 3,
-    },
-  ]);
+    }, 
+  ]*/);
 
   return (
     <>
-      <BrowserRouter>
         <loadingContext.Provider value={{ loading, setLoading }}>
           <dataContext.Provider value={{ data, setData }}>
+            <sortContext.Provider value={{sortBy,setSortBy}}>
             <categoryContext.Provider
               value={{ categoryFilter, setCategoryFilter }}>
               <priceContext.Provider value={{ priceFilter, setPriceFilter }}>
-                <UserProvider>
                   <favoritesContext.Provider
                     value={{ favorites, setFavorites }}>
             <userShoppingCartContext.Provider value={{userShoppingCart,setUserShoppingCart}}>
@@ -107,12 +111,11 @@ function App() {
                     </Routes>
             </userShoppingCartContext.Provider>
                   </favoritesContext.Provider>
-                </UserProvider>
               </priceContext.Provider>
             </categoryContext.Provider>
+            </sortContext.Provider>
           </dataContext.Provider>
         </loadingContext.Provider>
-      </BrowserRouter>
     </>
   );
 }

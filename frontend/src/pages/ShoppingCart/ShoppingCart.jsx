@@ -7,6 +7,7 @@ import { userShoppingCartContext, dataContext } from "../../context/Context";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { useState, useEffect } from "react";
 import TotalCost from "../../components/TotalCost/TotalCost";
+import SelectSort from "../../components/SelectSort/SelectSort";
 
 const ShoppingCart = () => {
     const {data} = useContext(dataContext)
@@ -53,6 +54,10 @@ const ShoppingCart = () => {
             setSelectAllText("SELECT ALL")
         }
     },[selectedCartItems])
+
+
+    // <SelectSort sortArray={userShoppingCart} setSortArray={setUserShoppingCart}/>
+    // TODO PRODUKTE WERDEN NACH NAMEN SORTIERT, HABEN IM CART ABER NUR ID's
 
     return ( 
         <>
