@@ -228,7 +228,7 @@ export const updateUserFavProducts = async (req, res) => {
 
 export const deleteUserFavProducts = async (req, res) => {
 	const id = req.params.id;
-	const { productId } = req.body;
+	const productId = req.body.id;
 
 	try {
 		const updateUserProduct = await User.findByIdAndUpdate(
