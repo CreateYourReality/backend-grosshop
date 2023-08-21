@@ -1,12 +1,11 @@
 import { Router } from "express";
 import multer from "multer";
-import User from "./UserModel.js";
 import { authenticateToken } from "./authToken.js";
-
 import {
 	getAllUser,
 	getOneUser,
 	logoutUser,
+	secureUser,
 	loginUser,
 	signUpUser,
 	resetPassword,
@@ -16,15 +15,15 @@ import {
 	deleteOneUserProductCart,
 	updateUserFavProducts,
 	deleteUserFavProducts,
-	secureUser,
 } from "./controller.js";
 
 export const router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.get("/", getAllUser); // get all Users
-router.get("/:id", getOneUser); //get User per id
+router.get("/", getAllUser);
+router.get("/secure", authenticateToken, secureUser); // get all Users
 router.get("/logout", logoutUser); // logs the User out
+router.get("/:id", getOneUser); //get User per id
 
 router.post("/login", upload.none(), loginUser); // logs user in
 router.post("/signup", upload.none(), signUpUser); // register user
@@ -40,7 +39,6 @@ router.delete(
 	upload.none(),
 	deleteOneUserProductCart
 );
-router.get("/secure", authenticateToken, secureUser);
 
 router.put("/updateUserFavProducts/:id", upload.none(), updateUserFavProducts);
 router.delete(

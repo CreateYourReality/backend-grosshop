@@ -70,7 +70,7 @@ userSchema.methods.verifyPassword = function (password) {
 };
 
 //todo validierung?!?!?
-userSchema.index({ favProducts: 1 }, { unique: true });
+//userSchema.index({ favProducts: 1 }, { unique: true });
 userSchema.path("favProducts").validate(function (value) {
 	const objectIdSet = new Set();
 	console.log("hi");
