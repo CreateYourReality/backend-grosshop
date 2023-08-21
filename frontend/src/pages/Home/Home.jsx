@@ -17,10 +17,10 @@ const Home = () => {
 
 
   const TEST = async () => {
-    await axios.get("http://localhost:3001/api/users/secure")
+    await axios.get("/api/users/secure")
   }
 
-  console.log(isLoggedIn);
+  console.log("User Logged in?",isLoggedIn);
     return ( 
         <>
             <HeaderNav/>

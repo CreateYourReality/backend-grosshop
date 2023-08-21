@@ -25,6 +25,10 @@
     width: 35%;
 }
 
+.detail-amount{
+    width: 100%;
+}
+
 .product-card-amount button{
     font-size: clamp(2rem,3vw,5rem);
     background-color: white;

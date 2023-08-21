@@ -1,0 +1,9 @@
+.product-card-amount p span{
+    display: block;
+    text-align: center;
+}
+
+.detail-btn{
+    border-radius: 50%;
+    padding: 25px;
+}

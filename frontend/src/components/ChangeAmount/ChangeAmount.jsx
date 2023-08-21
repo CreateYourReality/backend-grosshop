@@ -85,10 +85,13 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
 
     return (
         <>
+                    {detailProduct=="/detailproduct"?<h2>QUANTITY</h2>:null}
+
                   { // Wenn Favoriten oder ShoppingCart Page >> Füge - + hinzu
         location.pathname == "/favorites" || location.pathname == "/shoppingcart" || detailProduct == "/detailproduct" ? 
-          <div className="product-card-amount">
-            <button onClick={() => location.pathname=="/favorites"?
+        
+          <div className={`product-card-amount ${detailProduct=="/detailproduct"?"detail-amount":""}`}>
+            <button className={detailProduct=="/detailproduct"?"detail-btn":""} onClick={() => location.pathname=="/favorites"?
                 increaseAmountFav(-1)
                 :!shoppingCartItem?
                     increaseTempAmountCart(-1)
@@ -112,7 +115,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                 }
                 
             </p>
-            <button onClick={() => 
+            <button className={detailProduct=="/detailproduct"?"detail-btn":""} onClick={() => 
                 location.pathname=="/favorites"?
                     increaseAmountFav(+1)
                     :!shoppingCartItem?
