@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
 
  
 
-/*   useEffect(() => {
+  useEffect(() => {
     axios
       .get("/api/users/secure")
       .then(({ data }) => setUser(data))
@@ -39,6 +39,4 @@ export const UserProvider = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
-}; 
-*/
-}
+};

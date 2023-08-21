@@ -11,6 +11,9 @@ const Favorites = () => {
     const {favorites, setFavorites} = useContext(favoritesContext)
     const {userShoppingCart, setUserShoppingCart} = useContext(userShoppingCartContext)
     const [selectedFavs, setSelectedFavs] = useState([])
+
+    console.log(favorites);
+
     
     const findFavoriteById = (favID) => {
         return data.find(favoriteItem => favoriteItem._id === favID);
@@ -21,8 +24,6 @@ const Favorites = () => {
         selectedFavs.forEach(id => {
             updatedFavorites = updatedFavorites.filter(fav => fav.id !== id);
         });
-        console.log(favorites);
-        console.log(updatedFavorites);
         setFavorites(updatedFavorites);
         setSelectedFavs([])
     }

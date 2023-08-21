@@ -1,5 +1,5 @@
 import "./App.css";
-import {  Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext, UserProvider } from "./context/UserContext";
 
@@ -33,10 +33,10 @@ import {
 function App() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState()
-  const {user} = useContext(UserContext)
   const [categoryFilter, setCategoryFilter] = useState("All")
   const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
   const [sortBy, setSortBy] = useState("abc")
+  const {user} = useContext(UserContext)
   const [userShoppingCart, setUserShoppingCart] = useState([
     {
       id:"64da41a2da5607a595466d39",
@@ -47,9 +47,11 @@ function App() {
       amount:7
     }
   ])
-  const [favorites, setFavorites] = useState( user?user.favProducts:[]
-    
-    /*[ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
+  const [favorites, setFavorites] = useState(user ? user.favProducts : []);
+  console.log(user?user:"nix da");
+  console.log(user?user.favProducts:"nix da");
+
+  /* [ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
     {
       id: "64da41b6da5607a595466d3a",
       amount: 7,
@@ -58,7 +60,7 @@ function App() {
       id: "64da41d2da5607a595466d3b",
       amount: 3,
     }, 
-  ]*/);
+  ] */
 
   return (
     <>
@@ -68,6 +70,7 @@ function App() {
             <categoryContext.Provider
               value={{ categoryFilter, setCategoryFilter }}>
               <priceContext.Provider value={{ priceFilter, setPriceFilter }}>
+                <UserProvider>
                   <favoritesContext.Provider
                     value={{ favorites, setFavorites }}>
             <userShoppingCartContext.Provider value={{userShoppingCart,setUserShoppingCart}}>
@@ -111,6 +114,7 @@ function App() {
                     </Routes>
             </userShoppingCartContext.Provider>
                   </favoritesContext.Provider>
+                </UserProvider>
               </priceContext.Provider>
             </categoryContext.Provider>
             </sortContext.Provider>
