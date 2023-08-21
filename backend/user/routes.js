@@ -34,15 +34,11 @@ router.delete("/:id", deleteUser); // delete User
 
 //todo ProductCart?
 router.put("/updateUserProductCart/:id", upload.none(), updateUserProductCart);
-router.delete(
-	"/updateUserProductCart/:id",
+router.put(
+	"/deleteUserProductCart/:id",
 	upload.none(),
 	deleteOneUserProductCart
 );
 
 router.put("/updateUserFavProducts/:id", upload.none(), updateUserFavProducts);
-router.put(
-	"/deleteUserFavProducts/:id",
-	upload.none(),
-	deleteUserFavProducts
-);
+router.put("/deleteUserFavProducts/:id", upload.none(), deleteUserFavProducts);
