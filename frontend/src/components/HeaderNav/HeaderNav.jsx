@@ -54,9 +54,6 @@ const HeaderNav = () => {
           {location.pathname == "/shoppingcart" ? (
             <div className="myCart-navBox">
               <h2>My Cart</h2>
-              <button>
-                <img src={trash} alt="trash" />
-              </button>
             </div>
           ) : (
             ""
@@ -64,9 +61,6 @@ const HeaderNav = () => {
           {location.pathname == "/favorites" ? (
             <div className="myCart-navBox">
               <h2>Wishlist</h2>
-              <button>
-                <img src={trash} alt="trash" />
-              </button>
             </div>
           ) : (
             ""
