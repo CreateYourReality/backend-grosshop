@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
     nav("/");
   };
 
-/*   useEffect(() => {
+   useEffect(() => {
     axios
       .get("/api/users/secure")
       .then(({ data }) => setUser(data))
@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
         console.error("Error fetching user:", e);
         setUser(null);
       });
-  }, [shouldRefetch]); */
+  }, [shouldRefetch]); 
 
   return (
     <UserContext.Provider
