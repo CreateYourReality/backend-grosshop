@@ -83,6 +83,14 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
     },[tempShoppingCartItem])
 
 
+    const updateCart = () => {
+        console.log("UPDATE CART");
+    }
+
+    const putInCart = () => {
+        console.log("PUT IN CART");
+    }
+
     return (
         <>
                     {detailProduct=="/detailproduct"?<h2>QUANTITY</h2>:null}
@@ -126,11 +134,19 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
             +</button>
           </div>
         : null}
+
+            <div>
+                {detailProduct=="/detailproduct" && tempShoppingCartItem?
+                <h2>{tempShoppingCartItem.amount}</h2>
+                :""}
+            </div>
+
+
         <div>
             {detailProduct == "/detailproduct"?
                 shoppingCartItem?
-                    <button>UPDATE CART</button>
-                    :<button>PUT IN CART</button>
+                    <button className="updateOrPutInCart-btn" onClick={updateCart}>UPDATE CART</button>
+                    :<button className="updateOrPutInCart-btn"  onClick={putInCart}>PUT IN CART</button>
             :null}
         </div>
         </>

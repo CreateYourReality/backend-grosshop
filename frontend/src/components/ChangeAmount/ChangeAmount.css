@@ -7,3 +7,8 @@
     border-radius: 50%;
     padding: 25px;
 }
+
+.updateOrPutInCart-btn{
+    padding: 10px 15px;
+    background-color: var(--second-color);
+}
