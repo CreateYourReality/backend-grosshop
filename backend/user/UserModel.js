@@ -41,13 +41,13 @@ const userSchema = new mongoose.Schema({
 	hash: { type: String, required: true, select: false },
 	ProductCart: [
 		{
-			productId: { type: mongoose.Types.ObjectId, ref: "Product" },
+			id: { type: mongoose.Types.ObjectId, ref: "Product" },
 			amount: { type: Number, default: 1 },
 		},
 	],
 	favProducts: [
 		{
-			productId: { type: mongoose.Types.ObjectId, ref: "Product" },
+			id: { type: mongoose.Types.ObjectId, ref: "Product" },
 			amount: { type: Number, default: 1 },
 		},
 	],
