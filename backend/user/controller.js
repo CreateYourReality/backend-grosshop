@@ -12,6 +12,11 @@ export const getAllUser = async (req, res) => {
 	res.send(data);
 };
 
+export const secureUser = async (req, res) => {
+	//console.log(req.user);
+	res.send(req.user);
+};
+
 export const getOneUser = async (req, res) => {
 	const id = req.params.id;
 	const data = await User.findById(id);
@@ -30,7 +35,8 @@ export const loginUser = async (req, res) => {
 	const passwordIsValid = user.verifyPassword(password);
 
 	if (passwordIsValid) {
-		const token = generateAccessToken({ email });
+		const tokenUser = await User.findOne({ email });
+		const token = generateAccessToken({ tokenUser });
 		res.cookie("auth", token, { httpOnly: true, maxAge: hoursInMillisec(4) });
 
 		res.send({ message: "Success", data: user });
@@ -44,13 +50,15 @@ export const loginUser = async (req, res) => {
 
 export const signUpUser = async (req, res) => {
 	try {
-		const { nickname, firstname, email, password, surname, role } = req.body;
+		const { nickname, firstname, email, password, surname, role, favProducts } =
+			req.body;
 		let user = new User({
 			nickname,
 			firstname,
 			surname,
 			role,
 			email,
+			favProducts,
 		});
 		user.setPassword(password);
 		try {
@@ -229,8 +237,4 @@ export const deleteUserFavProducts = async (req, res) => {
 		console.log(err);
 		res.status(500).send(err);
 	}
-};
-
-export const secureUser = (req, res) => {
-	res.send({ email: req.userEmail });
 };

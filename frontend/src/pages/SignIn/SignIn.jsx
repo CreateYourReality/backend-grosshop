@@ -7,7 +7,7 @@ import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 
 export default function SignIn() {
-  const { refetch } = useContext(UserContext);
+  const { refetch, setUser } = useContext(UserContext);
   const nav = useNavigate();
   const [error, setError] = useState(null);
 
@@ -17,7 +17,8 @@ export default function SignIn() {
 
     const data = new FormData(e.currentTarget);
     try {
-      await axios.post("http://localhost:3001/api/users/login", data);
+      const user = await axios.post("/api/users/login", data);
+      //setUser(user.data.data)
       refetch();
       setTimeout(() => {
         nav("/home");

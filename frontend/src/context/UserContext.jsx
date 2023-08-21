@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
         console.error("Error fetching user:", e);
         setUser(null);
       });
-  }, [shouldRefetch]); */
+  }, [shouldRefetch]); 
 
   return (
     <UserContext.Provider
@@ -39,4 +39,6 @@ export const UserProvider = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
-};
+}; 
+*/
+}
