@@ -100,10 +100,17 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                     favItem?
                         favItem.amount
                         :null 
-                    :tempShoppingCartItem?
-                        tempShoppingCartItem.amount
+                    :tempShoppingCartItem?    
+                        detailProduct == "/detailproduct"?                      //TODO * weight
+                            <>
+                                {tempShoppingCartItem.amount * product.rating}
+                                {detailProduct == "/detailproduct"? "KG" : location.pathname == "/favorites"? "" : ""}
+                                <span>{tempShoppingCartItem.amount + "€"}</span>
+                            </>
+                            :tempShoppingCartItem.amount
                         :0 
                 }
+                
             </p>
             <button onClick={() => 
                 location.pathname=="/favorites"?

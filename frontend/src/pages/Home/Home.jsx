@@ -6,12 +6,20 @@ import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import ProductListComponente from "../../components/ProductListComponente/ProductListComponente";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import axios from "axios";
 
 const Home = () => {
   const { isLoggedIn, logout } = useContext(UserContext);
   if (isLoggedIn === null) {
     return <div>Loading...</div>;
   }
+
+
+
+  const TEST = async () => {
+    await axios.get("http://localhost:3001/api/users/secure")
+  }
+
   console.log(isLoggedIn);
     return ( 
         <>
@@ -20,6 +28,7 @@ const Home = () => {
             <h2>Home Page</h2>
               <ProductListComponente/>
                 <Link to="/productlist">Productlist</Link>
+                <button onClick={TEST}>TEST</button>
             </main>
             <FooterNav/>
         </>
