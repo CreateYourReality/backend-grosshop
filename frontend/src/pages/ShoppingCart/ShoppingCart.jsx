@@ -1,5 +1,5 @@
-import "./ShoppingCart.css"
-
+import "./ShoppingCart.css";
+import trash from "../../assets/img/trash.svg";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import { useContext } from "react";
@@ -10,41 +10,44 @@ import TotalCost from "../../components/TotalCost/TotalCost";
 import SelectSort from "../../components/SelectSort/SelectSort";
 
 const ShoppingCart = () => {
-    const {data} = useContext(dataContext)
-    const {userShoppingCart, setUserShoppingCart} = useContext(userShoppingCartContext)
-    const [selectedCartItems, setSelectedCartItems] = useState([])
+  const { data } = useContext(dataContext);
+  const { userShoppingCart, setUserShoppingCart } = useContext(
+    userShoppingCartContext
+  );
+  const [selectedCartItems, setSelectedCartItems] = useState([]);
 
-    const findShoppingItemBy = (favID) => {
-        return data.find(favoriteItem => favoriteItem._id === favID);
-    };
+  const deleteSelectedShoppingItems = () => {
+    let updatedShoppingItems = [...userShoppingCart];
+    selectedCartItems.forEach((id) => {
+      updatedShoppingItems = updatedShoppingItems.filter(
+        (cartItem) => cartItem.id !== id
+      );
+    });
+    setUserShoppingCart(updatedShoppingItems);
+    setSelectedCartItems([]);
+  };
 
-    //TODO BEIM LÖSCHEN VON WENIGER ALS ALLEN CARTITEMS KOMMT N FEHLER OHNE ABBRUCH
-    //TODO >>> sort auf filteredData anwenden fixt das ?
-    const deleteSelectedShoppingItems = () => {
-        let updatedShoppingItems = [...userShoppingCart];
-        selectedCartItems.forEach(id => {
-            updatedShoppingItems = updatedShoppingItems.filter(cartItem => cartItem.id !== id);
-        });
-        console.log(userShoppingCart);
-        console.log(updatedShoppingItems);
-        setUserShoppingCart(updatedShoppingItems);
-        setSelectedCartItems([])
+  const [selectAllText, setSelectAllText] = useState("SELECT ALL");
+
+  const selectAll = () => {
+    let selectAll = [];
+    if (selectedCartItems.length < userShoppingCart.length) {
+      userShoppingCart.forEach((cartItem) => {
+        selectAll.push(cartItem.id);
+      });
     }
+    setSelectedCartItems(selectAll);
+  };
 
-    const [selectAllText,setSelectAllText] = useState("SELECT ALL")
+  const isSelected = (id) => {
+    return selectedCartItems.some((cartItem) => cartItem == id);
+  };
 
-    const selectAll= () => {
-        let selectAll = []
-        if(selectedCartItems.length < userShoppingCart.length){
-            userShoppingCart.forEach(cartItem => {
-                selectAll.push(cartItem.id)
-            })
-        }
-        setSelectedCartItems(selectAll)
-    }
-
-    const isSelected = (id) => {
-        return selectedCartItems.some(cartItem => cartItem == id);
+  useEffect(() => {
+    if (selectedCartItems.length == userShoppingCart.length) {
+      setSelectAllText("DESELECT ALL");
+    } else {
+      setSelectAllText("SELECT ALL");
     }
 
     useEffect(()=>{
@@ -55,46 +58,56 @@ const ShoppingCart = () => {
         }
     },[selectedCartItems])
 
+  const findShoppingItemBy = (favID) => {
+    return data.find((favoriteItem) => favoriteItem._id === favID);
+  };
 
     // <SelectSort sortArray={userShoppingCart} setSortArray={setUserShoppingCart}/>
     // TODO PRODUKTE WERDEN NACH NAMEN SORTIERT, HABEN IM CART ABER NUR ID's
 
-    return ( 
-        <>
-            <HeaderNav/>
-            <main>
-                <h2>Shopping Cart Page</h2> 
-                <section className="shoppingCart-section">
-                {userShoppingCart? 
-                    userShoppingCart.length != 0 ? (
-                    <>
-                         <div className="favorite-selection-btns">
-                            <a onClick={selectAll}>{selectAllText}</a>
-                            <a onClick={deleteSelectedShoppingItems}>DELETE</a>
-                        </div>
-                        {userShoppingCart.map((cartItem,index) => (
-                                <article key={index}>
-                                    {<ProductCard isSelected={isSelected} setSelectedCartItems={setSelectedCartItems} product={findShoppingItemBy(cartItem.id)}/>}
-                                </article>
-                            )
-                        )}
-                        </>
-                        ) : (
-                            <>
-                                <h3>NO SHOPPINGCARTITEMS IMG</h3>
-                                <button>Start Shopping</button>
-                            </>
-                        )
-                    : <p>loading shopping items...</p>
-                }
+  return (
+    <>
+      <HeaderNav />
+      <main>
+        <section className="shoppingCart-section">
+          {userShoppingCart ? (
+            userShoppingCart.length != 0 ? (
+              <>
+                <div className="favorite-selection-btns">
+                  <a onClick={selectAll}>{selectAllText}</a>
+                  <a onClick={deleteSelectedShoppingItems}>
+                    <img src={trash} alt="delete" />
+                  </a>
+                </div>
+                {userShoppingCart.map((cartItem, index) => (
+                  <article key={index}>
+                    {
+                      <ProductCard
+                        isSelected={isSelected}
+                        setSelectedCartItems={setSelectedCartItems}
+                        product={findShoppingItemBy(cartItem.id)}
+                      />
+                    }
+                  </article>
+                ))}
+              </>
+            ) : (
+              <>
+                <h3>NO SHOPPINGCARTITEMS IMG</h3>
+                <button>Start Shopping</button>
+              </>
+            )
+          ) : (
+            <p>loading shopping items...</p>
+          )}
+          <section className="checkOut-section">
+            <TotalCost />
+          </section>
+        </section>
+      </main>
+      <FooterNav />
+    </>
+  );
+};
 
-                <TotalCost />
-
-                </section>   
-            </main>    
-            <FooterNav/>
-        </> 
-    );
-}
- 
 export default ShoppingCart;
