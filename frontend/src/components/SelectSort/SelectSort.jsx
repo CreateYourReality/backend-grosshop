@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import "./SelectSort.css"
-import { dataContext } from "../../context/Context";
+import { sortContext } from "../../context/Context";
 
 const SelectSort = ({sortArray,setSortArray}) => {
  //   const {data, setData} = useContext(dataContext)
-    const [sortBy, setSortBy] = useState("abc")
-
+ const {sortBy, setSortBy} = useContext(sortContext)
+    
     const sortAZ = (a, b) => a.productName.localeCompare(b.productName);
     const sortZA = (a, b) => b.productName.localeCompare(a.productName);
     const sortPriceLow = (a, b) => a.price - b.price;
@@ -41,7 +41,7 @@ const SelectSort = ({sortArray,setSortArray}) => {
 
     return ( 
         <>
-            <select onChange={()=>changeSortBy(event)} name="select-sort" id="select-sort">
+            <select value={sortBy} onChange={()=>changeSortBy(event)} name="select-sort" id="select-sort">
                 <option value="abc">Name</option>
                 <option value="cba">Name reverse</option>
                 <option value="$">Preis : low</option>

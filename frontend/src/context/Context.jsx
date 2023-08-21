@@ -7,3 +7,4 @@ export const categoryContext = createContext();
 export const priceContext = createContext();
 export const favoritesContext = createContext();
 export const userShoppingCartContext = createContext();
+export const sortContext = createContext();

@@ -41,8 +41,8 @@ router.delete(
 );
 
 router.put("/updateUserFavProducts/:id", upload.none(), updateUserFavProducts);
-router.delete(
-	"/updateUserFavProducts/:id",
+router.put(
+	"/deleteUserFavProducts/:id",
 	upload.none(),
 	deleteUserFavProducts
 );

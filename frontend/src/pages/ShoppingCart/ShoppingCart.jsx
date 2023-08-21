@@ -7,17 +7,26 @@ import { userShoppingCartContext, dataContext } from "../../context/Context";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { useState, useEffect } from "react";
 import TotalCost from "../../components/TotalCost/TotalCost";
+import SelectSort from "../../components/SelectSort/SelectSort";
 
 const ShoppingCart = () => {
     const {data} = useContext(dataContext)
     const {userShoppingCart, setUserShoppingCart} = useContext(userShoppingCartContext)
     const [selectedCartItems, setSelectedCartItems] = useState([])
 
+    const findShoppingItemBy = (favID) => {
+        return data.find(favoriteItem => favoriteItem._id === favID);
+    };
+
+    //TODO BEIM LÖSCHEN VON WENIGER ALS ALLEN CARTITEMS KOMMT N FEHLER OHNE ABBRUCH
+    //TODO >>> sort auf filteredData anwenden fixt das ?
     const deleteSelectedShoppingItems = () => {
         let updatedShoppingItems = [...userShoppingCart];
         selectedCartItems.forEach(id => {
             updatedShoppingItems = updatedShoppingItems.filter(cartItem => cartItem.id !== id);
         });
+        console.log(userShoppingCart);
+        console.log(updatedShoppingItems);
         setUserShoppingCart(updatedShoppingItems);
         setSelectedCartItems([])
     }
@@ -46,12 +55,9 @@ const ShoppingCart = () => {
         }
     },[selectedCartItems])
 
-    const findShoppingItemBy = (favID) => {
-        return data.find(favoriteItem => favoriteItem._id === favID);
-    };
 
-  /*  useEffect(()=>{
-    },[selectedCartItems]) */
+    // <SelectSort sortArray={userShoppingCart} setSortArray={setUserShoppingCart}/>
+    // TODO PRODUKTE WERDEN NACH NAMEN SORTIERT, HABEN IM CART ABER NUR ID's
 
     return ( 
         <>

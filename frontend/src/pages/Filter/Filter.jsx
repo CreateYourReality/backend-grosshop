@@ -3,11 +3,12 @@ import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import SelectSort from "../../components/SelectSort/SelectSort"
 import SelectCategory from "../../components/SelectCategory/SelectCategory"
 import SelectPriceRange from "../../components/SelectPriceRange/SelectPriceRange"
-import { categoryContext,dataContext,priceContext } from "../../context/Context";
+import { categoryContext,dataContext,priceContext, sortContext } from "../../context/Context";
 import { useContext } from "react";
 const Filter = () => {
   const {categoryFilter,setCategoryFilter} = useContext(categoryContext)
     const {priceFilter,setPriceFilter} = useContext(priceContext)
+    const {sortBy, setSortBy} = useContext(sortContext)
     const {data,setData} = useContext(dataContext)
 
     //TODO REMOVE SORTBY FEHLT, SORT UNSORTED HINZUFÜGEN?
@@ -17,6 +18,7 @@ const Filter = () => {
     const removeAllFilter = () => {
         setCategoryFilter("All");
         setPriceFilter({min:0,max:Infinity})
+        setSortBy("abc")
     }
     return ( 
         <>

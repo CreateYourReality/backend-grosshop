@@ -13,7 +13,7 @@ export const getAllUser = async (req, res) => {
 };
 
 export const secureUser = async (req, res) => {
-	//console.log(req.user);
+	console.log(req.user);
 	res.send(req.user);
 };
 
@@ -209,7 +209,8 @@ export const deleteOneUserProductCart = async (req, res) => {
 
 export const updateUserFavProducts = async (req, res) => {
 	const id = req.params.id;
-	const { productId, amount } = req.body;
+	const { amount } = req.body;
+	const productId = req.body.id;
 	try {
 		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(

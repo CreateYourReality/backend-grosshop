@@ -23,7 +23,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         const foundCartItem = userShoppingCart.find(cartItem => cartItem.id === product._id);
         setShoppingCartItem(foundCartItem)
       }
-    },userShoppingCart)
+    },[userShoppingCart])
 
 
     const increaseAmountCart = (incOrDecrement) => {
@@ -83,12 +83,23 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
     },[tempShoppingCartItem])
 
 
+    const updateCart = () => {
+        console.log("UPDATE CART");
+    }
+
+    const putInCart = () => {
+        console.log("PUT IN CART");
+    }
+
     return (
         <>
+                    {detailProduct=="/detailproduct"?<h2>QUANTITY</h2>:null}
+
                   { // Wenn Favoriten oder ShoppingCart Page >> Füge - + hinzu
         location.pathname == "/favorites" || location.pathname == "/shoppingcart" || detailProduct == "/detailproduct" ? 
-          <div className="product-card-amount">
-            <button onClick={() => location.pathname=="/favorites"?
+        
+          <div className={`product-card-amount ${detailProduct=="/detailproduct"?"detail-amount":""}`}>
+            <button className={detailProduct=="/detailproduct"?"detail-btn":""} onClick={() => location.pathname=="/favorites"?
                 increaseAmountFav(-1)
                 :!shoppingCartItem?
                     increaseTempAmountCart(-1)
@@ -100,12 +111,19 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
                     favItem?
                         favItem.amount
                         :null 
-                    :tempShoppingCartItem?
-                        tempShoppingCartItem.amount
+                    :tempShoppingCartItem?    
+                        detailProduct == "/detailproduct"?                      //TODO * weight
+                            <>
+                                {tempShoppingCartItem.amount * product.rating}
+                                {detailProduct == "/detailproduct"? "KG" : location.pathname == "/favorites"? "" : ""}
+                                <span>{tempShoppingCartItem.amount + "€"}</span>
+                            </>
+                            :tempShoppingCartItem.amount
                         :0 
                 }
+                
             </p>
-            <button onClick={() => 
+            <button className={detailProduct=="/detailproduct"?"detail-btn":""} onClick={() => 
                 location.pathname=="/favorites"?
                     increaseAmountFav(+1)
                     :!shoppingCartItem?
@@ -116,11 +134,19 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
             +</button>
           </div>
         : null}
+
+            <div>
+                {detailProduct=="/detailproduct" && tempShoppingCartItem?
+                <h2>{tempShoppingCartItem.amount}</h2>
+                :""}
+            </div>
+
+
         <div>
             {detailProduct == "/detailproduct"?
                 shoppingCartItem?
-                    <button>UPDATE CART</button>
-                    :<button>PUT IN CART</button>
+                    <button className="updateOrPutInCart-btn" onClick={updateCart}>UPDATE CART</button>
+                    :<button className="updateOrPutInCart-btn"  onClick={putInCart}>PUT IN CART</button>
             :null}
         </div>
         </>

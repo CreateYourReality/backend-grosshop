@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import { UserProvider } from "./context/UserContext";
+import { useContext, useState } from "react";
+import { UserContext, UserProvider } from "./context/UserContext";
 
 //Pages
 import SplashScreen from "./pages/SplashScreen/SplashScreen";
@@ -23,6 +23,7 @@ import Filter from "./pages/Filter/Filter";
 import {
   loadingContext,
   dataContext,
+  sortContext,
   categoryContext,
   priceContext, 
   favoritesContext,
@@ -34,6 +35,8 @@ function App() {
   const [data, setData] = useState()
   const [categoryFilter, setCategoryFilter] = useState("All")
   const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
+  const [sortBy, setSortBy] = useState("abc")
+  const {user} = useContext(UserContext)
   const [userShoppingCart, setUserShoppingCart] = useState([
     {
       id:"64da41a2da5607a595466d39",
@@ -44,7 +47,12 @@ function App() {
       amount:7
     }
   ])
-  const [favorites, setFavorites] = useState([ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
+  const [favorites, setFavorites] = useState(user ? user.favProducts : []);
+  
+  //console.log(user?user:"nix da");
+  //console.log(user?user.favProducts:"nix da");
+
+  /* [ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
     {
       id: "64da41b6da5607a595466d3a",
       amount: 7,
@@ -52,14 +60,14 @@ function App() {
     {
       id: "64da41d2da5607a595466d3b",
       amount: 3,
-    },
-  ]);
+    }, 
+  ] */
 
   return (
     <>
-      <BrowserRouter>
         <loadingContext.Provider value={{ loading, setLoading }}>
           <dataContext.Provider value={{ data, setData }}>
+            <sortContext.Provider value={{sortBy,setSortBy}}>
             <categoryContext.Provider
               value={{ categoryFilter, setCategoryFilter }}>
               <priceContext.Provider value={{ priceFilter, setPriceFilter }}>
@@ -110,9 +118,9 @@ function App() {
                 </UserProvider>
               </priceContext.Provider>
             </categoryContext.Provider>
+            </sortContext.Provider>
           </dataContext.Provider>
         </loadingContext.Provider>
-      </BrowserRouter>
     </>
   );
 }
