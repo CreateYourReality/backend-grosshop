@@ -43,14 +43,7 @@ const ShoppingCart = () => {
     return selectedCartItems.some((cartItem) => cartItem == id);
   };
 
-  useEffect(() => {
-    if (selectedCartItems.length == userShoppingCart.length) {
-      setSelectAllText("DESELECT ALL");
-    } else {
-      setSelectAllText("SELECT ALL");
-    }
-
-    useEffect(()=>{
+  useEffect(()=>{
         if(selectedCartItems.length == userShoppingCart.length){
             setSelectAllText("DESELECT ALL")
         }else{
