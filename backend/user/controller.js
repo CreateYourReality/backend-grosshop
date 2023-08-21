@@ -209,7 +209,8 @@ export const deleteOneUserProductCart = async (req, res) => {
 
 export const updateUserFavProducts = async (req, res) => {
 	const id = req.params.id;
-	const { productId, amount } = req.body;
+	const  { amount } = req.body;
+	const productId = req.body.id;
 	try {
 		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(
@@ -228,7 +229,9 @@ export const updateUserFavProducts = async (req, res) => {
 
 export const deleteUserFavProducts = async (req, res) => {
 	const id = req.params.id;
-	const { productId } = req.body;
+	const  productId  = req.body.id;
+
+	console.log({body:req.body});
 
 	try {
 		const updateUserProduct = await User.findByIdAndUpdate(

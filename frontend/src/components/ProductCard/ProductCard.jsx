@@ -37,10 +37,10 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
     isThisProductSelected = isSelected(productID)
   }
 
-  const removeFromFavorites = async (idToRemove) => {
+  const removeFromFavorites = async (id) => {
     try{
-      await axios.delete(`/api/users/deleteUserFavProducts/${user._id}`, idToRemove )
-      setFavorites(prevFavorites => prevFavorites.filter(fav => fav.id !== idToRemove));
+     await axios.put(`/api/users/deleteUserFavProducts/${user._id}`, {id:id} )
+      setFavorites(prevFavorites => prevFavorites.filter(fav => fav.id !== id));
     }catch(e){
    //   console.error(e);
     }
@@ -57,6 +57,7 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
 
   const toggleFavorite = () => {
     if(favItem != undefined && favItem.id == productID) {
+      console.log(favItem);
       removeFromFavorites(favItem.id)
       setFavItem(undefined)
     }else{
