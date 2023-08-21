@@ -181,7 +181,7 @@ export const updateUserProductCart = async (req, res) => {
 		const updateUserProduct = await User.findOneAndUpdate(
 			{ _id: id },
 			{
-				$push: { ProductCart: { productId: productId, amount: countAsNumber } },
+				$push: { ProductCart: { id: productId, amount: countAsNumber } },
 			},
 			{ new: true }
 		);
@@ -198,7 +198,7 @@ export const deleteOneUserProductCart = async (req, res) => {
 	try {
 		const updateUserProduct = await User.findByIdAndUpdate(
 			{ _id: id },
-			{ $pull: { ProductCart: { productId: productId } } }
+			{ $pull: { ProductCart: { id: productId } } }
 		);
 		res.status(200).send(updateUserProduct);
 	} catch (err) {
@@ -215,7 +215,7 @@ export const updateUserFavProducts = async (req, res) => {
 		const updateUserProduct = await User.findOneAndUpdate(
 			{ _id: id },
 			{
-				$push: { favProducts: { productId: productId, amount: countAsNumber } },
+				$push: { favProducts: { id: productId, amount: countAsNumber } },
 			},
 			{ new: true }
 		);
@@ -233,7 +233,7 @@ export const deleteUserFavProducts = async (req, res) => {
 	try {
 		const updateUserProduct = await User.findByIdAndUpdate(
 			{ _id: id },
-			{ $pull: { favProducts: { productId: productId } } }
+			{ $pull: { favProducts: { id: productId } } }
 		);
 		res.status(200).send(updateUserProduct);
 	} catch (err) {
