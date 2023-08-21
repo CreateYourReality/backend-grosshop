@@ -18,6 +18,17 @@
     font-size: clamp(2rem,2.2vw,4rem);
 }
 
+.detailProduct-image{
+    
+}
+
+.detailProduct-weight{
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: var(--white-color);
+    background-color: var(--main-green-color);
+}
+
 .detailProduct-div{
     border-top: 1px solid gray;
     height: 30%;

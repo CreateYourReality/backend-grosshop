@@ -4,14 +4,57 @@ import "./DetailProduct.css";
 import { dataContext } from "../../context/Context";
 import { useLocation } from "react-router-dom";
 import FooterNav from "../../components/FooterNav/FooterNav";
-import ChangeAmount from "../../components/ChangeAmount/ChangeAmount";const DetailProduct = () => {
+import { UserContext } from "../../context/UserContext";
+import { favoritesContext } from "../../context/Context";
+import { useState } from "react";
+import { useEffect } from "react";
+import ChangeAmount from "../../components/ChangeAmount/ChangeAmount";
+import emtpyHearth from "../../assets/img/heart.svg"
+import fullHearth from "../../assets/img/heartActive.svg"
+
+const DetailProduct = () => {
   const {data} = useContext(dataContext)
   const location = useLocation();
   const pathProductID = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
 
+
+  // TODO AUSLAGERN????? 
+  const {favorites, setFavorites} = useContext(favoritesContext)
+  const [favItem, setFavItem] = useState(undefined)
+
+  let isThisProductSelected = false;
+  const productID = pathProductID
+
+  const removeFromFavorites = (idToRemove) => {
+    //TODO AXIOS, setFavorites nur wenn erfolgreich
+    setFavorites(prevFavorites => prevFavorites.filter(fav => fav.id !== idToRemove));
+  }
+
+  const addToFavorites = (newFavorite) => {
+    //TODO AXIOS, setFavorites nur wenn erfolgreich
+    setFavorites(prevFavorites => [...prevFavorites, newFavorite]);
+  }
+
+  const toggleFavorite = () => {
+    if(favItem != undefined && favItem.id == productID) {
+      removeFromFavorites(favItem.id)
+      setFavItem(undefined)
+    }else{
+      addToFavorites({id:productID,amount:1})
+    }
+  }
+
+  useEffect(() => { //TODO ? FavItem nur setzen wenn noch nicht gesetzt?
+    const foundFavItem = favorites.find(fav => fav.id === productID);
+    setFavItem(foundFavItem);
+}, [favorites,favItem,productID]);
+
+//TODO ###################
+
   const findProductById = () => {
       return data.find(product => product._id === pathProductID);
   };
+                //TODO WEIGHT!!!!!!!!
 
   const product = findProductById();
     return ( 
@@ -22,6 +65,10 @@ import ChangeAmount from "../../components/ChangeAmount/ChangeAmount";const Deta
                 <section className="detailProduct-section">
                     {product?
                         <>
+                            <div className="detailProduct-image">
+                                <img src="" alt="" />
+                            </div>
+                            <p className="detailProduct-weight">{product.rating}kg</p> 
                             <p className="detailProduct-price">${product.price}</p>
                             <p className="detailProduct-name">{product.productName}</p>
                             <p className="detailProduct-rating">*{product.rating}</p> 
@@ -32,6 +79,9 @@ import ChangeAmount from "../../components/ChangeAmount/ChangeAmount";const Deta
 
                         </>
                     : null} 
+                      <a href="#" onClick={toggleFavorite}>
+              <img src={favItem!=undefined?fullHearth:emtpyHearth} alt="hearth" />
+            </a>
                 </section>
                 <FooterNav/>
             </main>
