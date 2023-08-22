@@ -72,6 +72,8 @@
 }
 
 
+
+
 .product-card-details h3 {
 	font-size: 1.3rem;
 	color: var(--h-tag-btn-color);
@@ -107,6 +109,11 @@
 	font-size: 1.1rem;
 	color: var(--h-tag-btn-color);
 	width: 3rem;
+}
+
+.product-card-details .product-favor-home{
+	justify-content: end;
+	order:-1;
 }
 
 .product-card-amount {

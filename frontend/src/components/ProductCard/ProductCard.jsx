@@ -129,20 +129,25 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
               <Link to={"/detailproduct/" + productID}>
                 <h3>{product.productName}</h3>
                 <article className="product-rating">
-                  <p>${product.price}</p>
+                  {location.pathname == "/home" ? <p>${product.price}</p> : ""}
+
                   <div>
                     <img src={star} alt="star" />
                     <p>{product.rating}</p>
                   </div>
                 </article>
               </Link>
-              <article className="product-favor">
+
+              <article className={`product-favor ${location.pathname=="/home"?"product-favor-home":""}`}>
+              {location.pathname != "/home" ? <p>${product.price}</p> : ""}
+
                 <a href="#" onClick={toggleFavorite}>
                   <img
                     src={favItem != undefined ? fullHearth : emtpyHearth}
                     alt="hearth"
                   />
                 </a>
+
               </article>
             </div>
             <ChangeAmount
