@@ -14,7 +14,8 @@ export const getAllUser = async (req, res) => {
 
 export const secureUser = async (req, res) => {
 	console.log(req.user);
-	res.send(req.user);
+	const newUser = await User.findById(req.user._id);
+	res.send(newUser);
 };
 
 export const getOneUser = async (req, res) => {
@@ -30,21 +31,25 @@ export const logoutUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
 	const { email, password } = req.body;
-	const user = await User.findOne({ email }).select("+hash").select("+salt");
+	try {
+		const user = await User.findOne({ email }).select("+hash").select("+salt");
+		const passwordIsValid = user.verifyPassword(password);
 
-	const passwordIsValid = user.verifyPassword(password);
+		if (passwordIsValid) {
+			const tokenUser = await User.findOne({ email });
+			const token = generateAccessToken({ tokenUser });
+			res.cookie("auth", token, { httpOnly: true, maxAge: hoursInMillisec(4) });
 
-	if (passwordIsValid) {
-		const tokenUser = await User.findOne({ email });
-		const token = generateAccessToken({ tokenUser });
-		res.cookie("auth", token, { httpOnly: true, maxAge: hoursInMillisec(4) });
-
-		res.send({ message: "Success", data: user });
-	} else {
-		res.status(404).send({
-			message: "Failed to login",
-			error: { message: "Something went wrong." },
-		});
+			res.send({ message: "Success", data: user });
+		} else {
+			res.status(404).send({
+				message: "Failed to login",
+				error: { message: "Something went wrong." },
+			});
+		}
+	} catch (e) {
+		console.log(e);
+		res.status(500).send(e);
 	}
 };
 
@@ -180,13 +185,27 @@ export const updateUserProductCart = async (req, res) => {
 	try {
 		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(
-			{ _id: id },
+			{ _id: id, "ProductCart.id": productId },
 			{
-				$push: { ProductCart: { id: productId, amount: countAsNumber } },
+				$set: { "ProductCart.$.amount": countAsNumber },
 			},
 			{ new: true }
 		);
-		res.status(200).send(updateUserProduct);
+
+		if (!updateUserProduct) {
+			const updateWithNewProduct = await User.findOneAndUpdate(
+				{ _id: id },
+				{
+					$push: {
+						ProductCart: { id: productId, amount: countAsNumber },
+					},
+				},
+				{ new: true }
+			);
+			res.status(200).send(updateWithNewProduct);
+		} else {
+			res.status(200).send(updateUserProduct);
+		}
 	} catch (err) {
 		console.log(err);
 		res.status(500).send(err);
@@ -215,13 +234,27 @@ export const updateUserFavProducts = async (req, res) => {
 	try {
 		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(
-			{ _id: id },
+			{ _id: id, "favProducts.id": productId },
 			{
-				$push: { favProducts: { id: productId, amount: countAsNumber } },
+				$set: { "favProducts.$.amount": countAsNumber },
 			},
 			{ new: true }
 		);
-		res.status(200).send(updateUserProduct);
+		console.log(productId);
+		if (!updateUserProduct) {
+			const updateWithNewProduct = await User.findOneAndUpdate(
+				{ _id: id },
+				{
+					$push: {
+						favProducts: { id: productId, amount: countAsNumber },
+					},
+				},
+				{ new: true }
+			);
+			res.status(200).send(updateWithNewProduct);
+		} else {
+			res.status(200).send(updateUserProduct);
+		}
 	} catch (err) {
 		console.log(err);
 		res.status(500).send(err);

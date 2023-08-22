@@ -25,7 +25,7 @@ import {
   dataContext,
   sortContext,
   categoryContext,
-  priceContext, 
+  priceContext,
   favoritesContext,
   userShoppingCartContext,
   selectedFavsContext,

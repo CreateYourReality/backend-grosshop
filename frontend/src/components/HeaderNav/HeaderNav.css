@@ -2,7 +2,30 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding: 4rem 0 0 2rem;
+  padding: 2rem 0 0 2rem;
+}
+
+.profile-logout-section {
+  display: flex;
+  justify-content: space-between;
+  width: 85vw;
+}
+
+.profile-logout-section button {
+  background: var(--main-green-color);
+  padding: 0.5vw 5vw;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.profile-logout-section button:hover {
+  opacity: 70%;
+}
+
+.profile-logout-section button:active {
+  background: var(--signUp-bg-color);
+  color: var(--h-tag-btn-color);
 }
 
 .location-name h2 {

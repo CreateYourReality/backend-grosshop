@@ -22,10 +22,10 @@ export default function SignIn() {
       refetch();
       setTimeout(() => {
         nav("/home");
-      }, 2000);
+      }, 500);
       e.target.reset();
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      //console.log(err);
       setError("Please check your Password and Email");
       e.target.reset();
     }

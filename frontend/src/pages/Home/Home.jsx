@@ -14,11 +14,9 @@ const Home = () => {
     return <div>Loading...</div>;
   }
 
-
-
   const TEST = async () => {
-    await axios.get("/api/users/secure")
-  }
+    await axios.get("/api/users/secure");
+  };
 
   console.log("User Logged in?",isLoggedIn);
     return ( 
