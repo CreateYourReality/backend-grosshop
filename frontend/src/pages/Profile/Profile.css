@@ -51,12 +51,12 @@
 }
 
 .upload-icon:hover {
-  box-shadow: 10px 0px 40px 0px rgba(135, 131, 131, 0.67);
+  box-shadow: 0px 0px 10px 10px rgba(135, 131, 131, 0.67);
 }
 
 .upload-icon:active {
   /* opacity: 80%; */
-  background-color: rgb(39, 38, 38);
+  background-color: rgb(39, 39, 38);
 }
 
 .profile-data {
@@ -97,6 +97,14 @@ textarea {
 .profile-data .user-content input:focus,
 textarea:focus {
   outline: none;
+}
+
+.notification {
+  display: flex;
+  justify-content: center;
+  height: 1vh;
+  font-size: 1.5rem;
+  color: var(--main-green-color);
 }
 
 .profile-btn-box {

@@ -1,19 +1,81 @@
 .headerNav-section {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 2rem 0 0 2rem;
+  padding: 2rem 0 0 1rem;
+}
+
+.headerNav-section h2 {
+  width: 20rem;
+  margin: -6px 0 0 0;
+  padding: 0 1rem;
+}
+
+.backBtn-box {
+  display: flex;
+  align-items: center;
+}
+
+.backBtn-box span {
+  margin: 1px 0 0 0;
+}
+
+.backBtn-box a {
+  margin: 0 -3.5rem 0 -1rem;
+  cursor: pointer;
+}
+.backBtn-box a img {
+  width: 5rem;
+}
+
+.location-name h2 {
+  font-size: 1.8rem;
+}
+
+.headerNav-searchBox {
+  margin: -5px 0 0 3rem;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 57%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.search-icon img {
+  width: 50%;
+}
+
+.headerNav-searchBox input {
+  border: 1px solid grey;
+  border-radius: 5px;
+  font-size: 1.2rem;
+
+  padding: 0rem 5rem;
+  width: 75vw;
+  height: 3.5rem;
+}
+
+.myCart-navBox {
+  display: flex;
+  width: 33rem;
+}
+
+.myCart-navBox button {
+  cursor: pointer;
 }
 
 .profile-logout-section {
   display: flex;
   justify-content: space-between;
-  width: 85vw;
+  width: 90vw;
 }
 
 .profile-logout-section button {
   background: var(--main-green-color);
-  padding: 0.5vw 5vw;
+  padding: 0.5rem 3rem;
+  margin: -5px 0 0 0;
   color: var(--white-color);
   border-radius: 0.5rem;
   cursor: pointer;
@@ -26,32 +88,4 @@
 .profile-logout-section button:active {
   background: var(--signUp-bg-color);
   color: var(--h-tag-btn-color);
-}
-
-.location-name h2 {
-  font-size: 1.8rem;
-}
-
-.headerNav-searchBox {
-  width: 33rem;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.headerNav-searchBox input {
-  border: 1px solid grey;
-  border-radius: 3px;
-  font-size: 1.1rem;
-  margin: -0.5rem 0 0 1rem;
-  padding: 0.5rem 5rem;
-}
-
-.myCart-navBox {
-  display: flex;
-  justify-content: space-between;
-  width: 33rem;
-}
-
-.myCart-navBox button {
-  cursor: pointer;
 }

@@ -83,6 +83,10 @@
   background: green;
 }
 
+.signIn-form button:active {
+  background-color: var(--signUp-bg-color);
+}
+
 .signUpLink-section {
   /* height: 25vh; */
   height: 15rem;

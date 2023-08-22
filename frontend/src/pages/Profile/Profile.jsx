@@ -5,13 +5,14 @@ import camera from "../../assets/img/camera.svg";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
+import defaultAvatar from "../../assets/img/defaultAvatar.gif";
 
 const Profile = () => {
   const { user, refetch, isLoggedIn, logout } = useContext(UserContext);
   console.log(isLoggedIn);
   // console.log(user);
   // console.log(user._id);
-
+  const [showNotification, setShowNotification] = useState(false);
   const [formData, setFormData] = useState({
     name: user.name || " ",
     email: user.email || " ",
@@ -45,6 +46,11 @@ const Profile = () => {
       }
       await axios.put(`/api/users/${user._id}`, formDataToSend);
       refetch();
+      setShowNotification(true);
+
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
       console.log("Data saved successfully!");
     } catch (error) {
       console.error("Error while saving the data:", error);
@@ -122,6 +128,9 @@ const Profile = () => {
               onChange={handleChange}
             />
           </article>
+          {showNotification && (
+            <div className="notification">Profile updated succesfully!</div>
+          )}
           <article className="profile-btn-box">
             <button>Update Profile</button>
           </article>
