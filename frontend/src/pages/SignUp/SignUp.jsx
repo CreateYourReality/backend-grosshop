@@ -39,7 +39,7 @@ export default function SignUp() {
       setTimeout(() => {
         nav("/welcomescreen");
         // test();
-      }, 1000);
+      }, 500);
       // welcome = true;
       // setRefresh((prev) => !prev);
 
