@@ -1,12 +1,11 @@
 import "./Home.css";
-import { Link } from "react-router-dom";
 
 import FooterNav from "../../components/FooterNav/FooterNav";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import ProductListComponente from "../../components/ProductListComponente/ProductListComponente";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import axios from "axios";
+import HomeCategory from "../../components/HomeCategory/HomeCategory";
 
 const Home = () => {
   const { isLoggedIn, logout } = useContext(UserContext);
@@ -14,9 +13,6 @@ const Home = () => {
     return <div>Loading...</div>;
   }
 
-  const TEST = async () => {
-    await axios.get("/api/users/secure");
-  };
 
   console.log("User Logged in?",isLoggedIn);
     return ( 
@@ -24,8 +20,8 @@ const Home = () => {
             <HeaderNav/>
             <main>
               <section className="home-section">
+                <HomeCategory/>
               <ProductListComponente/>
-                <Link to="/productlist">Productlist</Link>
                 </section>
             </main>
             <FooterNav/>

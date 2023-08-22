@@ -122,9 +122,8 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
               </div>
             ) : null
           }
-          <div className={`productCard-wrapper ${location.pathname == "/home"?"productCard-wrapper-home":""}`}>
+          <div className={`productCard-wrapper ${location.pathname == "/home" || location.pathname == "/productlist" ? "productCard-wrapper-home":""}`}>
               <img src={placeholderImg} alt="placeholderImg" />
-          
               <div className="product-card-details">
               <Link to={"/detailproduct/" + productID}>
                 <h3>{product.productName}</h3>

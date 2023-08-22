@@ -31,7 +31,7 @@ const ProductListComponente = () => {
 
     return ( 
         <>
-            {location.pathname == "/home"?<h2 className="groceryDeal">Today Grocery Deals</h2>:""}
+            {location.pathname == "/home" ?<h2 className="groceryDeal">Today Grocery Deals</h2>:""}
             <section className="product-list deal-list">
     {data ? (
         data.length > 0 ? (
