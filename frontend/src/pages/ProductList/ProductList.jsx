@@ -11,7 +11,7 @@ const ProductList = () => {
         <h2>Product List Page</h2>
         <SelectCategory/>
         <ProductListComponente/>
-      </main>x
+      </main>
         <FooterNav/>
     </>
   );
