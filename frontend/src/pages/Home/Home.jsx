@@ -6,6 +6,7 @@ import ProductListComponente from "../../components/ProductListComponente/Produc
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import HomeCategory from "../../components/HomeCategory/HomeCategory";
+import HomeSlider from "../../components/HomeSlider/HomeSlider";
 
 const Home = () => {
   const { isLoggedIn, logout } = useContext(UserContext);
@@ -20,9 +21,10 @@ const Home = () => {
             <HeaderNav/>
             <main>
               <section className="home-section">
+                <HomeSlider/>
                 <HomeCategory/>
-              <ProductListComponente/>
-                </section>
+                <ProductListComponente/>
+              </section>
             </main>
             <FooterNav/>
         </>
