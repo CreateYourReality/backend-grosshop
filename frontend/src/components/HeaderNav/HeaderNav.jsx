@@ -2,7 +2,6 @@ import "./HeaderNav.css";
 import BackBtn2 from "../BackBtn2Home/BackBtn2"; // Navigation auf HomePage
 import BackBtn3 from "../BackBtn3OneBack/BackBtn3"; // navigation ein Schritt zurück
 import { NavLink, useLocation } from "react-router-dom";
-import trash from "../../assets/img/trash.svg";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 
@@ -65,7 +64,14 @@ const HeaderNav = () => {
           ) : (
             ""
           )}
-          {location.pathname == "/profile" ? <h2>My Profile</h2> : ""}
+          <article className="profile-logout-section">
+            {location.pathname == "/profile" ? <h2>My Profile</h2> : ""}
+            {location.pathname == "/profile" && isLoggedIn && (
+              <button type="button" onClick={logout}>
+                Logout
+              </button>
+            )}
+          </article>
           {location.pathname == "/filter" ? <h2>Filters</h2> : ""}
           {detailProduct == "/detailproduct" ? <h2>Grocery Deals</h2> : ""}
         </section>

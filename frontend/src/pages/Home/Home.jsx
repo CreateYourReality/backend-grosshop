@@ -14,25 +14,23 @@ const Home = () => {
     return <div>Loading...</div>;
   }
 
-
-
   const TEST = async () => {
-    await axios.get("/api/users/secure")
-  }
+    await axios.get("/api/users/secure");
+  };
 
-  console.log("User Logged in?",isLoggedIn);
-    return ( 
-        <>
-            <HeaderNav/>
-            <main>
-            <h2>Home Page</h2>
-              <ProductListComponente/>
-                <Link to="/productlist">Productlist</Link>
-                <button onClick={TEST}>TEST</button>
-            </main>
-            <FooterNav/>
-        </>
-     );
-}
- 
+  console.log("User Logged in?", isLoggedIn);
+  return (
+    <>
+      <HeaderNav />
+      <main>
+        <h2>Home Page</h2>
+        <ProductListComponente />
+        <Link to="/productlist">Productlist</Link>
+        <button onClick={TEST}>TEST</button>
+      </main>
+      <FooterNav />
+    </>
+  );
+};
+
 export default Home;

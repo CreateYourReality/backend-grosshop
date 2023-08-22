@@ -14,7 +14,8 @@ export const getAllUser = async (req, res) => {
 
 export const secureUser = async (req, res) => {
 	console.log(req.user);
-	res.send(req.user);
+	const newUser = await User.findById(req.user._id)
+	res.send(newUser);
 };
 
 export const getOneUser = async (req, res) => {
