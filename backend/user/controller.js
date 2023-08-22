@@ -175,7 +175,8 @@ export const deleteUser = async (req, res) => {
 
 export const updateUserProductCart = async (req, res) => {
 	const id = req.params.id;
-	const { productId, amount } = req.body;
+	const amount  = req.body.amount;
+	const productId = req.body.id
 	try {
 		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(
@@ -193,11 +194,11 @@ export const updateUserProductCart = async (req, res) => {
 };
 
 export const deleteOneUserProductCart = async (req, res) => {
-	const id = req.params.id;
-	const { productId } = req.body;
+	const _id = req.params.id;
+	const  productId = req.body.id;
 	try {
 		const updateUserProduct = await User.findByIdAndUpdate(
-			{ _id: id },
+			{ _id: _id },
 			{ $pull: { ProductCart: { id: productId } } }
 		);
 		res.status(200).send(updateUserProduct);

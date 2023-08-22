@@ -1,7 +1,7 @@
 import "./ProductCard.css"
 import { Link, useLocation } from "react-router-dom"
 import { useState, useContext,useEffect } from "react"
-import { favoritesContext } from "../../context/Context"
+import { favoritesContext, selectedFavsContext } from "../../context/Context"
 import ChangeAmount from "../ChangeAmount/ChangeAmount"
 import emtpyHearth from "../../assets/img/like.svg"
 import fullHearth from "../../assets/img/likeActive.svg"
@@ -9,11 +9,13 @@ import axios from "axios"
 import { UserContext } from "../../context/UserContext"
 import star from "../../assets/img/star.svg";
 import placeholderImg from "../../assets/img/testimg.svg";
+//{product,setSelectedFavs,setSelectedCartItems,isSelected,test}
+const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
 
-const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) => {
   const {favorites, setFavorites} = useContext(favoritesContext)
   const [favItem, setFavItem] = useState(undefined)
   const {user} = useContext(UserContext)
+  const {selectedFavs, setSelectedFavs} = useContext(selectedFavsContext)
 
   let isThisProductSelected = false;
   const productID = product._id;
@@ -33,6 +35,11 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
     const locationShoppingCart = "/shoppingcart";
     return location.pathname == locationShoppingCart;
   };
+  const locationIsHome = () => {
+    const locationHome = "/home";
+    return location.pathname == locationHome;
+  }
+
   //TODO #######################################
 
   if (locationIsFavorites() || locationIsShoppingCart()) {
@@ -58,14 +65,16 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
   }
 
   const toggleFavorite = () => {
-    if(favItem != undefined && favItem.id == productID) {
-      console.log(favItem);
-      removeFromFavorites(favItem.id)
-      setFavItem(undefined)
-    }else{
+      if(favItem != undefined && favItem.id == productID) {
+        removeFromFavorites(favItem.id)
+        setFavItem(undefined)
+      }else{
       addToFavorites({id:productID,amount:1})
+      }
     }
-  };
+
+
+
 
   const handleCheckbox = () => {
     locationIsFavorites()
@@ -98,7 +107,7 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
               ? "product-card-favorites"
               : locationIsShoppingCart()
               ? "product-card-userShoppingCart"
-              : ""
+              : "product-card-home"
           }`}>
           {
             // Wenn Favoriten oder ShoppingCart Page>> Füge Select hinzu
@@ -113,10 +122,8 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
               </div>
             ) : null
           }
-          <section className="productCard-wrapper">
-            <article className="placeholder-img">
+          <div className="productCard-wrapper">
               <img src={placeholderImg} alt="placeholderImg" />
-            </article>
             <div className="product-card-details">
               <Link to={"/detailproduct/" + productID}>
                 <h3>{product.productName}</h3>
@@ -140,7 +147,7 @@ const ProductCard = ({product,setSelectedFavs,setSelectedCartItems,isSelected}) 
               product={product}
               setFavorites={setFavorites}
             />
-          </section>
+          </div>
         </article>
       ) : null}
     </>

@@ -3,6 +3,8 @@ import { useContext, useState } from "react"
 import { userShoppingCartContext } from "../../context/Context"
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
+import { UserContext } from "../../context/UserContext"
+import axios from "axios"
 
 const ChangeAmount = ({product,setFavorites,favItem}) => {
     const {userShoppingCart,setUserShoppingCart} = useContext(userShoppingCartContext)
@@ -10,6 +12,10 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
     const [tempShoppingCartItem, setTempShoppingCartItem] = useState(undefined)
     const [updateTotal,setUpdateTotal] = useState(false) //toogle refresher
     const [stop,setStop] = useState(false)
+
+
+
+    const {user} = useContext(UserContext)
 
     const findShoppingItemBy = (prodID) => {
         return userShoppingCart.find(cartItem => cartItem._id === prodID);
@@ -87,8 +93,16 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         console.log("UPDATE CART");
     }
 
-    const putInCart = () => {
-        console.log("PUT IN CART");
+    const putInCart = async () => {
+        const obj = {id:tempShoppingCartItem.id,amount:tempShoppingCartItem.amount}
+        console.log(obj);
+        try{
+            await axios.put(`/api/users/updateUserProductCart/${user._id}`, obj )
+          }catch(e){
+                //   console.error(e);
+          }
+          setUserShoppingCart(prevShoppingCart => [...prevShoppingCart, obj]);
+
     }
 
     return (

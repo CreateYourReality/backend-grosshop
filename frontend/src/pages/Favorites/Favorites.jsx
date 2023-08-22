@@ -9,6 +9,9 @@ import {
 } from "../../context/Context";
 import { useContext, useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { UserContext } from "../../context/UserContext";
+import { selectedFavsContext } from "../../context/Context";
+import axios from "axios";
 
 const Favorites = () => {
   const { data } = useContext(dataContext);
@@ -16,19 +19,11 @@ const Favorites = () => {
   const { userShoppingCart, setUserShoppingCart } = useContext(
     userShoppingCartContext
   );
-  const [selectedFavs, setSelectedFavs] = useState([]);
+  const {selectedFavs,setSelectedFavs} = useContext(selectedFavsContext)
+  const {user} = useContext(UserContext)
 
   const findFavoriteById = (favID) => {
     return data.find((favoriteItem) => favoriteItem._id === favID);
-  };
-
-  const deleteSelectedFavs = () => {
-    let updatedFavorites = [...favorites];
-    selectedFavs.forEach((id) => {
-      updatedFavorites = updatedFavorites.filter((fav) => fav.id !== id);
-    });
-    setFavorites(updatedFavorites);
-    setSelectedFavs([]);
   };
 
   const [selectAllText, setSelectAllText] = useState("SELECT ALL");
@@ -45,6 +40,21 @@ const Favorites = () => {
 
   const isSelected = (id) => {
     return selectedFavs.some((fav) => fav == id);
+  };
+
+  
+  const deleteSelectedFavs = () => {
+    let updatedFavorites = [...favorites];
+    selectedFavs.forEach(async (id) => {
+      updatedFavorites = updatedFavorites.filter((fav) => fav.id !== id);
+      try{
+        await axios.put(`/api/users/deleteUserFavProducts/${user._id}`, {id:id} )
+      }catch(e){
+        console.log(e);
+      }
+    });
+    setFavorites(updatedFavorites);
+    setSelectedFavs([]);
   };
 
   useEffect(() => {
@@ -87,6 +97,7 @@ const Favorites = () => {
                         setSelectedFavs={setSelectedFavs}
                         setFavorites={setFavorites}
                         product={findFavoriteById(fav.id)}
+                        selectedFavs={selectedFavs}
                       />
                     }
                   </article>

@@ -19,7 +19,7 @@ const DetailProduct = () => {
   const pathProductID = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
 
 
-  // TODO AUSLAGERN????? 
+  // TODO DRY AUSLAGERN????? 
   const {favorites, setFavorites} = useContext(favoritesContext)
   const [favItem, setFavItem] = useState(undefined)
   const {user} = useContext(UserContext)

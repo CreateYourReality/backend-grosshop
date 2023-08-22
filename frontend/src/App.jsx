@@ -27,7 +27,9 @@ import {
   categoryContext,
   priceContext, 
   favoritesContext,
-  userShoppingCartContext
+  userShoppingCartContext,
+  selectedFavsContext,
+  selectedCartItemsContext
 } from "./context/Context";
 
 function App() {
@@ -37,16 +39,11 @@ function App() {
   const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
   const [sortBy, setSortBy] = useState("abc")
   const {user} = useContext(UserContext)
-  const [userShoppingCart, setUserShoppingCart] = useState([
-    {
-      id:"64da41a2da5607a595466d39",
-      amount:10
-    },
-    {
-      id:"64da415eda5607a595466d38",
-      amount:7
-    }
-  ])
+  const [selectedFavs, setSelectedFavs] = useState([]);
+  const [selectedCartItems, setSelectedCartItems] = useState([]);
+
+
+  const [userShoppingCart, setUserShoppingCart] = useState(user ? user.ProductCart : [])
   const [favorites, setFavorites] = useState(user ? user.favProducts : []);
   
   //console.log(user?user:"nix da");
@@ -74,6 +71,8 @@ function App() {
                 <UserProvider>
                   <favoritesContext.Provider
                     value={{ favorites, setFavorites }}>
+                      <selectedFavsContext.Provider value={{selectedFavs, setSelectedFavs}}>
+                      <selectedCartItemsContext.Provider value={{selectedCartItems, setSelectedCartItems}}>
             <userShoppingCartContext.Provider value={{userShoppingCart,setUserShoppingCart}}>
                     <Routes>
                       {loading ? (
@@ -114,6 +113,8 @@ function App() {
                       )}
                     </Routes>
             </userShoppingCartContext.Provider>
+            </selectedCartItemsContext.Provider>
+            </selectedFavsContext.Provider>
                   </favoritesContext.Provider>
                 </UserProvider>
               </priceContext.Provider>
