@@ -122,18 +122,21 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
               </div>
             ) : null
           }
-          <div className="productCard-wrapper">
+          <div className={`productCard-wrapper ${location.pathname == "/home"?"productCard-wrapper-home":""}`}>
               <img src={placeholderImg} alt="placeholderImg" />
-            <div className="product-card-details">
+          
+              <div className="product-card-details">
               <Link to={"/detailproduct/" + productID}>
                 <h3>{product.productName}</h3>
                 <article className="product-rating">
-                  <img src={star} alt="star" />
-                  <p>{product.rating}</p>
+                  <p>${product.price}</p>
+                  <div>
+                    <img src={star} alt="star" />
+                    <p>{product.rating}</p>
+                  </div>
                 </article>
               </Link>
               <article className="product-favor">
-                <p>${product.price}</p>
                 <a href="#" onClick={toggleFavorite}>
                   <img
                     src={favItem != undefined ? fullHearth : emtpyHearth}

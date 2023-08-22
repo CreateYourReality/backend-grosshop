@@ -88,12 +88,19 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         }  
     },[tempShoppingCartItem])
 
-
-    const updateCart = () => {
-        console.log("UPDATE CART");
-    }
+//TODO added gerade n neues obj
+    const updateCart = async () => {
+        const obj = {id:tempShoppingCartItem.id,amount:tempShoppingCartItem.amount}
+        console.log(obj);
+        try{
+            await axios.put(`/api/users/updateUserProductCart/${user._id}`, obj )
+          }catch(e){
+                //   console.error(e);
+          }
+          setUserShoppingCart(prevShoppingCart => [...prevShoppingCart, obj]);    }
 
     const putInCart = async () => {
+        console.log(tempShoppingCartItem);
         const obj = {id:tempShoppingCartItem.id,amount:tempShoppingCartItem.amount}
         console.log(obj);
         try{

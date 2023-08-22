@@ -45,52 +45,33 @@ function App() {
 
   const [userShoppingCart, setUserShoppingCart] = useState(user ? user.ProductCart : [])
   const [favorites, setFavorites] = useState(user ? user.favProducts : []);
-  
-  //console.log(user?user:"nix da");
-  //console.log(user?user.favProducts:"nix da");
 
-  /* [ //"64da41b6da5607a595466d3a","64da41d2da5607a595466d3b"
-    {
-      id: "64da41b6da5607a595466d3a",
-      amount: 7,
-    },
-    {
-      id: "64da41d2da5607a595466d3b",
-      amount: 3,
-    }, 
-  ] */
+  console.log(favorites);
+
 
   return (
     <>
         <loadingContext.Provider value={{ loading, setLoading }}>
           <dataContext.Provider value={{ data, setData }}>
             <sortContext.Provider value={{sortBy,setSortBy}}>
-            <categoryContext.Provider
-              value={{ categoryFilter, setCategoryFilter }}>
-              <priceContext.Provider value={{ priceFilter, setPriceFilter }}>
-                <UserProvider>
-                  <favoritesContext.Provider
-                    value={{ favorites, setFavorites }}>
+              <categoryContext.Provider value={{ categoryFilter, setCategoryFilter }}>
+                <priceContext.Provider value={{ priceFilter, setPriceFilter }}>
+                  <UserProvider>
+                    <favoritesContext.Provider value={{ favorites, setFavorites }}>
                       <selectedFavsContext.Provider value={{selectedFavs, setSelectedFavs}}>
-                      <selectedCartItemsContext.Provider value={{selectedCartItems, setSelectedCartItems}}>
-            <userShoppingCartContext.Provider value={{userShoppingCart,setUserShoppingCart}}>
-                    <Routes>
-                      {loading ? (
-                        <Route path="*" element={<SplashScreen />} />
-                      ) : (
-                        <>
-                          <Route path="/" element={<Welcome />} />
-                          <Route path="/home" element={<Home />} />
-                          <Route path="/signup" element={<SignUp />} />
-                          <Route
-                            path="/welcomescreen"
-                            element={<WelcomeScreen />}
-                          />
-                          <Route path="/signin" element={<SignIn />} />
-                          <Route
-                            path="/productlist"
-                            element={<ProductList />}
-                          />
+                        <selectedCartItemsContext.Provider value={{selectedCartItems, setSelectedCartItems}}>
+                          <userShoppingCartContext.Provider value={{userShoppingCart,setUserShoppingCart}}>
+                            <Routes>
+                              {loading ? 
+                                <Route path="*" element={<SplashScreen />} />
+                              : (
+                                <>
+                                  <Route path="/" element={<Welcome />} />
+                                  <Route path="/home" element={<Home />} />
+                                  <Route path="/signup" element={<SignUp />} />
+                                  <Route path="/welcomescreen" element={<WelcomeScreen />}/>
+                                  <Route path="/signin" element={<SignIn />} />
+                                  <Route path="/productlist" element={<ProductList />}/>
                           <Route
                             path="/shoppingcart"
                             element={<ShoppingCart />}

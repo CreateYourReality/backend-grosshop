@@ -73,7 +73,21 @@ const Favorites = () => {
     //ÜBERPRÜFEN OB IN USERSHOPPINGCART VORHANDEN
     //WENN JA ERHÖHE NUR AMOUNT
     //WENN NEIN SETZE DIE FAVS IN DEN SHOPPINGCART
-  };
+      selectedFavs.forEach(async (selectedFavID) => {
+        const cartItemToUpdate = userShoppingCart.find(cartItem => cartItem.id === selectedFavID);
+    
+        if (cartItemToUpdate) {
+          cartItemToUpdate.amount == favorites.filter(favItem => favItem.id === selectedFavID).amount
+        } else {
+          const selectedFav = favorites.find( fav => fav.id === selectedFavID)
+          const newCartItem = { id: selectedFavID, amount: selectedFav.amount };
+          selectedFav.amount = 1;
+          await axios.put(`/api/users/updateUserProductCart/${user._id}`, newCartItem )
+          setUserShoppingCart(prevShoppingCart => [...prevShoppingCart, newCartItem]);
+        }
+      });
+      setSelectedFavs([]);
+    };
 
   return (
     <>
