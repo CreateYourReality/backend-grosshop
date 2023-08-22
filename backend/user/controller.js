@@ -14,7 +14,8 @@ export const getAllUser = async (req, res) => {
 
 export const secureUser = async (req, res) => {
 	console.log(req.user);
-	res.send(req.user);
+	const newUser = await User.findById(req.user._id);
+	res.send(newUser);
 };
 
 export const getOneUser = async (req, res) => {
@@ -183,13 +184,27 @@ export const updateUserProductCart = async (req, res) => {
 	try {
 		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(
-			{ _id: id },
+			{ _id: id, "ProductCart.id": productId },
 			{
-				$push: { ProductCart: { id: productId, amount: countAsNumber } },
+				$set: { "ProductCart.$.amount": countAsNumber },
 			},
 			{ new: true }
 		);
-		res.status(200).send(updateUserProduct);
+
+		if (!updateUserProduct) {
+			const updateWithNewProduct = await User.findOneAndUpdate(
+				{ _id: id },
+				{
+					$push: {
+						ProductCart: { id: productId, amount: countAsNumber },
+					},
+				},
+				{ new: true }
+			);
+			res.status(200).send(updateWithNewProduct);
+		} else {
+			res.status(200).send(updateUserProduct);
+		}
 	} catch (err) {
 		console.log(err);
 		res.status(500).send(err);
@@ -218,13 +233,27 @@ export const updateUserFavProducts = async (req, res) => {
 	try {
 		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(
-			{ _id: id },
+			{ _id: id, "favProducts.id": productId },
 			{
-				$push: { favProducts: { id: productId, amount: countAsNumber } },
+				$set: { "favProducts.$.amount": countAsNumber },
 			},
 			{ new: true }
 		);
-		res.status(200).send(updateUserProduct);
+		console.log(productId);
+		if (!updateUserProduct) {
+			const updateWithNewProduct = await User.findOneAndUpdate(
+				{ _id: id },
+				{
+					$push: {
+						favProducts: { id: productId, amount: countAsNumber },
+					},
+				},
+				{ new: true }
+			);
+			res.status(200).send(updateWithNewProduct);
+		} else {
+			res.status(200).send(updateUserProduct);
+		}
 	} catch (err) {
 		console.log(err);
 		res.status(500).send(err);
