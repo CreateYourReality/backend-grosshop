@@ -6,6 +6,7 @@ import { UserContext, UserProvider } from "./context/UserContext";
 //Pages
 import SplashScreen from "./pages/SplashScreen/SplashScreen";
 import WelcomeScreen from "./pages/WelcomeScreen/WelcomeScreen";
+import WelcomeScreenHome from "./pages/WelcomeScreen/WelcomeScreenHome";
 import Welcome from "./pages/Welcome/Welcome";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
@@ -87,6 +88,10 @@ function App() {
                             <Route
                               path="/welcomescreen"
                               element={<WelcomeScreen />}
+                            />
+                            <Route
+                              path="/welcomescreenhome"
+                              element={<WelcomeScreenHome />}
                             />
                             <Route path="/signin" element={<SignIn />} />
                             <Route

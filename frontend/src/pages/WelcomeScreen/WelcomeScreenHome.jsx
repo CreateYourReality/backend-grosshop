@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "../../pages/WelcomeScreen/WelcomeScreen.css";
 import checkmark from "../../assets/img/checkmark.svg";
 
-const WelcomeScreen = () => {
+const WelcomeScreenHome = () => {
   const nav = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
-      nav("/signin");
+      nav("/home");
     }, 3500);
   });
 
@@ -20,11 +20,11 @@ const WelcomeScreen = () => {
         </article>
         <article className="welcome-textBox">
           <h1>Welcome Grosshop</h1>
-          <h2>Successfully create your grosshop account</h2>
+          <h2>You have successfully logged in</h2>
         </article>
       </div>
     </section>
   );
 };
 
-export default WelcomeScreen;
+export default WelcomeScreenHome;

@@ -12,6 +12,7 @@ const Profile = () => {
   console.log(isLoggedIn);
   // console.log(user);
   // console.log(user._id);
+
   const [showNotification, setShowNotification] = useState(false);
   const [formData, setFormData] = useState({
     name: user.name || " ",
