@@ -25,30 +25,30 @@ import {
   dataContext,
   sortContext,
   categoryContext,
-  priceContext, 
+  priceContext,
   favoritesContext,
-  userShoppingCartContext
+  userShoppingCartContext,
 } from "./context/Context";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState()
-  const [categoryFilter, setCategoryFilter] = useState("All")
-  const [priceFilter, setPriceFilter] = useState({min:0,max:Infinity})
-  const [sortBy, setSortBy] = useState("abc")
-  const {user} = useContext(UserContext)
+  const [data, setData] = useState();
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [priceFilter, setPriceFilter] = useState({ min: 0, max: Infinity });
+  const [sortBy, setSortBy] = useState("abc");
+  const { user } = useContext(UserContext);
   const [userShoppingCart, setUserShoppingCart] = useState([
     {
-      id:"64da41a2da5607a595466d39",
-      amount:10
+      id: "64da41a2da5607a595466d39",
+      amount: 10,
     },
     {
-      id:"64da415eda5607a595466d38",
-      amount:7
-    }
-  ])
+      id: "64da415eda5607a595466d38",
+      amount: 7,
+    },
+  ]);
   const [favorites, setFavorites] = useState(user ? user.favProducts : []);
-  
+
   //console.log(user?user:"nix da");
   //console.log(user?user.favProducts:"nix da");
 
@@ -65,62 +65,63 @@ function App() {
 
   return (
     <>
-        <loadingContext.Provider value={{ loading, setLoading }}>
-          <dataContext.Provider value={{ data, setData }}>
-            <sortContext.Provider value={{sortBy,setSortBy}}>
+      <loadingContext.Provider value={{ loading, setLoading }}>
+        <dataContext.Provider value={{ data, setData }}>
+          <sortContext.Provider value={{ sortBy, setSortBy }}>
             <categoryContext.Provider
               value={{ categoryFilter, setCategoryFilter }}>
               <priceContext.Provider value={{ priceFilter, setPriceFilter }}>
                 <UserProvider>
                   <favoritesContext.Provider
                     value={{ favorites, setFavorites }}>
-            <userShoppingCartContext.Provider value={{userShoppingCart,setUserShoppingCart}}>
-                    <Routes>
-                      {loading ? (
-                        <Route path="*" element={<SplashScreen />} />
-                      ) : (
-                        <>
-                          <Route path="/" element={<Welcome />} />
-                          <Route path="/home" element={<Home />} />
-                          <Route path="/signup" element={<SignUp />} />
-                          <Route
-                            path="/welcomescreen"
-                            element={<WelcomeScreen />}
-                          />
-                          <Route path="/signin" element={<SignIn />} />
-                          <Route
-                            path="/productlist"
-                            element={<ProductList />}
-                          />
-                          <Route
-                            path="/shoppingcart"
-                            element={<ShoppingCart />}
-                          />
-                          <Route path="/favorites" element={<Favorites />} />
-                    <Route path="/filter" element={<Filter/>} />
+                    <userShoppingCartContext.Provider
+                      value={{ userShoppingCart, setUserShoppingCart }}>
+                      <Routes>
+                        {loading ? (
+                          <Route path="*" element={<SplashScreen />} />
+                        ) : (
+                          <>
+                            <Route path="/" element={<Welcome />} />
+                            <Route path="/home" element={<Home />} />
+                            <Route path="/signup" element={<SignUp />} />
+                            <Route
+                              path="/welcomescreen"
+                              element={<WelcomeScreen />}
+                            />
+                            <Route path="/signin" element={<SignIn />} />
+                            <Route
+                              path="/productlist"
+                              element={<ProductList />}
+                            />
+                            <Route
+                              path="/shoppingcart"
+                              element={<ShoppingCart />}
+                            />
+                            <Route path="/favorites" element={<Favorites />} />
+                            <Route path="/filter" element={<Filter />} />
 
-                          <Route path="/profile" element={<Profile />} />
-                          <Route path="/admin" element={<Admin />} />
-                          <Route
-                            path="/orderhistory"
-                            element={<OrderHistory />}
-                          />
+                            <Route path="/profile" element={<Profile />} />
+                            <Route path="/admin" element={<Admin />} />
+                            <Route
+                              path="/orderhistory"
+                              element={<OrderHistory />}
+                            />
 
-                          <Route
-                            path="/detailproduct/:id"
-                            element={<DetailProduct />}
-                          />
-                        </>
-                      )}
-                    </Routes>
-            </userShoppingCartContext.Provider>
+                            <Route
+                              path="/detailproduct/:id"
+                              element={<DetailProduct />}
+                            />
+                          </>
+                        )}
+                      </Routes>
+                    </userShoppingCartContext.Provider>
                   </favoritesContext.Provider>
                 </UserProvider>
               </priceContext.Provider>
             </categoryContext.Provider>
-            </sortContext.Provider>
-          </dataContext.Provider>
-        </loadingContext.Provider>
+          </sortContext.Provider>
+        </dataContext.Provider>
+      </loadingContext.Provider>
     </>
   );
 }

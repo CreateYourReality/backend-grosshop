@@ -22,7 +22,7 @@ export default function SignIn() {
       refetch();
       setTimeout(() => {
         nav("/home");
-      }, 2000);
+      }, 500);
       e.target.reset();
     } catch (err) {
       //console.log(err);
