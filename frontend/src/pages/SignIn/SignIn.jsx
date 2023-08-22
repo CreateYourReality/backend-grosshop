@@ -24,8 +24,8 @@ export default function SignIn() {
         nav("/home");
       }, 2000);
       e.target.reset();
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      //console.log(err);
       setError("Please check your Password and Email");
       e.target.reset();
     }
