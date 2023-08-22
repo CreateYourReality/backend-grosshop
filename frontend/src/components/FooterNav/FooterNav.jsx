@@ -10,8 +10,6 @@ import ordersActive from "../../assets/img/documentActive.svg";
 import cartActive from "../../assets/img/cartActive.svg";
 import heartActive from "../../assets/img/heartActive.svg";
 import profileActive from "../../assets/img/profileActive.svg";
-import { useContext, useEffect } from "react";
-import { NavContext } from "../../context/Context";
 
 const FooterNav = () => {
   const location = useLocation();
