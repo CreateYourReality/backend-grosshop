@@ -24,13 +24,15 @@ const Filter = () => {
         <>
             <main>
             <HeaderNav />
-                <h2>Filter Page</h2>
-                <section>
-                    <SelectCategory/>
+                <button className="remove-filter-btn" onClick={removeAllFilter}>all clear</button>
+                <section className="filter-section">
+                    <h2>Sort by</h2>
                     <SelectSort sortArray={data} setSortArray={setData}/>
+                    <h2>Price</h2>
                     <SelectPriceRange/>
+                    <h2>Category</h2>
+                    <SelectCategory/>
                 </section>
-                <button onClick={removeAllFilter}>REMOVE ALL FILTER</button>
             </main>
         </>
      );

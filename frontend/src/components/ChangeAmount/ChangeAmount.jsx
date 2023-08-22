@@ -32,9 +32,9 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
     },[userShoppingCart])
 
 
-    const increaseAmountCart = (incOrDecrement) => {
+    const increaseAmountCart =  (incOrDecrement) => {
         setUserShoppingCart(prevCartItem => {
-            return prevCartItem.map(cartItem => {
+            return prevCartItem.map( async cartItem => {
                 if (cartItem.id === product._id) {
                     return { ...cartItem, amount: cartItem.amount + incOrDecrement <= 0 ? 1 : cartItem.amount + incOrDecrement  };
                 }
@@ -65,6 +65,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
             });
         });
         setUpdateTotal(prev => !prev)
+
     };
 
 
@@ -89,15 +90,24 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
     },[tempShoppingCartItem])
 
 //TODO added gerade n neues obj
-    const updateCart = async () => {
-        const obj = {id:tempShoppingCartItem.id,amount:tempShoppingCartItem.amount}
-        console.log(obj);
-        try{
-            await axios.put(`/api/users/updateUserProductCart/${user._id}`, obj )
-          }catch(e){
-                //   console.error(e);
-          }
-          setUserShoppingCart(prevShoppingCart => [...prevShoppingCart, obj]);    }
+const updateCart = async () => {
+    const obj = { id: tempShoppingCartItem.id, amount: tempShoppingCartItem.amount };
+    try {
+        await axios.put(`/api/users/updateUserProductCart/${user._id}`, obj);
+        setUserShoppingCart(prevShoppingCart => {
+            const updatedCart = prevShoppingCart.map(item => {
+                if (item.id === obj.id) {
+                    return { ...item, amount: obj.amount };
+                }
+                return item;
+            });
+            return [...updatedCart];
+        });
+    } catch (e) {
+        // Fehlerbehandlung hier
+        console.error(e);
+    }
+};
 
     const putInCart = async () => {
         console.log(tempShoppingCartItem);

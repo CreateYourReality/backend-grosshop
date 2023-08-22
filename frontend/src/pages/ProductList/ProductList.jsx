@@ -8,7 +8,6 @@ const ProductList = () => {
     <>
       <main>
         <HeaderNav />
-        <h2>Product List Page</h2>
         <SelectCategory/>
         <ProductListComponente/>
       </main>
