@@ -16,9 +16,13 @@ const SelectCategory = () => {
 
     return (  
         <>
-            <section className="category-section">
+            <section className={`category-section`}>
                 {categoryList?.map((category,index) => {
-                   return <a className={category==categoryFilter?"active": null} onClick={selectCategory} key={index}>{category}</a>
+                   return <a className={`${location.pathname == "/filter"?"filter-btn":""} ${category==categoryFilter?
+                    location.pathname == "/filter"?
+                        "active-filter"
+                        :"active"
+                    : null}`} onClick={selectCategory} key={index}>{category}</a>
                 })}
             </section>
         </>

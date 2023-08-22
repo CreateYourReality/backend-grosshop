@@ -23,9 +23,10 @@ const Home = () => {
         <>
             <HeaderNav/>
             <main>
-            <h2>Home Page</h2>
+              <section className="home-section">
               <ProductListComponente/>
                 <Link to="/productlist">Productlist</Link>
+                </section>
             </main>
             <FooterNav/>
         </>

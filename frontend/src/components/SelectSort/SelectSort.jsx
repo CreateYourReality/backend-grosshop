@@ -32,7 +32,12 @@ const SelectSort = ({sortArray,setSortArray}) => {
     }
 
     const changeSortBy = (event) => {
+        console.log(event.target.value);
         setSortBy(event.target.value)
+    }
+
+    const changeSortByBtns = (value) => {
+        setSortBy(value)
     }
 
     useEffect(() => {
@@ -49,6 +54,16 @@ const SelectSort = ({sortArray,setSortArray}) => {
                 <option value="*">Bewertungen : low</option>
                 <option value="***">Bewertungen : high</option>
             </select>
+
+            <div className="sortBy-btns">
+                <a onClick={()=>changeSortByBtns("abc")} >Name</a>
+                <a onClick={()=>changeSortByBtns("cba")} >Name reverse</a>
+                <a onClick={()=>changeSortByBtns("$")} >Preis : low</a>
+                <a onClick={()=>changeSortByBtns("$$$")} >Preis : high</a>
+                <a onClick={()=>changeSortByBtns("*")}> Bewertungen : low</a>
+                <a onClick={()=>changeSortByBtns("***")} >Bewertungen : high</a>
+            </div>
+            
         </>
      );
 }
