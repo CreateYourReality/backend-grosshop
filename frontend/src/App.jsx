@@ -46,9 +46,6 @@ function App() {
   const [userShoppingCart, setUserShoppingCart] = useState(user ? user.ProductCart : [])
   const [favorites, setFavorites] = useState(user ? user.favProducts : []);
 
-  console.log(favorites);
-
-
   return (
     <>
         <loadingContext.Provider value={{ loading, setLoading }}>
@@ -64,7 +61,7 @@ function App() {
                             <Routes>
                               {loading ? 
                                 <Route path="*" element={<SplashScreen />} />
-                              : (
+                                : (
                                 <>
                                   <Route path="/" element={<Welcome />} />
                                   <Route path="/home" element={<Home />} />
@@ -72,34 +69,23 @@ function App() {
                                   <Route path="/welcomescreen" element={<WelcomeScreen />}/>
                                   <Route path="/signin" element={<SignIn />} />
                                   <Route path="/productlist" element={<ProductList />}/>
-                          <Route
-                            path="/shoppingcart"
-                            element={<ShoppingCart />}
-                          />
-                          <Route path="/favorites" element={<Favorites />} />
-                    <Route path="/filter" element={<Filter/>} />
-
-                          <Route path="/profile" element={<Profile />} />
-                          <Route path="/admin" element={<Admin />} />
-                          <Route
-                            path="/orderhistory"
-                            element={<OrderHistory />}
-                          />
-
-                          <Route
-                            path="/detailproduct/:id"
-                            element={<DetailProduct />}
-                          />
-                        </>
-                      )}
-                    </Routes>
-            </userShoppingCartContext.Provider>
-            </selectedCartItemsContext.Provider>
-            </selectedFavsContext.Provider>
-                  </favoritesContext.Provider>
-                </UserProvider>
-              </priceContext.Provider>
-            </categoryContext.Provider>
+                                  <Route path="/shoppingcart" element={<ShoppingCart />}/>
+                                  <Route path="/favorites" element={<Favorites />} />
+                                  <Route path="/filter" element={<Filter/>} />
+                                  <Route path="/profile" element={<Profile />} />
+                                  <Route path="/admin" element={<Admin />} />
+                                  <Route path="/orderhistory"element={<OrderHistory />}/>
+                                  <Route path="/detailproduct/:id" element={<DetailProduct />}/>
+                              </>
+                              )}
+                            </Routes>
+                          </userShoppingCartContext.Provider>
+                        </selectedCartItemsContext.Provider>
+                      </selectedFavsContext.Provider>
+                    </favoritesContext.Provider>
+                  </UserProvider>
+                </priceContext.Provider>
+              </categoryContext.Provider>
             </sortContext.Provider>
           </dataContext.Provider>
         </loadingContext.Provider>

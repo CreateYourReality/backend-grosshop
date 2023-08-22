@@ -28,7 +28,6 @@ const Home = () => {
             <h2>Home Page</h2>
               <ProductListComponente/>
                 <Link to="/productlist">Productlist</Link>
-                <button onClick={TEST}>TEST</button>
             </main>
             <FooterNav/>
         </>
