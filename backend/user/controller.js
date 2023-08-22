@@ -32,7 +32,7 @@ export const loginUser = async (req, res) => {
 	const { email, password } = req.body;
 	try {
 		const user = await User.findOne({ email }).select("+hash").select("+salt");
-		const passwordIsValid = User.verifyPassword(password);
+		const passwordIsValid = user.verifyPassword(password);
 
 		if (passwordIsValid) {
 			const tokenUser = await User.findOne({ email });
