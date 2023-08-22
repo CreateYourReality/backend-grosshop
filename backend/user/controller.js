@@ -30,21 +30,25 @@ export const logoutUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
 	const { email, password } = req.body;
-	const user = await User.findOne({ email }).select("+hash").select("+salt");
+	try {
+		const user = await User.findOne({ email }).select("+hash").select("+salt");
+		const passwordIsValid = User.verifyPassword(password);
 
-	const passwordIsValid = user.verifyPassword(password);
+		if (passwordIsValid) {
+			const tokenUser = await User.findOne({ email });
+			const token = generateAccessToken({ tokenUser });
+			res.cookie("auth", token, { httpOnly: true, maxAge: hoursInMillisec(4) });
 
-	if (passwordIsValid) {
-		const tokenUser = await User.findOne({ email });
-		const token = generateAccessToken({ tokenUser });
-		res.cookie("auth", token, { httpOnly: true, maxAge: hoursInMillisec(4) });
-
-		res.send({ message: "Success", data: user });
-	} else {
-		res.status(404).send({
-			message: "Failed to login",
-			error: { message: "Something went wrong." },
-		});
+			res.send({ message: "Success", data: user });
+		} else {
+			res.status(404).send({
+				message: "Failed to login",
+				error: { message: "Something went wrong." },
+			});
+		}
+	} catch (e) {
+		console.log(e);
+		res.status(500).send(e);
 	}
 };
 
