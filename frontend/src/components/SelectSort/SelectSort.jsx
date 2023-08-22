@@ -22,7 +22,7 @@ const SelectSort = ({sortArray,setSortArray}) => {
     const getSortType = (sortType) => {
         switch(sortType){
             case "abc": return sortAZ;break;
-            case "cba": return sortZA;break;
+            case "zyx": return sortZA;break;
             case "$": return sortPriceLow;break;
             case "$$$": return sortPriceHigh;break;
             case "***": return sortRatingHigh;break;
@@ -47,21 +47,21 @@ const SelectSort = ({sortArray,setSortArray}) => {
     return ( 
         <>
             <select value={sortBy} onChange={()=>changeSortBy(event)} name="select-sort" id="select-sort">
-                <option value="abc">Name</option>
-                <option value="cba">Name reverse</option>
-                <option value="$">Preis : low</option>
-                <option value="$$$">Preis : high</option>
-                <option value="*">Bewertungen : low</option>
-                <option value="***">Bewertungen : high</option>
+                <option value="abc">ABC</option>
+                <option value="zyx">ZYX</option>
+                <option value="$">LOW</option>
+                <option value="$$$">HIGH</option>
+                <option value="*">LOW</option>
+                <option value="***">HIGH</option>
             </select>
 
             <div className="sortBy-btns">
-                <a onClick={()=>changeSortByBtns("abc")} >Name</a>
-                <a onClick={()=>changeSortByBtns("cba")} >Name reverse</a>
-                <a onClick={()=>changeSortByBtns("$")} >Preis : low</a>
-                <a onClick={()=>changeSortByBtns("$$$")} >Preis : high</a>
-                <a onClick={()=>changeSortByBtns("*")}> Bewertungen : low</a>
-                <a onClick={()=>changeSortByBtns("***")} >Bewertungen : high</a>
+                <a className={`filter-btn ${sortBy=="abc"?"active-filter":""}`} onClick={()=>changeSortByBtns("abc")} >ABC</a>
+                <a className={`filter-btn ${sortBy=="zyx"?"active-filter":""}`} onClick={()=>changeSortByBtns("zyx")} >ZYX</a>
+                <a className={`filter-btn ${sortBy=="$"?"active-filter":""}`} onClick={()=>changeSortByBtns("$")} >LOW</a>
+                <a className={`filter-btn ${sortBy=="$$$"?"active-filter":""}`} onClick={()=>changeSortByBtns("$$$")} >HIGH</a>
+                <a className={`filter-btn ${sortBy=="*"?"active-filter":""}`} onClick={()=>changeSortByBtns("*")}>WORST</a>
+                <a className={`filter-btn ${sortBy=="***"?"active-filter":""}`} onClick={()=>changeSortByBtns("***")} >BEST</a>
             </div>
             
         </>
