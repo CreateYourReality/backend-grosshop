@@ -1,4 +1,4 @@
-import formData from "form-data";
+import FormData from "form-data";
 import Mailgun from "mailgun.js";
 const mailgun = new Mailgun(FormData);
 const sandbox = "sandbox39d3714af1914cb38cb7eea1d0a39f5b.mailgun.org";
