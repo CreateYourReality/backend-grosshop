@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import "./TotalCost.css"
-import { dataContext, userShoppingCartContext } from "../../context/Context";
+import { dataContext, userShoppingCartContext, selectedCartItemsContext } from "../../context/Context";
 
 const TotalCost = () => {
     const {userShoppingCart} = useContext(userShoppingCartContext)
+    const {selectedCartItems, setSelectedCartItems} = useContext(selectedCartItemsContext)
     const {data} = useContext(dataContext)
 
     const updateTotalCost = () => {
@@ -14,14 +15,32 @@ const TotalCost = () => {
         }, 0);
     }
 
+    const updateSelectedCost = () => {
+        return selectedCartItems.reduce((total, cartItem) => {
+            const cartProduct = data.find(prod => prod._id == cartItem);
+            console.log(cartProduct);
+            if (cartProduct) {
+                const cartAmount = userShoppingCart.find(cartItem => cartItem._id == cartProduct._id).amount;
+                console.log();
+                const itemTotal = cartProduct.price * cartAmount
+                return total + itemTotal;
+            } else {
+                return total;
+            }
+        }, 0);
+    }
+
     //TODO CHECKOUT
     const checkoutCartItems = () => {
         console.log("CHECKOUT CART ITEMS");
     }
 
+console.log(updateSelectedCost());
+
     return ( 
         <>
             <button onClick={checkoutCartItems}>CHECKOUT - Total ${updateTotalCost()}</button>
+            <button onClick={checkoutCartItems}>CHECKOUT - Selected ${updateSelectedCost()}</button>
         </>
      );
 }
