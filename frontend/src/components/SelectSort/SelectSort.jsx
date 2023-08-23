@@ -11,6 +11,8 @@ const SelectSort = ({sortArray,setSortArray}) => {
  const {sortByFavs,setSortByFavs} = useContext(sortFavsContext)
  const location = useLocation();
  const {data} = useContext(dataContext)
+
+console.log(data);
     
     const sortAZ = (a, b) => a.productName.localeCompare(b.productName);
 
@@ -19,11 +21,8 @@ const SelectSort = ({sortArray,setSortArray}) => {
         const bIndex = data.findIndex(fav => fav._id === bId._id); 
         const aProduct = data[aIndex];
         const bProduct = data[bIndex]; 
-
-        console.log(aProduct);
         
         if (aProduct && bProduct) {
-            console.log(aProduct.productName.localeCompare(bProduct.productName));
             return aProduct.productName.localeCompare(bProduct.productName);
         }
     };
@@ -105,9 +104,7 @@ const SelectSort = ({sortArray,setSortArray}) => {
         });
     
         sortedArray.sort(getSortType(sortType));
-    
-        console.log(sortedArray);
-    
+        
         setSortArray(sortedArray);
     };
 
@@ -147,12 +144,11 @@ const SelectSort = ({sortArray,setSortArray}) => {
     }
 
     useEffect(() => {
-        sortME(sortBy);
-    },[sortBy])
+        location.pathname=="/filter"?    
+            sortME(sortBy)
+            :sortMEalt(sortByFavs)
+    },[sortBy,sortByFavs])
 
-   useEffect(() => {
-        sortMEalt(sortByFavs) 
-    },[sortByFavs]) 
 
     return ( 
         <>
