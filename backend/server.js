@@ -1,8 +1,9 @@
+import "./config/config.js";
 import express from "express";
-import dotenv from "dotenv";
+//import dotenv from "dotenv";
 import mongoose from "mongoose";
 import morgan from "morgan";
-import path from "path";
+//import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -15,10 +16,6 @@ import { router as OrderRouting } from "./orders/routes.js";
 const FE_DIR = new URL("../frontend/dist", import.meta.url).pathname;
 const FE_INDEX = new URL("../frontend/dist/index.html", import.meta.url)
 	.pathname;
-
-dotenv.config({
-	path: path.join(path.resolve(), "..", ".env"),
-});
 
 await mongoose.connect(process.env.DB);
 await mongoose.connection.syncIndexes();
