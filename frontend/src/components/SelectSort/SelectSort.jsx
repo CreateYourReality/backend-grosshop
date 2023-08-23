@@ -32,7 +32,6 @@ const SelectSort = ({sortArray,setSortArray}) => {
     }
 
     const changeSortBy = (event) => {
-        console.log(event.target.value);
         setSortBy(event.target.value)
     }
 

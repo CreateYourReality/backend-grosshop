@@ -25,7 +25,6 @@ export default function SignIn() {
       }, 500);
       e.target.reset();
     } catch (err) {
-      //console.log(err);
       setError("Please check your Password and Email");
       e.target.reset();
     }

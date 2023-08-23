@@ -10,14 +10,12 @@ import OrderItem from "../../components/OrderItem/OrderItem";
 const OrderHistory = () => {
     const {user} = useContext(UserContext);
     const [orders, setOrders] = useState([])
-    console.log(user);
 
     useEffect(()=>{
         const getOrders = async () => {
             if (user) {
                 const order = await axios.get(`/api/orders/userId/${user._id}`)
                 setOrders(order.data)
-                console.log(orders);
             }
         }
         getOrders();

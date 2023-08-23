@@ -27,7 +27,6 @@ const ConfirmReset = ({id, token}) => {
             }, 1500);
             e.target.reset();
         } catch (err) {
-            console.log(err);
           setError(err.response.data.message);
           e.target.reset();
         }

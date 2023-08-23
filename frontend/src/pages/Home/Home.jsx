@@ -15,7 +15,6 @@ const Home = () => {
   }
 
 
-  console.log("User Logged in?",isLoggedIn);
     return ( 
         <>
             <HeaderNav/>

@@ -110,9 +110,7 @@ const updateCart = async () => {
 };
 
     const putInCart = async () => {
-        console.log(tempShoppingCartItem);
         const obj = {id:tempShoppingCartItem.id,amount:tempShoppingCartItem.amount}
-        console.log(obj);
         try{
             await axios.put(`/api/users/updateUserProductCart/${user._id}`, obj )
           }catch(e){
