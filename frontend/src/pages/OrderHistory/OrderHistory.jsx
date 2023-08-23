@@ -27,7 +27,6 @@ const OrderHistory = () => {
         <>
             <HeaderNav/>
             <main>
-                <h2>Order History Page</h2>
                 <section className="orderHistory">
                     {orders?.map((order, i) => <OrderItem order={order} key={i}/>)}
                 </section>

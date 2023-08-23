@@ -2,4 +2,62 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	background-color: var(--white-color, #fff);
+	border-radius: 5px;
+	padding: 2rem;
+	box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+}
+
+.orderItem > div:first-child h3 {
+	color: #2c3066;
+	font-size: 1.4rem;
+	font-family: poppins-medium, Arial, Helvetica, sans-serif;
+}
+.orderItem > div:first-child p {
+	color: var(--main-green-color, #40aa54);
+	font-family: poppins-medium, Arial, Helvetica, sans-serif;
+	font-size: 1.2rem;
+}
+.orderItem > div:last-child > div:first-child {
+	color: var(--white-color, #fff);
+	font-size: 1rem;
+	font-family: roboto-regular, Arial, Helvetica, sans-serif;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+}
+.orderItem > div:last-child > div:first-child div {
+	width: 100%;
+	border-radius: 3px 0 3px 0;
+	padding: 5px;
+}
+.orderItem > div:last-child > div:last-child {
+	color: var(--p-tag-color, #777);
+	font-size: 1rem;
+	font-family: poppins-regular, Arial, Helvetica, sans-serif;
+}
+
+.pending {
+	background-color: var(--pending-color, #04d9d2);
+}
+
+.processing {
+	background-color: var(--processing-color, #ff960c);
+}
+.canceled {
+	background-color: var(--canceled-color, #d90504);
+}
+.picked {
+	background-color: var(--picked-color, #0459d9);
+}
+.shipped {
+	background-color: var(--shipped-color, #c73db6);
+}
+.paid {
+	background-color: var(--main-green-color, #40aa54);
+}
+.refunded {
+	background-color: var(--refunded-color, #deffe4);
+	color: #000000;
 }
