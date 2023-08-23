@@ -38,21 +38,20 @@
 
 .search-icon {
   position: absolute;
-  top: 57%;
-  left: 10px;
+  top: 65%;
+  left: 8px;
   transform: translateY(-50%);
 }
 
 .search-icon img {
-  width: 50%;
+  /* width: 50%; */
 }
 
 .headerNav-searchBox input {
   border: 1px solid grey;
   border-radius: 5px;
   font-size: 1.2rem;
-
-  padding: 0rem 5rem;
+  padding: 0rem 3rem;
   width: 75vw;
   height: 3.5rem;
 }

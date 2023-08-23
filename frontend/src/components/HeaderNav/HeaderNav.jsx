@@ -5,7 +5,7 @@ import filterPopup from "../../assets/img/filterPopup.svg";
 import { NavLink, useLocation } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
-import lupe from "../../assets/img/lupe.gif";
+import lupe from "../../assets/img/lupe.svg";
 
 const HeaderNav = () => {
   const { isLoggedIn, logout } = useContext(UserContext);

@@ -5,11 +5,10 @@ import camera from "../../assets/img/camera.svg";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
-import defaultAvatar from "../../assets/img/defaultAvatar.gif";
+import defaultAvatar from "../../assets/img/defaultAvatar.svg";
 
 const Profile = () => {
   const { user, refetch, isLoggedIn, logout } = useContext(UserContext);
-
 
   const [showNotification, setShowNotification] = useState(false);
   const [formData, setFormData] = useState({
@@ -63,7 +62,11 @@ const Profile = () => {
                   {isLoggedIn && user.image ? (
                     <img src={user.image.url} alt="User Avatar" />
                   ) : (
-                    <img src={defaultAvatar} alt="Default Avatar" />
+                    <img
+                      src={defaultAvatar}
+                      className="defaultAvatar"
+                      alt="Default Avatar"
+                    />
                   )}
                 </div>
                 <span className="upload-icon">
