@@ -59,7 +59,7 @@ export default function SignIn() {
               required
             />
             {error && <small style={{ color: "red" }}>{error}</small>}
-            <NavLink to="#">Forgot password?</NavLink>
+            <NavLink to="/resetpassword">Forgot password?</NavLink>
             <button>Sign in</button>
           </form>
         </div>

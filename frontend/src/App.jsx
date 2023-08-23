@@ -29,6 +29,7 @@ import {
   favoritesContext,
   userShoppingCartContext,
 } from "./context/Context";
+import Resetpassword from "./pages/Resetpassword/Resetpassword";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -89,6 +90,7 @@ function App() {
                               element={<WelcomeScreen />}
                             />
                             <Route path="/signin" element={<SignIn />} />
+                            <Route path="/resetpassword" element={<Resetpassword/>} />
                             <Route
                               path="/productlist"
                               element={<ProductList />}

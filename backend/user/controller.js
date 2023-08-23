@@ -1,6 +1,6 @@
 import { User } from "./UserModel.js";
 import { v2 as cloudinary } from "cloudinary";
-import { createResetToken } from "./ResetTokenModel.js";
+import { createResetToken, validateResetToken } from "./ResetTokenModel.js";
 import { authenticateToken, generateAccessToken } from "./authToken.js";
 
 const hoursInMillisec = (hours) => {
@@ -97,29 +97,39 @@ export const signUpUser = async (req, res) => {
 export const resetPassword = async (req, res) => {
 	const { email } = req.body;
 	try {
+		console.log("reset password for ", email);
 		await createResetToken(email);
 		return res.sendStatus(200);
 	} catch (e) {
-		console.log(e);
+		//console.log(e);
 
 		if (e?.message === "No User is with this email") {
 			return res.status(404).send({ error: "User not found" });
 		}
 
-		return res.sendStatus(500).send("hehe its wrong to use this hehe");
+		return res.status(500).send("hehe its wrong to use this hehe");
 	}
 };
 
 export const resetPasswordConfirm = async (req, res) => {
-	const { id, token, password } = req.body;
-	const isValidResetProcess = validateResetToken(id, token);
+	const { id, token, newpassword, confirmpassword } = req.body;
+	console.log(req.body);
+	console.log(id);
 	try {
+		const isValidResetProcess = await validateResetToken(id, token);
+		const confirmPasswords = newpassword === confirmpassword;
+
+		console.log(isValidResetProcess);
 		if (!isValidResetProcess) {
 			throw new Error("NonValidResetProcess");
 		}
 
 		const user = await User.findById(id);
-		user.setPassword(password);
+		if (confirmPasswords) {
+			user.setPassword(confirmpassword);
+		} else {
+			throw new Error("Password aren't the same");
+		}
 
 		await user.save();
 		return res.send({
@@ -127,7 +137,10 @@ export const resetPasswordConfirm = async (req, res) => {
 		});
 	} catch (e) {
 		console.log(e);
-		res.status(500).send({ error: "Something went wrong" });
+		res.status(500).send({
+			error: "Something went wrong",
+			message: e.message,
+		});
 	}
 };
 
