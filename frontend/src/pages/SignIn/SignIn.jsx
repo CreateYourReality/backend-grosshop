@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./SignIn.css";
-import logo from "../../assets/img/signinlogo.svg";
+import logo from "../../assets/img/signInLogo.svg";
 import BackBtn from "../../components/BackBtnWelcome/BackBtn";
 import { useContext, useState } from "react";
 import axios from "axios";
