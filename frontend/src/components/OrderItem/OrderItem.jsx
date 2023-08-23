@@ -14,7 +14,7 @@ const OrderItem = ({order}) => {
             <article className="orderItem">
                 <div>
                     <h3>{_id.slice(_id.length-6)}</h3>
-                    <p>{invoice}</p>
+                    <p>{invoice}$</p>
                 </div>
                 <div>
                     <div>
