@@ -1,0 +1,6 @@
+.home-category-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 25px 0;
+}

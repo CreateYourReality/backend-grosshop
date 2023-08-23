@@ -1,21 +1,24 @@
 .product-article {
-	/* border: 1px solid whitesmoke;
-  max-width: 33.3vw;
-  min-width: 33.3vw;
-  min-height: 33.3vw;
-  max-height: 33.3vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  -webkit-box-shadow: 0px 0px 10px 0px #000000;
-  box-shadow: 0px 0px 5px 0px #9c9c9c; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-width: 80vw;
 	max-width: 90vw;
 	gap: 1.5rem;
+}
+
+.product-card-home{
+  border: 1px solid whitesmoke;
+  max-width: 33.3vw;
+  min-width: 33.3vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 0px 10px 0px #000000;
+  box-shadow: 0px 0px 5px 0px #9c9c9c; 
+  padding: 10px;
 }
 
 .product-card-favorites,
@@ -33,14 +36,26 @@
 	justify-content: center;
 }
 
+
 .productCard-wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 1.5rem;
-	width: 40rem;
+	/*gap: 1.5rem;*/
+	/*width: 40rem;*/
 	box-shadow: 0px 0px 5px 0px #9c9c9c;
 	border-top-left-radius: 1rem;
+} 
+
+.productCard-wrapper-home{
+	flex-direction: column;
+	text-align: center;
+	box-shadow: none;
+}
+
+.productCard-wrapper-home img{
+	width: 40%;
+	margin-bottom: 5px;
 }
 
 .product-card-details {
@@ -56,21 +71,17 @@
 	/* width: 24vw; */
 }
 
-.product-card-details {
-	display: flex;
-	gap: 1rem;
-}
+
+
 
 .product-card-details h3 {
 	font-size: 1.3rem;
 	color: var(--h-tag-btn-color);
-	margin-bottom: 0.2rem;
 }
 
 .product-card-details article {
 	display: flex;
 	align-items: center;
-	gap: 0.6rem;
 }
 
 .product-card-details article img {
@@ -78,11 +89,9 @@
 }
 
 .product-card-details .product-rating img {
-	margin: -3px 0 0 0;
 }
 
 .product-card-details .product-favor img {
-	margin: 0 0 -2px 0;
 }
 
 .product-card-details .product-rating p {
@@ -102,11 +111,29 @@
 	width: 3rem;
 }
 
+.product-card-details .product-favor-home{
+	justify-content: end;
+	order:-1;
+}
+
 .product-card-amount {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	width: 30%;
+}
+
+.product-rating{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 5px;
+	
+}
+
+.product-rating div{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .product-card-amount button {

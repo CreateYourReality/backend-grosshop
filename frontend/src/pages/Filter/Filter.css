@@ -1,0 +1,14 @@
+.remove-filter-btn{
+    padding: 2.5px 5px;
+    display: inline-block;
+}
+
+.filter-section{
+    padding: 10px
+}
+
+
+.filter-section h2{
+    margin-top: 25px;
+    margin-bottom: 5px;
+}

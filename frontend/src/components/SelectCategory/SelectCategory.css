@@ -9,8 +9,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-btn{
+    background-color: var(--second-color);
+    padding: 2.5px 8px;
+    border-radius: 4px;
+    min-width: 50px;
+    text-align: center;
+    font-size: clamp(1rem,1.3vw,2rem);
 }
 
 .category-section .active{
-    color: red;
+    border-bottom: 1px solid var(--main-green-color);
+}
+
+
+
+.category-section .active-filter{
+    background-color: var(--main-green-color);
+    color: var(--white-color)
 }

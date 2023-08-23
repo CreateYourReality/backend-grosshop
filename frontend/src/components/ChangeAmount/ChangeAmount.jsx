@@ -3,6 +3,8 @@ import { useContext, useState } from "react"
 import { userShoppingCartContext } from "../../context/Context"
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
+import { UserContext } from "../../context/UserContext"
+import axios from "axios"
 
 const ChangeAmount = ({product,setFavorites,favItem}) => {
     const {userShoppingCart,setUserShoppingCart} = useContext(userShoppingCartContext)
@@ -10,6 +12,10 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
     const [tempShoppingCartItem, setTempShoppingCartItem] = useState(undefined)
     const [updateTotal,setUpdateTotal] = useState(false) //toogle refresher
     const [stop,setStop] = useState(false)
+
+
+
+    const {user} = useContext(UserContext)
 
     const findShoppingItemBy = (prodID) => {
         return userShoppingCart.find(cartItem => cartItem._id === prodID);
@@ -26,9 +32,9 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
     },[userShoppingCart])
 
 
-    const increaseAmountCart = (incOrDecrement) => {
+    const increaseAmountCart =  (incOrDecrement) => {
         setUserShoppingCart(prevCartItem => {
-            return prevCartItem.map(cartItem => {
+            return prevCartItem.map( async cartItem => {
                 if (cartItem.id === product._id) {
                     return { ...cartItem, amount: cartItem.amount + incOrDecrement <= 0 ? 1 : cartItem.amount + incOrDecrement  };
                 }
@@ -59,6 +65,7 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
             });
         });
         setUpdateTotal(prev => !prev)
+
     };
 
 
@@ -82,13 +89,37 @@ const ChangeAmount = ({product,setFavorites,favItem}) => {
         }  
     },[tempShoppingCartItem])
 
-
-    const updateCart = () => {
-        console.log("UPDATE CART");
+//TODO added gerade n neues obj
+const updateCart = async () => {
+    const obj = { id: tempShoppingCartItem.id, amount: tempShoppingCartItem.amount };
+    try {
+        await axios.put(`/api/users/updateUserProductCart/${user._id}`, obj);
+        setUserShoppingCart(prevShoppingCart => {
+            const updatedCart = prevShoppingCart.map(item => {
+                if (item.id === obj.id) {
+                    return { ...item, amount: obj.amount };
+                }
+                return item;
+            });
+            return [...updatedCart];
+        });
+    } catch (e) {
+        // Fehlerbehandlung hier
+        console.error(e);
     }
+};
 
-    const putInCart = () => {
-        console.log("PUT IN CART");
+    const putInCart = async () => {
+        console.log(tempShoppingCartItem);
+        const obj = {id:tempShoppingCartItem.id,amount:tempShoppingCartItem.amount}
+        console.log(obj);
+        try{
+            await axios.put(`/api/users/updateUserProductCart/${user._id}`, obj )
+          }catch(e){
+                //   console.error(e);
+          }
+          setUserShoppingCart(prevShoppingCart => [...prevShoppingCart, obj]);
+
     }
 
     return (

@@ -9,7 +9,7 @@ const WelcomeScreen = () => {
   useEffect(() => {
     setTimeout(() => {
       nav("/signin");
-    }, 4000);
+    }, 3500);
   });
 
   return (

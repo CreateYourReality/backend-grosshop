@@ -59,6 +59,10 @@
   background-color: var(--second-color);
 }
 
+.link-container a:nth-child(1):active {
+  background-color: var(--signUp-bg-color);
+}
+
 .link-container a:nth-child(2) {
   background-color: var(--second-color);
   color: var(--h-tag-btn-color);
@@ -69,6 +73,10 @@
   color: var(--white-color);
 }
 
+.link-container a:nth-child(2):active {
+  background-color: var(--signUp-bg-color);
+}
+
 .link-container a:nth-child(3) {
   background-color: var(--p-tag-color);
   color: var(--white-color);
@@ -77,4 +85,8 @@
 .link-container a:nth-child(3):hover {
   background-color: #555555;
   color: var(--main-green-color);
+}
+
+.link-container a:nth-child(3):active {
+  background-color: var(--signUp-bg-color);
 }

@@ -8,20 +8,32 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { useState, useEffect } from "react";
 import TotalCost from "../../components/TotalCost/TotalCost";
 import SelectSort from "../../components/SelectSort/SelectSort";
+import { selectedCartItemsContext } from "../../context/Context";
+import { UserContext } from "../../context/UserContext";
 
+
+import axios from "axios";
 const ShoppingCart = () => {
   const { data } = useContext(dataContext);
   const { userShoppingCart, setUserShoppingCart } = useContext(
     userShoppingCartContext
   );
-  const [selectedCartItems, setSelectedCartItems] = useState([]);
+
+  const {user} = useContext(UserContext)
+
+  const {selectedCartItems, setSelectedCartItems} = useContext(selectedCartItemsContext);
+
+  
 
   const deleteSelectedShoppingItems = () => {
     let updatedShoppingItems = [...userShoppingCart];
-    selectedCartItems.forEach((id) => {
-      updatedShoppingItems = updatedShoppingItems.filter(
-        (cartItem) => cartItem.id !== id
-      );
+    selectedCartItems.forEach(async (id) => {
+      updatedShoppingItems = updatedShoppingItems.filter((cartItem) => cartItem.id !== id);
+      try{
+        await axios.put(`/api/users/deleteUserProductCart/${user._id}`, {id:id} )
+      }catch(e){
+        console.log(e);
+      }
     });
     setUserShoppingCart(updatedShoppingItems);
     setSelectedCartItems([]);

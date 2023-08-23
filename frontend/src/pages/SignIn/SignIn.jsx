@@ -21,7 +21,7 @@ export default function SignIn() {
       //setUser(user.data.data)
       refetch();
       setTimeout(() => {
-        nav("/home");
+        nav("/welcomescreenhome");
       }, 500);
       e.target.reset();
     } catch (err) {
