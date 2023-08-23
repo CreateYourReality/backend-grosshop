@@ -37,6 +37,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     }
   }, [userShoppingCart]);
 
+  //TODO BUGGY
   const increaseAmountCart = (incOrDecrement) => {
     setUserShoppingCart((prevCartItem) => {
       return prevCartItem.map(async (cartItem) => {
@@ -241,7 +242,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
         {detailProduct == "/detailproduct" ? (
           shoppingCartItem ? (
             <button className="updateOrPutInCart-btn" onClick={updateCart}>
-              Add to Cart
+              UPDATE CART
             </button>
           ) : (
             <button className="updateOrPutInCart-btn" onClick={putInCart}>
