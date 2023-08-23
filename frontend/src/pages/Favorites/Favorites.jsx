@@ -2,6 +2,7 @@ import "./Favorites.css";
 import trash from "../../assets/img/trash.svg";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import favEmpty from "../../assets/img/favEmpty.svg";
 import {
   dataContext,
   favoritesContext,
@@ -12,6 +13,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { UserContext } from "../../context/UserContext";
 import { selectedFavsContext } from "../../context/Context";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 const Favorites = () => {
   const { data } = useContext(dataContext);
@@ -135,17 +137,19 @@ const Favorites = () => {
                 </article>
               </>
             ) : (
-              <>
-                <h3>NO FAVORITES IMG</h3>
-                <button>Continue Shopping</button>
-              </>
+              <article className="fav-empty">
+                <div>
+                  <img src={favEmpty} alt="fav-empty" />
+                </div>
+                <NavLink to="/home">Continue Shopping</NavLink>
+              </article>
             )
           ) : (
             <p>loading favorites...</p>
           )}
         </section>
       </main>
-      <FooterNav />
+      {favorites.length != 0 && <FooterNav />}
     </>
   );
 };

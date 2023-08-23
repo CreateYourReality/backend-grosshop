@@ -15,7 +15,7 @@ const Home = () => {
   }
 
   return (
-    <div className="home-wrapper">
+    <>
       <HeaderNav />
       <main>
         <section className="home-section">
@@ -25,7 +25,7 @@ const Home = () => {
         </section>
       </main>
       <FooterNav />
-    </div>
+    </>
   );
 };
 
