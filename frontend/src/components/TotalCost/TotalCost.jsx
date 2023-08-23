@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./TotalCost.css"
 import { dataContext, userShoppingCartContext, selectedCartItemsContext } from "../../context/Context";
 
@@ -35,12 +35,13 @@ const TotalCost = () => {
         console.log("CHECKOUT CART ITEMS");
     }
 
-console.log(updateSelectedCost());
 
     return ( 
         <>
+            {selectedCartItems.length == 0 || selectedCartItems.length == userShoppingCart.length?
             <button onClick={checkoutCartItems}>CHECKOUT - Total ${updateTotalCost()}</button>
-            <button onClick={checkoutCartItems}>CHECKOUT - Selected ${updateSelectedCost()}</button>
+            :<button onClick={checkoutCartItems}>CHECKOUT - Selected ${updateSelectedCost()}</button>
+            }
         </>
      );
 }
