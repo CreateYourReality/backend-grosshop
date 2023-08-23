@@ -9,8 +9,23 @@
 }
 
 .updateOrPutInCart-btn {
-  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1.8rem;
+  padding: 1rem 8rem;
   background-color: var(--second-color);
+  font-family: poppins-regular;
+  color: var(--h-tag-btn-color);
+  border-radius: 0.5rem;
+}
+
+.updateOrPutInCart-btn:hover {
+  background-color: var(--main-green-color);
+
+  color: var(--white-color);
+}
+
+.updateOrPutInCart-btn:active {
+  background-color: var(--signUp-bg-color);
 }
 
 .cart-icon-container {

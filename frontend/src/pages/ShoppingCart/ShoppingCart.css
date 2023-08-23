@@ -26,8 +26,9 @@
 }
 
 .cart-empty a {
-  border-radius: 1rem;
-  padding: 1rem 2.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 1rem 5rem;
   font-size: 1.8rem;
   color: var(--white-color);
   background: var(--main-green-color);

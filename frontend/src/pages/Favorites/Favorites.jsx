@@ -132,7 +132,7 @@ const Favorites = () => {
                   <button
                     onClick={addSelectedFavsToShoppingCart}
                     className="add-to-cart-btn">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </article>
               </>

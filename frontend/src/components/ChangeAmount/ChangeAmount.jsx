@@ -241,7 +241,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
         {detailProduct == "/detailproduct" ? (
           shoppingCartItem ? (
             <button className="updateOrPutInCart-btn" onClick={updateCart}>
-              UPDATE CART
+              Add to Cart
             </button>
           ) : (
             <button className="updateOrPutInCart-btn" onClick={putInCart}>

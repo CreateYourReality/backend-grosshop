@@ -9,8 +9,8 @@ import { favoritesContext } from "../../context/Context";
 import { useState } from "react";
 import { useEffect } from "react";
 import ChangeAmount from "../../components/ChangeAmount/ChangeAmount";
-import emtpyHearth from "../../assets/img/heart.svg";
-import fullHearth from "../../assets/img/heartActive.svg";
+import emtpyHearth from "../../assets/img/like.svg";
+import fullHearth from "../../assets/img/likeActive.svg";
 import axios from "axios";
 
 const DetailProduct = () => {

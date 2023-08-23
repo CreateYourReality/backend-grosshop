@@ -19,9 +19,20 @@
 }
 
 .add-to-cart-btn {
-  padding: 10px 15px;
-  background-color: green;
-  min-height: 10vh;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  padding: 1rem 5rem;
+  font-size: 1.8rem;
+  background-color: var(--main-green-color);
+  cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+  opacity: 80%;
+}
+
+.add-to-cart-btn:active {
+  background: var(--signUp-bg-color);
 }
 
 .fav-empty {
