@@ -1,6 +1,6 @@
 import axios from "axios";
 import checkmark from "../../../assets/img/checkmark.svg";
-import logo from "../../../assets/img/signinlogo.svg";
+import logo from "../../../assets/img/signInLogo.svg";
 import BackBtn from "../../../components/BackBtnWelcome/BackBtn";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
