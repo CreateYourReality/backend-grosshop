@@ -13,12 +13,22 @@ export const sendMail = ({ to, subject, html } = defaultOptions) => {
 	if (!mg) {
 		mg = mailgun.client({
 			username: "api",
-			key:
-				process.env.MAILGUN_API_KEY ||
-				"8b617c6d62d5dc8f7dea5c216932bb2b-135a8d32-f9cdc2b9",
+			key: process.env.MAILGUN_API_KEY,
 		});
+		mg.messages
+			.create(sandbox, {
+				from: `Excited User <mailgun@${sandbox}>`,
+				to: to,
+				subject: subject,
+				html: html,
+			})
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
 	}
-
 	return mg.messages.create(sandbox, {
 		from: `Excited User <mailgun@${sandbox}>`,
 		to: to,

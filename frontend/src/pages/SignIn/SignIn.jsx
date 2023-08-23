@@ -25,7 +25,6 @@ export default function SignIn() {
       }, 500);
       e.target.reset();
     } catch (err) {
-      //console.log(err);
       setError("Please check your Password and Email");
       e.target.reset();
     }
@@ -59,7 +58,7 @@ export default function SignIn() {
               required
             />
             {error && <small style={{ color: "red" }}>{error}</small>}
-            <NavLink to="#">Forgot password?</NavLink>
+            <NavLink to="/resetpassword">Forgot password?</NavLink>
             <button>Sign in</button>
           </form>
         </div>

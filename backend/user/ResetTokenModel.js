@@ -24,6 +24,7 @@ const resetTokenSchema = new mongoose.Schema({
 export const ResetToken = mongoose.model("ResetToken", resetTokenSchema);
 
 export const createResetToken = async (userEmail) => {
+	console.log("resettoken generieren");
 	const user = await User.findOne({ email: userEmail });
 	if (!user) {
 		throw new Error("No User with this email");
@@ -41,7 +42,7 @@ export const createResetToken = async (userEmail) => {
 
 	const clientURL = process.env.RENDER_EXTERNAL_URL;
 	const resetURL = new URL(
-		`/passwordReset?token=${resetToken}&id=${user.id}`,
+		`/resetpassword?token=${resetToken}&id=${user.id}`,
 		clientURL
 	);
 
@@ -49,24 +50,29 @@ export const createResetToken = async (userEmail) => {
 		name: user.name,
 		resetLink: resetURL,
 	});
-
-	await sendMail({
-		to: [user.email],
-		subject: `${process.env.APP_NAME} passwordreset`,
-		html: mailHTML,
-	});
+	try {
+		await sendMail({
+			to: [user.email],
+			subject: `${process.env.APP_NAME} passwordreset`,
+			html: mailHTML,
+		});
+	} catch (e) {
+		console.log("Fehler beim senden der mail");
+	}
 };
 
 export const validateResetToken = async (userId, resetToken) => {
-	const passwordResetToken = await ResetToken.findOne({ userId }).populate(
-		"userId"
-	);
-
-	if (!passwordResetToken) {
-		throw new Error("Token expired");
+	try {
+		const passwordResetToken = await ResetToken.findOne({ userId }).populate(
+			"userId"
+		);
+		if (!passwordResetToken) {
+			throw new Error("Token expired");
+		}
+		const isValid = resetToken === passwordResetToken.token;
+		return isValid;
+	} catch (e) {
+		if (!(e.message === "Token expired")) throw new Error("Can't find User");
 	}
-
-	const isValid = resetToken === passwordResetToken.token;
-	return isValid;
 };
 export default ResetToken;

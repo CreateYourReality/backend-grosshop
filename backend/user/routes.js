@@ -9,6 +9,7 @@ import {
 	loginUser,
 	signUpUser,
 	resetPassword,
+	resetPasswordConfirm,
 	putUser,
 	deleteUser,
 	updateUserProductCart,
@@ -27,7 +28,8 @@ router.get("/:id", getOneUser); //get User per id
 
 router.post("/login", upload.none(), loginUser); // logs user in
 router.post("/signup", upload.none(), signUpUser); // register user
-router.post("/resetPassword", resetPassword); //password reset
+router.post("/resetPassword", upload.none(), resetPassword); //password reset
+router.post("/resetPasswordConfirm", upload.none(), resetPasswordConfirm); //password reset
 
 router.put("/:id", upload.single("image"), putUser); //update userprofile by id
 router.delete("/:id", deleteUser); // delete User

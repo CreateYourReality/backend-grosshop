@@ -81,7 +81,6 @@ userSchema.methods.verifyPassword = function (password) {
 //userSchema.index({ favProducts: 1 }, { unique: true });
 userSchema.path("favProducts").validate(function (value) {
 	const objectIdSet = new Set();
-	console.log("hi");
 	for (const objectId of value) {
 		if (objectIdSet.has(objectId.toString())) {
 			return false;

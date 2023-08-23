@@ -9,9 +9,7 @@ import defaultAvatar from "../../assets/img/defaultAvatar.gif";
 
 const Profile = () => {
   const { user, refetch, isLoggedIn, logout } = useContext(UserContext);
-  console.log(isLoggedIn);
-  // console.log(user);
-  // console.log(user._id);
+
 
   const [showNotification, setShowNotification] = useState(false);
   const [formData, setFormData] = useState({
@@ -41,10 +39,7 @@ const Profile = () => {
     event.preventDefault();
     try {
       const formDataToSend = new FormData(event.target);
-      console.log(formDataToSend);
-      for (const per of formDataToSend.entries()) {
-        console.log(`${per[0]},${per[1]}`);
-      }
+
       await axios.put(`/api/users/${user._id}`, formDataToSend);
       refetch();
       setShowNotification(true);
@@ -52,7 +47,6 @@ const Profile = () => {
       setTimeout(() => {
         setShowNotification(false);
       }, 3000);
-      console.log("Data saved successfully!");
     } catch (error) {
       console.error("Error while saving the data:", error);
     }

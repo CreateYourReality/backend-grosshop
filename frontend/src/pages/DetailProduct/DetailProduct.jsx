@@ -47,7 +47,6 @@ const DetailProduct = () => {
 
   const toggleFavorite = () => {
     if(favItem != undefined && favItem.id == productID) {
-      console.log(favItem);
       removeFromFavorites(favItem.id)
       setFavItem(undefined)
     }else{
