@@ -11,7 +11,6 @@ import SelectSort from "../../components/SelectSort/SelectSort";
 import { selectedCartItemsContext } from "../../context/Context";
 import { UserContext } from "../../context/UserContext";
 
-
 import axios from "axios";
 const ShoppingCart = () => {
   const { data } = useContext(dataContext);
@@ -19,19 +18,23 @@ const ShoppingCart = () => {
     userShoppingCartContext
   );
 
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
 
-  const {selectedCartItems, setSelectedCartItems} = useContext(selectedCartItemsContext);
-
-  
+  const { selectedCartItems, setSelectedCartItems } = useContext(
+    selectedCartItemsContext
+  );
 
   const deleteSelectedShoppingItems = () => {
     let updatedShoppingItems = [...userShoppingCart];
     selectedCartItems.forEach(async (id) => {
-      updatedShoppingItems = updatedShoppingItems.filter((cartItem) => cartItem.id !== id);
-      try{
-        await axios.put(`/api/users/deleteUserProductCart/${user._id}`, {id:id} )
-      }catch(e){
+      updatedShoppingItems = updatedShoppingItems.filter(
+        (cartItem) => cartItem.id !== id
+      );
+      try {
+        await axios.put(`/api/users/deleteUserProductCart/${user._id}`, {
+          id: id,
+        });
+      } catch (e) {
         console.log(e);
       }
     });
@@ -55,20 +58,20 @@ const ShoppingCart = () => {
     return selectedCartItems.some((cartItem) => cartItem == id);
   };
 
-  useEffect(()=>{
-        if(selectedCartItems.length == userShoppingCart.length){
-            setSelectAllText("DESELECT ALL")
-        }else{
-            setSelectAllText("SELECT ALL")
-        }
-    },[selectedCartItems])
+  useEffect(() => {
+    if (selectedCartItems.length == userShoppingCart.length) {
+      setSelectAllText("DESELECT ALL");
+    } else {
+      setSelectAllText("SELECT ALL");
+    }
+  }, [selectedCartItems]);
 
   const findShoppingItemBy = (favID) => {
     return data.find((favoriteItem) => favoriteItem._id === favID);
   };
 
-    // <SelectSort sortArray={userShoppingCart} setSortArray={setUserShoppingCart}/>
-    // TODO PRODUKTE WERDEN NACH NAMEN SORTIERT, HABEN IM CART ABER NUR ID's
+  // <SelectSort sortArray={userShoppingCart} setSortArray={setUserShoppingCart}/>
+  // TODO PRODUKTE WERDEN NACH NAMEN SORTIERT, HABEN IM CART ABER NUR ID's
 
   return (
     <>

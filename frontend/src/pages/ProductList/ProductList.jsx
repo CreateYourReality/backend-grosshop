@@ -8,10 +8,10 @@ const ProductList = () => {
     <>
       <main>
         <HeaderNav />
-        <SelectCategory/>
-        <ProductListComponente/>
+        <SelectCategory />
+        <ProductListComponente />
       </main>
-        <FooterNav/>
+      <FooterNav />
     </>
   );
 };

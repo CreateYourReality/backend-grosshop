@@ -1,50 +1,55 @@
-.headerNav-section {
+/* Header Section */
+.headerNav-section h2 {
+  font-size: 1.8rem;
+}
+/* Home Section*/
+.home-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: whitesmoke;
+  border-radius: 1rem;
+}
+
+.home-box a img {
+  object-fit: cover;
+  height: 5rem;
+}
+ {
+  /* Productlist Section*/
+}
+.productlist-box {
   display: flex;
   align-items: center;
-  padding: 2rem 0 0 1rem;
+  justify-content: center;
+  gap: 3rem;
 }
-
-.headerNav-section h2 {
-  width: 20rem;
-  margin: -6px 0 0 0;
-  padding: 0 1rem;
+ {
+  /* BackBtn Section*/
 }
-
 .backBtn-box {
   display: flex;
   align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 0 0 1rem;
 }
 
-.backBtn-box span {
-  margin: 1px 0 0 0;
+.backBtn-box h2 {
+  margin: -6px 0 0 0;
 }
-
-.backBtn-box a {
-  margin: 0 -3.5rem 0 -1rem;
-  cursor: pointer;
+ {
+  /* Searchbar Section*/
 }
-.backBtn-box a img {
-  width: 5rem;
-}
-
-.location-name h2 {
-  font-size: 1.8rem;
-}
-
 .headerNav-searchBox {
-  margin: -5px 0 0 3rem;
+  padding: 1rem 2rem;
   position: relative;
 }
 
 .search-icon {
   position: absolute;
-  top: 65%;
-  left: 8px;
+  top: 60%;
+  left: 2.6rem;
   transform: translateY(-50%);
-}
-
-.search-icon img {
-  /* width: 50%; */
 }
 
 .headerNav-searchBox input {
@@ -64,17 +69,28 @@
 .myCart-navBox button {
   cursor: pointer;
 }
-
+/* Profile Section*/
 .profile-logout-section {
   display: flex;
   justify-content: space-between;
-  width: 90vw;
+  align-items: center;
+  padding: 0 1rem;
+  margin: -2px 0 0 0;
+}
+
+.profile-box {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.profile-box h2 {
+  margin: -5px 0 0 0;
 }
 
 .profile-logout-section button {
   background: var(--main-green-color);
   padding: 0.5rem 3rem;
-  margin: -5px 0 0 0;
   color: var(--white-color);
   border-radius: 0.5rem;
   cursor: pointer;

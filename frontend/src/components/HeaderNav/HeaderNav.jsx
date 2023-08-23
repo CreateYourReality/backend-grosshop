@@ -15,8 +15,8 @@ const HeaderNav = () => {
   return (
     <>
       <header className="headerNav-section">
-        <section className="backBtn-box">
-          {/* Home Filter-Popup */}
+        {/* Home Section*/}
+        <section className="home-box">
           {location.pathname == "/home" ? (
             <NavLink to="/filter">
               <img src={filterPopup} alt="filter-popup" />
@@ -24,22 +24,12 @@ const HeaderNav = () => {
           ) : (
             ""
           )}
-          {/* Navigation one Back */}
-          {location.pathname == "/productlist" ||
-          detailProduct == "/detailproduct" ||
-          location.pathname == "/filter" ? (
-            <BackBtn3 />
-          ) : (
-            ""
-          )}
-          {/* <section className="location-name"> */}
-          {location.pathname == "/home" ||
-          location.pathname == "/productlist" ? (
+          {location.pathname == "/home" ? (
             <div className="headerNav-searchBox">
               <input
                 type="search"
                 className="search-bar"
-                placeholder="Search for Product"
+                placeholder="Search for Product1"
               />
               <span className="search-icon">
                 <img src={lupe} alt="lupe" />
@@ -48,17 +38,41 @@ const HeaderNav = () => {
           ) : (
             ""
           )}
-          {/* </section> */}
+          {/* Productlist Section*/}
+          <article className="productlist-box">
+            {location.pathname == "/productlist" ? <BackBtn3 /> : ""}
+            {location.pathname == "/productlist" ? (
+              <div className="headerNav-searchBox">
+                <input
+                  type="search"
+                  className="search-bar"
+                  placeholder="Search for Product"
+                />
+                <span className="search-icon">
+                  <img src={lupe} alt="lupe" />
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
+          </article>
+        </section>
+        <section className="backBtn-box">
+          {/* Navigation one Back */}
+          {detailProduct == "/detailproduct" ||
+          location.pathname == "/filter" ? (
+            <BackBtn3 />
+          ) : (
+            ""
+          )}
           {/* Navigation to HomePage */}
           {location.pathname == "/shoppingcart" ||
           location.pathname == "/orderhistory" ||
-          location.pathname == "/favorites" ||
-          location.pathname == "/profile" ? (
+          location.pathname == "/favorites" ? (
             <BackBtn2 />
           ) : (
             ""
           )}
-          {/* Searchbar for Home & Productlist */}
           {/* Location Name */}
           {location.pathname == "/orderhistory" ? <h2>Order History</h2> : ""}
           {location.pathname == "/shoppingcart" ? (
@@ -77,7 +91,11 @@ const HeaderNav = () => {
           )}
           {location.pathname == "/filter" ? <h2>Filters</h2> : ""}
           {detailProduct == "/detailproduct" ? <h2>Grocery Deals</h2> : ""}
-          <article className="profile-logout-section">
+        </section>
+        {/* Profile Section*/}
+        <section className="profile-logout-section">
+          <article className="profile-box">
+            {location.pathname == "/profile" ? <BackBtn2 /> : ""}
             {location.pathname == "/profile" ? (
               <span>
                 <h2>My Profile</h2>
@@ -85,12 +103,12 @@ const HeaderNav = () => {
             ) : (
               ""
             )}
-            {location.pathname == "/profile" && isLoggedIn && (
-              <button type="button" onClick={logout}>
-                Logout
-              </button>
-            )}
           </article>
+          {location.pathname == "/profile" && isLoggedIn && (
+            <button type="button" onClick={logout}>
+              Logout
+            </button>
+          )}
         </section>
       </header>
     </>

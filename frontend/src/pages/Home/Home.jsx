@@ -14,20 +14,19 @@ const Home = () => {
     return <div>Loading...</div>;
   }
 
+  return (
+    <div className="home-wrapper">
+      <HeaderNav />
+      <main>
+        <section className="home-section">
+          <HomeSlider />
+          <HomeCategory />
+          <ProductListComponente />
+        </section>
+      </main>
+      <FooterNav />
+    </div>
+  );
+};
 
-    return ( 
-        <>
-            <HeaderNav/>
-            <main>
-              <section className="home-section">
-                <HomeSlider/>
-                <HomeCategory/>
-                <ProductListComponente/>
-              </section>
-            </main>
-            <FooterNav/>
-        </>
-     );
-}
- 
 export default Home;

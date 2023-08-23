@@ -19,8 +19,8 @@ const Favorites = () => {
   const { userShoppingCart, setUserShoppingCart } = useContext(
     userShoppingCartContext
   );
-  const {selectedFavs,setSelectedFavs} = useContext(selectedFavsContext)
-  const {user} = useContext(UserContext)
+  const { selectedFavs, setSelectedFavs } = useContext(selectedFavsContext);
+  const { user } = useContext(UserContext);
 
   const findFavoriteById = (favID) => {
     return data.find((favoriteItem) => favoriteItem._id === favID);
@@ -42,14 +42,15 @@ const Favorites = () => {
     return selectedFavs.some((fav) => fav == id);
   };
 
-  
   const deleteSelectedFavs = () => {
     let updatedFavorites = [...favorites];
     selectedFavs.forEach(async (id) => {
       updatedFavorites = updatedFavorites.filter((fav) => fav.id !== id);
-      try{
-        await axios.put(`/api/users/deleteUserFavProducts/${user._id}`, {id:id} )
-      }catch(e){
+      try {
+        await axios.put(`/api/users/deleteUserFavProducts/${user._id}`, {
+          id: id,
+        });
+      } catch (e) {
         console.log(e);
       }
     });
@@ -73,21 +74,30 @@ const Favorites = () => {
     //ÜBERPRÜFEN OB IN USERSHOPPINGCART VORHANDEN
     //WENN JA ERHÖHE NUR AMOUNT
     //WENN NEIN SETZE DIE FAVS IN DEN SHOPPINGCART
-      selectedFavs.forEach(async (selectedFavID) => {
-        const cartItemToUpdate = userShoppingCart.find(cartItem => cartItem.id === selectedFavID);
-    
-        if (cartItemToUpdate) {
-          cartItemToUpdate.amount == favorites.filter(favItem => favItem.id === selectedFavID).amount
-        } else {
-          const selectedFav = favorites.find( fav => fav.id === selectedFavID)
-          const newCartItem = { id: selectedFavID, amount: selectedFav.amount };
-          selectedFav.amount = 1;
-          await axios.put(`/api/users/updateUserProductCart/${user._id}`, newCartItem )
-          setUserShoppingCart(prevShoppingCart => [...prevShoppingCart, newCartItem]);
-        }
-      });
-      setSelectedFavs([]);
-    };
+    selectedFavs.forEach(async (selectedFavID) => {
+      const cartItemToUpdate = userShoppingCart.find(
+        (cartItem) => cartItem.id === selectedFavID
+      );
+
+      if (cartItemToUpdate) {
+        cartItemToUpdate.amount ==
+          favorites.filter((favItem) => favItem.id === selectedFavID).amount;
+      } else {
+        const selectedFav = favorites.find((fav) => fav.id === selectedFavID);
+        const newCartItem = { id: selectedFavID, amount: selectedFav.amount };
+        selectedFav.amount = 1;
+        await axios.put(
+          `/api/users/updateUserProductCart/${user._id}`,
+          newCartItem
+        );
+        setUserShoppingCart((prevShoppingCart) => [
+          ...prevShoppingCart,
+          newCartItem,
+        ]);
+      }
+    });
+    setSelectedFavs([]);
+  };
 
   return (
     <>
