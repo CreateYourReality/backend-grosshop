@@ -12,6 +12,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { UserContext } from "../../context/UserContext";
 import { selectedFavsContext } from "../../context/Context";
 import axios from "axios";
+import SelectSort from "../../components/SelectSort/SelectSort";
 
 const Favorites = () => {
   const { data } = useContext(dataContext);
@@ -94,6 +95,7 @@ const Favorites = () => {
       <HeaderNav />
       <main>
         <section className="favorites-section">
+          {<SelectSort setSortArray={setFavorites} sortArray={favorites}/>}
           {favorites ? (
             favorites.length != 0 ? (
               <>
