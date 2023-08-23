@@ -75,6 +75,7 @@ const ShoppingCart = () => {
       <HeaderNav />
       <main>
         <section className="shoppingCart-section">
+        {<SelectSort setSortArray={setUserShoppingCart} sortArray={userShoppingCart}/>}
           {userShoppingCart ? (
             userShoppingCart.length != 0 ? (
               <>

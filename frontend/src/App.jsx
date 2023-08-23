@@ -32,6 +32,7 @@ import {
   selectedFavsContext,
   selectedCartItemsContext,
   sortFavsContext,
+  sortCartContext,
 } from "./context/Context";
 import Resetpassword from "./pages/Resetpassword/Resetpassword";
 
@@ -45,6 +46,7 @@ function App() {
   const [selectedFavs, setSelectedFavs] = useState([]);
   const [selectedCartItems, setSelectedCartItems] = useState([]);
   const [sortByFavs, setSortByFavs] = useState("abc")
+  const [sortByCart, setSortByCart] = useState("abc")
 
 
   const [userShoppingCart, setUserShoppingCart] = useState(
@@ -58,6 +60,7 @@ function App() {
         <dataContext.Provider value={{ data, setData }}>
           <sortContext.Provider value={{ sortBy, setSortBy }}>
           <sortFavsContext.Provider value={{ sortByFavs, setSortByFavs }}>
+          <sortCartContext.Provider value={{ sortByCart, setSortByCart }}>
             <categoryContext.Provider
               value={{ categoryFilter, setCategoryFilter }}>
               <priceContext.Provider value={{ priceFilter, setPriceFilter }}>
@@ -121,6 +124,7 @@ function App() {
                 </UserProvider>
               </priceContext.Provider>
             </categoryContext.Provider>
+            </sortCartContext.Provider>
             </sortFavsContext.Provider>
           </sortContext.Provider>
         </dataContext.Provider>

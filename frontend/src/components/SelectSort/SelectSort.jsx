@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import "./SelectSort.css"
-import { dataContext, favoritesContext, sortContext } from "../../context/Context";
+import { dataContext, sortContext } from "../../context/Context";
 import { useLocation } from "react-router-dom";
-import { sortFavsContext } from "../../context/Context";
-import Favorites from "../../pages/Favorites/Favorites";
+import { sortFavsContext, sortCartContext } from "../../context/Context";
 
 const SelectSort = ({sortArray,setSortArray}) => {
  //   const {data, setData} = useContext(dataContext)
@@ -11,8 +10,7 @@ const SelectSort = ({sortArray,setSortArray}) => {
  const {sortByFavs,setSortByFavs} = useContext(sortFavsContext)
  const location = useLocation();
  const {data} = useContext(dataContext)
-
-console.log(data);
+ const {sortByCart, setSortByCart} = useContext(sortCartContext)
     
     const sortAZ = (a, b) => a.productName.localeCompare(b.productName);
 
@@ -136,7 +134,9 @@ console.log(data);
     const changeSortBy = (event) => {
         location.pathname=="/favorites"?
             setSortByFavs(event.target.value)
-            :setSortBy(event.target.value)
+            :location.pathname=="/shoppingcart"?
+                setSortByCart(event.target.value)
+                :setSortBy(event.target.value)
     }
 
     const changeSortByBtns = (value) => {
@@ -146,8 +146,10 @@ console.log(data);
     useEffect(() => {
         location.pathname=="/filter"?    
             sortME(sortBy)
-            :sortMEalt(sortByFavs)
-    },[sortBy,sortByFavs])
+            :location.pathname=="/shoppingcart"?
+                sortMEalt(sortByCart)
+                :sortMEalt(sortByFavs)
+    },[sortBy,sortByFavs, sortByCart])
 
 
     return ( 
@@ -163,7 +165,7 @@ console.log(data);
                 <a className={`filter-btn ${sortBy=="***"?"active-filter":""}`} onClick={()=>changeSortByBtns("***")} >BEST</a>
             </div>
             :
-            <select value={location.pathname=="/favorites"?sortByFavs:sortBy} onChange={()=>changeSortBy(event)} name="select-sort" id="select-sort">
+            <select value={location.pathname=="/favorites"?sortByFavs:location.pathname=="/shoppingcart"?sortByCart:sortBy} onChange={()=>changeSortBy(event)} name="select-sort" id="select-sort">
                 <option value="abc">ABC</option>
                 <option value="zyx">ZYX</option>
                 <option value="$">LOW</option>

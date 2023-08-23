@@ -11,3 +11,4 @@ export const sortContext = createContext();
 export const selectedFavsContext = createContext();
 export const selectedCartItemsContext = createContext();
 export const sortFavsContext = createContext();
+export const sortCartContext = createContext();
