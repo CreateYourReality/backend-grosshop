@@ -2,6 +2,7 @@ import "./Favorites.css";
 import trash from "../../assets/img/trash.svg";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import favEmpty from "../../assets/img/favEmpty.svg";
 import {
   dataContext,
   favoritesContext,
@@ -13,6 +14,7 @@ import { UserContext } from "../../context/UserContext";
 import { selectedFavsContext } from "../../context/Context";
 import axios from "axios";
 import SelectSort from "../../components/SelectSort/SelectSort";
+import { NavLink } from "react-router-dom";
 
 const Favorites = () => {
   const { data } = useContext(dataContext);
@@ -20,8 +22,8 @@ const Favorites = () => {
   const { userShoppingCart, setUserShoppingCart } = useContext(
     userShoppingCartContext
   );
-  const {selectedFavs,setSelectedFavs} = useContext(selectedFavsContext)
-  const {user} = useContext(UserContext)
+  const { selectedFavs, setSelectedFavs } = useContext(selectedFavsContext);
+  const { user } = useContext(UserContext);
 
   const findFavoriteById = (favID) => {
     return data.find((favoriteItem) => favoriteItem._id === favID);
@@ -43,14 +45,15 @@ const Favorites = () => {
     return selectedFavs.some((fav) => fav == id);
   };
 
-  
   const deleteSelectedFavs = () => {
     let updatedFavorites = [...favorites];
     selectedFavs.forEach(async (id) => {
       updatedFavorites = updatedFavorites.filter((fav) => fav.id !== id);
-      try{
-        await axios.put(`/api/users/deleteUserFavProducts/${user._id}`, {id:id} )
-      }catch(e){
+      try {
+        await axios.put(`/api/users/deleteUserFavProducts/${user._id}`, {
+          id: id,
+        });
+      } catch (e) {
         console.log(e);
       }
     });
@@ -74,21 +77,30 @@ const Favorites = () => {
     //ÜBERPRÜFEN OB IN USERSHOPPINGCART VORHANDEN
     //WENN JA ERHÖHE NUR AMOUNT
     //WENN NEIN SETZE DIE FAVS IN DEN SHOPPINGCART
-      selectedFavs.forEach(async (selectedFavID) => {
-        const cartItemToUpdate = userShoppingCart.find(cartItem => cartItem.id === selectedFavID);
-    
-        if (cartItemToUpdate) {
-          cartItemToUpdate.amount == favorites.filter(favItem => favItem.id === selectedFavID).amount
-        } else {
-          const selectedFav = favorites.find( fav => fav.id === selectedFavID)
-          const newCartItem = { id: selectedFavID, amount: selectedFav.amount };
-          selectedFav.amount = 1;
-          await axios.put(`/api/users/updateUserProductCart/${user._id}`, newCartItem )
-          setUserShoppingCart(prevShoppingCart => [...prevShoppingCart, newCartItem]);
-        }
-      });
-      setSelectedFavs([]);
-    };
+    selectedFavs.forEach(async (selectedFavID) => {
+      const cartItemToUpdate = userShoppingCart.find(
+        (cartItem) => cartItem.id === selectedFavID
+      );
+
+      if (cartItemToUpdate) {
+        cartItemToUpdate.amount ==
+          favorites.filter((favItem) => favItem.id === selectedFavID).amount;
+      } else {
+        const selectedFav = favorites.find((fav) => fav.id === selectedFavID);
+        const newCartItem = { id: selectedFavID, amount: selectedFav.amount };
+        selectedFav.amount = 1;
+        await axios.put(
+          `/api/users/updateUserProductCart/${user._id}`,
+          newCartItem
+        );
+        setUserShoppingCart((prevShoppingCart) => [
+          ...prevShoppingCart,
+          newCartItem,
+        ]);
+      }
+    });
+    setSelectedFavs([]);
+  };
 
   return (
     <>
@@ -122,22 +134,24 @@ const Favorites = () => {
                   <button
                     onClick={addSelectedFavsToShoppingCart}
                     className="add-to-cart-btn">
-                    ADD TO CART
+                    Add to Cart
                   </button>
                 </article>
               </>
             ) : (
-              <>
-                <h3>NO FAVORITES IMG</h3>
-                <button>Continue Shopping</button>
-              </>
+              <article className="fav-empty">
+                <div>
+                  <img src={favEmpty} alt="fav-empty" />
+                </div>
+                <NavLink to="/home">Continue Shopping</NavLink>
+              </article>
             )
           ) : (
             <p>loading favorites...</p>
           )}
         </section>
       </main>
-      <FooterNav />
+      {favorites.length != 0 && <FooterNav />}
     </>
   );
 };

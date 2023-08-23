@@ -1,0 +1,16 @@
+.totalCost-section button {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 1rem 5rem;
+  font-size: 1.2rem;
+  color: var(--white-color);
+  background: var(--main-green-color);
+}
+
+.totalCost-section button:hover {
+  opacity: 80%;
+}
+
+.totalCost-section button:active {
+  background: var(--signUp-bg-color);
+}

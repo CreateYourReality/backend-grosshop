@@ -10,28 +10,33 @@ import TotalCost from "../../components/TotalCost/TotalCost";
 import SelectSort from "../../components/SelectSort/SelectSort";
 import { selectedCartItemsContext } from "../../context/Context";
 import { UserContext } from "../../context/UserContext";
-
+import cartEmpty from "../../assets/img/cartEmpty.svg";
 
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 const ShoppingCart = () => {
   const { data } = useContext(dataContext);
   const { userShoppingCart, setUserShoppingCart } = useContext(
     userShoppingCartContext
   );
 
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
 
-  const {selectedCartItems, setSelectedCartItems} = useContext(selectedCartItemsContext);
-
-  
+  const { selectedCartItems, setSelectedCartItems } = useContext(
+    selectedCartItemsContext
+  );
 
   const deleteSelectedShoppingItems = () => {
     let updatedShoppingItems = [...userShoppingCart];
     selectedCartItems.forEach(async (id) => {
-      updatedShoppingItems = updatedShoppingItems.filter((cartItem) => cartItem.id !== id);
-      try{
-        await axios.put(`/api/users/deleteUserProductCart/${user._id}`, {id:id} )
-      }catch(e){
+      updatedShoppingItems = updatedShoppingItems.filter(
+        (cartItem) => cartItem.id !== id
+      );
+      try {
+        await axios.put(`/api/users/deleteUserProductCart/${user._id}`, {
+          id: id,
+        });
+      } catch (e) {
         console.log(e);
       }
     });
@@ -55,20 +60,20 @@ const ShoppingCart = () => {
     return selectedCartItems.some((cartItem) => cartItem == id);
   };
 
-  useEffect(()=>{
-        if(selectedCartItems.length == userShoppingCart.length){
-            setSelectAllText("DESELECT ALL")
-        }else{
-            setSelectAllText("SELECT ALL")
-        }
-    },[selectedCartItems])
+  useEffect(() => {
+    if (selectedCartItems.length == userShoppingCart.length) {
+      setSelectAllText("DESELECT ALL");
+    } else {
+      setSelectAllText("SELECT ALL");
+    }
+  }, [selectedCartItems]);
 
   const findShoppingItemBy = (favID) => {
     return data.find((favoriteItem) => favoriteItem._id === favID);
   };
 
-    // <SelectSort sortArray={userShoppingCart} setSortArray={setUserShoppingCart}/>
-    // TODO PRODUKTE WERDEN NACH NAMEN SORTIERT, HABEN IM CART ABER NUR ID's
+  // <SelectSort sortArray={userShoppingCart} setSortArray={setUserShoppingCart}/>
+  // TODO PRODUKTE WERDEN NACH NAMEN SORTIERT, HABEN IM CART ABER NUR ID's
 
   return (
     <>
@@ -98,20 +103,25 @@ const ShoppingCart = () => {
                 ))}
               </>
             ) : (
-              <>
-                <h3>NO SHOPPINGCARTITEMS IMG</h3>
-                <button>Start Shopping</button>
-              </>
+              <article className="cart-empty">
+                <div>
+                  <img src={cartEmpty} alt="cart-empty" />
+                </div>
+                <NavLink to="/home">Start Shopping </NavLink>
+              </article>
             )
           ) : (
             <p>loading shopping items...</p>
           )}
-          <section className="checkOut-section">
-            <TotalCost />
-          </section>
+
+          {userShoppingCart.length !== 0 ? (
+            <section className="checkOut-section">
+              <TotalCost />
+            </section>
+          ) : null}
         </section>
       </main>
-      <FooterNav />
+      {userShoppingCart.length !== 0 && <FooterNav />}
     </>
   );
 };

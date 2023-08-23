@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import "./TotalCost.css"
+import "./TotalCost.css";
 import { dataContext, userShoppingCartContext, selectedCartItemsContext } from "../../context/Context";
 
 const TotalCost = () => {
@@ -16,35 +16,35 @@ const TotalCost = () => {
     }
 
     const updateSelectedCost = () => {
-        return selectedCartItems.reduce((total, cartItem) => {
-            const cartProduct = data.find(prod => prod._id == cartItem);
-            console.log(cartProduct);
-            if (cartProduct) {
-                const cartAmount = userShoppingCart.find(cartItem => cartItem._id == cartProduct._id).amount;
-                console.log();
-                const itemTotal = cartProduct.price * cartAmount
-                return total + itemTotal;
-            } else {
-                return total;
-            }
-        }, 0);
-    }
+      return selectedCartItems.reduce((total, cartItem) => {
+          const cartProduct = data.find(prod => prod._id == cartItem);
+          console.log(cartProduct);
+          if (cartProduct) {
+              const cartAmount = userShoppingCart.find(cartItem => cartItem._id == cartProduct._id).amount;
+              console.log();
+              const itemTotal = cartProduct.price * cartAmount
+              return total + itemTotal;
+          } else {
+              return total;
+          }
+      }, 0);
+  }
 
     //TODO CHECKOUT
     const checkoutCartItems = () => {
         console.log("CHECKOUT CART ITEMS");
-        //wenn alle oder nix selected dann userShoppingcart checkout
+          //wenn alle oder nix selected dann userShoppingcart checkout
         //wenn einzelne ausgewählt dann nur die einzelnen checkout
     }
 
-
     return ( 
-        <>
-            {selectedCartItems.length == 0 || selectedCartItems.length == userShoppingCart.length?
+      <section className="totalCost-section">
+
+        {selectedCartItems.length == 0 || selectedCartItems.length == userShoppingCart.length?
             <button onClick={checkoutCartItems}>CHECKOUT - Total ${updateTotalCost()}</button>
             :<button onClick={checkoutCartItems}>CHECKOUT - Selected ${updateSelectedCost()}</button>
-            }
-        </>
+          }    
+      </section>     
      );
 }
  

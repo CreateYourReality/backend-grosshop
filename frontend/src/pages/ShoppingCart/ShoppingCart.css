@@ -1,12 +1,43 @@
 .shoppingCart-section {
-	display: flex;
-	align-items: center;
-	/* justify-content: center; */
-	flex-direction: column;
-	min-height: 80vh;
-	gap: 1rem;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  min-height: 80vh;
+  gap: 1rem;
 }
 
 .favorite-selection-btns a {
-	cursor: pointer;
+  cursor: pointer;
+}
+
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.cart-empty div {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+}
+
+.cart-empty a {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 1rem 5rem;
+  font-size: 1.8rem;
+  color: var(--white-color);
+  background: var(--main-green-color);
+}
+
+.cart-empty a:hover {
+  opacity: 80%;
+}
+
+.cart-empty a:active {
+  background: var(--signUp-bg-color);
 }

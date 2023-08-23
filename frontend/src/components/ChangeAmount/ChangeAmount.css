@@ -1,14 +1,56 @@
-.product-card-amount p span{
-    display: block;
-    text-align: center;
+.product-card-amount p span {
+  display: block;
+  text-align: center;
 }
 
-.detail-btn{
-    border-radius: 50%;
-    padding: 25px;
+.detail-btn {
+  border-radius: 50%;
+  padding: 25px;
 }
 
-.updateOrPutInCart-btn{
-    padding: 10px 15px;
-    background-color: var(--second-color);
+.updateOrPutInCart-btn {
+  cursor: pointer;
+  font-size: 1.8rem;
+  padding: 1rem 8rem;
+  background-color: var(--second-color);
+  font-family: poppins-regular;
+  color: var(--h-tag-btn-color);
+  border-radius: 0.5rem;
+}
+
+.updateOrPutInCart-btn:hover {
+  background-color: var(--main-green-color);
+
+  color: var(--white-color);
+}
+
+.updateOrPutInCart-btn:active {
+  background-color: var(--signUp-bg-color);
+}
+
+.cart-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-icon {
+  width: 3.5rem;
+  height: 7rem;
+}
+
+.cart-item-count {
+  position: absolute;
+  top: 16px;
+  right: -19px;
+  background-color: var(--main-green-color);
+  color: var(--white-color);
+  border-radius: 50%;
+  padding: 3px 6px;
+}
+
+.cart-item-count p {
+  font-family: poppins-regular;
+  font-size: 1.1rem;
+  width: 14px;
+  text-align: center;
 }
