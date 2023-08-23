@@ -17,6 +17,7 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
   const {user} = useContext(UserContext)
   const {selectedFavs, setSelectedFavs} = useContext(selectedFavsContext)
 
+
   let isThisProductSelected = false;
   const productID = product._id;
 
@@ -140,7 +141,7 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
               <article className={`product-favor ${location.pathname=="/home"?"product-favor-home":""}`}>
               {location.pathname != "/home" ? <p>${product.price}</p> : ""}
 
-                <a href="#" onClick={toggleFavorite}>
+                <a onClick={toggleFavorite}>
                   <img
                     src={favItem != undefined ? fullHearth : emtpyHearth}
                     alt="hearth"
