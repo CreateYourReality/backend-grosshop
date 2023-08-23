@@ -7,8 +7,6 @@ import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import defaultAvatar from "../../assets/img/defaultAvatar.gif";
 
-import defaultAvatar from "../../assets/img/camera.svg" //TODO AUSTAUSCHEN!
-
 const Profile = () => {
   const { user, refetch, isLoggedIn, logout } = useContext(UserContext);
   console.log(isLoggedIn);
