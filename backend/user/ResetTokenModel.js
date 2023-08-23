@@ -42,7 +42,7 @@ export const createResetToken = async (userEmail) => {
 
 	const clientURL = process.env.RENDER_EXTERNAL_URL;
 	const resetURL = new URL(
-		`/passwordReset?token=${resetToken}&id=${user.id}`,
+		`/resetpassword?token=${resetToken}&id=${user.id}`,
 		clientURL
 	);
 
