@@ -26,13 +26,25 @@ export const productSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
-	discoundFlag: Boolean,
-	discount: Number,
-	reducedPrice: {
+	isDeal: Boolean,
+	isMemberDeal: Boolean,
+	memberDiscount: Number,
+	dealDiscount: Number,
+	reducedMemberPrice: {
 		type: Number,
 		default: function () {
-			if (this.price && this.discount) {
-				return this.price - this.price * (this.discount / 100);
+			if (this.price && this.memberDiscount) {
+				return this.price - this.price * (this.memberDiscount / 100);
+			} else {
+				return null;
+			}
+		},
+	},
+	reducedDealPrice: {
+		type: Number,
+		default: function () {
+			if (this.price && this.dealDiscount) {
+				return this.price - this.price * (this.dealDiscount / 100);
 			} else {
 				return null;
 			}
