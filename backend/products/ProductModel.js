@@ -26,6 +26,7 @@ export const productSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
+	weight: Number,
 	isDeal: Boolean,
 	isMemberDeal: Boolean,
 	memberDiscount: Number,
