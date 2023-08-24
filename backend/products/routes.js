@@ -7,13 +7,14 @@ import {
 	postProduct,
 	putProduct,
 	deleteProduct,
+	getQuarryProducts,
 } from "./controller.js";
 export let router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
 router.get("/", getAllProducts);
 router.get("/:id", getOneProduct);
-//router.get("/quarry", getAllProducts); // quarry
+router.get("/quarry*", getQuarryProducts); // quarry
 
 router.post("/", upload.single("image"), postProduct);
 router.put("/:id", upload.single("image"), putProduct);

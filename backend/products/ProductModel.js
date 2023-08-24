@@ -26,6 +26,18 @@ export const productSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
+	discoundFlag: Boolean,
+	discount: Number,
+	reducedPrice: {
+		type: Number,
+		default: function () {
+			if (this.price && this.discount) {
+				return this.price - this.price * (this.discount / 100);
+			} else {
+				return null;
+			}
+		},
+	},
 });
 
 export const Product = mongoose.model("Product", productSchema);

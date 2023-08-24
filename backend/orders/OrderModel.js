@@ -25,7 +25,7 @@ export const orderSchema = new mongoose.Schema({
 	products: [
 		{
 			productId: { type: mongoose.Types.ObjectId, ref: "Product" },
-			count: { type: Number, default: 1 },
+			amount: { type: Number, default: 1 },
 		},
 	],
 	user: {
