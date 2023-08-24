@@ -15,6 +15,7 @@ import { selectedFavsContext } from "../../context/Context";
 import axios from "axios";
 import SelectSort from "../../components/SelectSort/SelectSort";
 import { NavLink } from "react-router-dom";
+import NoFeature from "../../components/nofeature/Nofeature";
 
 const Favorites = () => {
   const { data } = useContext(dataContext);
@@ -106,6 +107,7 @@ const Favorites = () => {
     <>
       <HeaderNav />
       <main>
+        {user?
         <section className="favorites-section">
           {<SelectSort setSortArray={setFavorites} sortArray={favorites}/>}
           {favorites ? (
@@ -150,6 +152,8 @@ const Favorites = () => {
             <p>loading favorites...</p>
           )}
         </section>
+        :
+        <NoFeature/>}
       </main>
       {favorites.length != 0 && <FooterNav />}
     </>

@@ -11,9 +11,10 @@ import SelectSort from "../../components/SelectSort/SelectSort";
 import { selectedCartItemsContext } from "../../context/Context";
 import { UserContext } from "../../context/UserContext";
 import cartEmpty from "../../assets/img/cartEmpty.svg";
-
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import NoFeature from "../../components/nofeature/Nofeature";
+
 const ShoppingCart = () => {
   const { data } = useContext(dataContext);
   const { userShoppingCart, setUserShoppingCart } = useContext(
@@ -79,6 +80,7 @@ const ShoppingCart = () => {
     <>
       <HeaderNav />
       <main>
+        {user?
         <section className="shoppingCart-section">
         {<SelectSort setSortArray={setUserShoppingCart} sortArray={userShoppingCart}/>}
           {userShoppingCart ? (
@@ -120,6 +122,9 @@ const ShoppingCart = () => {
             </section>
           ) : null}
         </section>
+        :
+        <NoFeature />
+        }
       </main>
       {userShoppingCart.length !== 0 && <FooterNav />}
     </>

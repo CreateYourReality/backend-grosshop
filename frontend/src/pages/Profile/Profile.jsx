@@ -6,17 +6,19 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import defaultAvatar from "../../assets/img/defaultAvatar.svg";
+import NoFeature from "../../components/nofeature/Nofeature";
 
 const Profile = () => {
   const { user, refetch, isLoggedIn, logout } = useContext(UserContext);
 
   const [showNotification, setShowNotification] = useState(false);
   const [formData, setFormData] = useState({
-    name: user.name || " ",
-    email: user.email || " ",
-    address: user.address || " ",
-    phone: user.phone,
-  });
+    name: user?.name || " ",
+    email: user?.email || " ",
+    address: user?.address || " ",
+    phone: user?.phone,
+  })
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -52,6 +54,7 @@ const Profile = () => {
   };
   return (
     <>
+    {user?
       <form action="#" onSubmit={handleSubmit} className="profile-section">
         <section className="avatar-section">
           <HeaderNav />
@@ -103,6 +106,7 @@ const Profile = () => {
               id="email"
               value={formData.email}
               onChange={handleChange}
+              disabled
             />
           </article>
           <article className="user-content">
@@ -135,6 +139,8 @@ const Profile = () => {
         </section>
         <FooterNav />
       </form>
+      :
+      <NoFeature/>}
     </>
   );
 };
