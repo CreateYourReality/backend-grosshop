@@ -1,11 +1,14 @@
-.home-slider{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+.home-slider {
+	display: flex;
+	overflow-x: auto;
+	gap: 10px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	align-items: flex-start;
+	padding-top: 10px;
+	padding-bottom: 15px;
 }
 
-.home-slider img{
-
+.home-slider::-webkit-scrollbar {
+	display: none;
 }
-
