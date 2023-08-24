@@ -1,6 +1,6 @@
 import { Router } from "express";
 import multer from "multer";
-import { authenticateToken } from "./authToken.js";
+import { authenticateToken, authenticateRefreshToken } from "./authToken.js";
 import {
 	getAllUser,
 	getOneUser,
@@ -12,6 +12,7 @@ import {
 	resetPasswordConfirm,
 	putUser,
 	deleteUser,
+	refreshUser,
 	updateUserProductCart,
 	deleteOneUserProductCart,
 	updateUserFavProducts,
@@ -21,8 +22,9 @@ import {
 export const router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.get("/", getAllUser);
-router.get("/secure", authenticateToken, secureUser); // get all Users
+router.get("/", getAllUser); // get all Users
+router.get("/secure", authenticateToken, secureUser);
+router.get("/refresh", authenticateRefreshToken, refreshUser);
 router.get("/logout", logoutUser); // logs the User out
 router.get("/:id", getOneUser); //get User per id
 

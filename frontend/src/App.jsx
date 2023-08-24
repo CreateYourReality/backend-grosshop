@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext, UserProvider } from "./context/UserContext";
 
 //Pages
@@ -19,6 +19,7 @@ import Admin from "./pages/Admin/Admin";
 import Profile from "./pages/Profile/Profile";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import Filter from "./pages/Filter/Filter";
+import axios from "axios";
 
 //Context
 import {
@@ -42,17 +43,20 @@ function App() {
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [priceFilter, setPriceFilter] = useState({ min: 0, max: Infinity });
   const [sortBy, setSortBy] = useState("abc");
-  const { user } = useContext(UserContext);
+  const { user, refetch, setUser } = useContext(UserContext);
   const [selectedFavs, setSelectedFavs] = useState([]);
   const [selectedCartItems, setSelectedCartItems] = useState([]);
   const [sortByFavs, setSortByFavs] = useState("abc")
   const [sortByCart, setSortByCart] = useState("abc")
 
-
   const [userShoppingCart, setUserShoppingCart] = useState(
     user ? user.ProductCart : []
   );
   const [favorites, setFavorites] = useState(user ? user.favProducts : []);
+
+
+
+
 
   return (
     <>

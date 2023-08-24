@@ -59,6 +59,7 @@ const userSchema = new mongoose.Schema({
 		enum: ["admin", "user"],
 		default: "user",
 	},
+	refreshToken: String,
 });
 
 userSchema.methods.setPassword = function (password) {
