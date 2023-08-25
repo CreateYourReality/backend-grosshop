@@ -33,8 +33,12 @@ const TotalCost = () => {
     //TODO CHECKOUT
     const checkoutCartItems = () => {
         console.log("CHECKOUT CART ITEMS");
-          //wenn alle oder nix selected dann userShoppingcart checkout
-        //wenn einzelne ausgewählt dann nur die einzelnen checkout
+        //wenn alle oder nix selected dann userShoppingcart checkout
+        if(userShoppingCart.length == selectedCartItems.length || selectedCartItems.length == 0){
+          console.log("checkout all");
+        }else{ //wenn einzelne ausgewählt dann nur die einzelnen checkout
+
+        }
     }
 
     return ( 

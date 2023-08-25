@@ -92,9 +92,6 @@ const ShoppingCart = () => {
                 </div>
                 {userShoppingCart.map((cartItem, index) => (
                   <article key={index}>
-                                          {console.log(cartItem)}
-                                          {console.log(findShoppingItemBy(cartItem.id))}
-
                     {
                       <ProductCard
                         isSelected={isSelected}
