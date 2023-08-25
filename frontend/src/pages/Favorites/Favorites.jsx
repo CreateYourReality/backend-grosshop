@@ -25,7 +25,7 @@ const Favorites = () => {
     userShoppingCartContext
   );
   const { selectedFavs, setSelectedFavs } = useContext(selectedFavsContext);
-  const { user } = useContext(UserContext);
+  const { user, refetch } = useContext(UserContext);
 
   const findFavoriteById = (favID) => {
     return data.find((favoriteItem) => favoriteItem._id === favID);
@@ -71,6 +71,14 @@ const Favorites = () => {
     }
   }, [selectedFavs]);
 
+  useEffect(()=>{
+    refetch()
+    if (user) {
+      setUserShoppingCart(user.ProductCart)
+      setFavorites(user.favProducts)
+    }
+  },[]) 
+
   //TODO ADD SELECTED FAVS TO USER SHOPPING CART
   const addSelectedFavsToShoppingCart = () => {
     console.log("HIER KÖNNTEN IHRE FAVS STEHEN");
@@ -85,10 +93,11 @@ const Favorites = () => {
       );
 
       if (cartItemToUpdate) {
-        cartItemToUpdate.amount ==
+        console.log(cartItemToUpdate.amount);
+        cartItemToUpdate.amount =
           favorites.filter((favItem) => favItem.id === selectedFavID).amount;
-          console.log(cartItemToUpdate);
-          console.log(favorites);
+          console.log(cartItemToUpdate.amount);
+        
       } else {
         const selectedFav = favorites.find((fav) => fav.id === selectedFavID);
         const newCartItem = { id: selectedFavID, amount: selectedFav.amount };
@@ -105,9 +114,6 @@ const Favorites = () => {
     });
     setSelectedFavs([]);
   };
-
-  console.log(user);
-  console.log(userShoppingCart);
 
   return (
     <>

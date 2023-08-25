@@ -24,14 +24,14 @@ const Home = () => {
   //use this state to sort deals (slides setting this)
   const [dealFilter, setDealFilter] = useState("")
   
-/*   useEffect(()=>{
+  useEffect(()=>{
     refetch()
     if (user) {
       setUserShoppingCart(user.ProductCart)
       setFavorites(user.favProducts)
     }
     console.log("hi");
-  },[])  */
+  },[]) 
 
   return (
     <>

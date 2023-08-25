@@ -21,7 +21,7 @@ const ShoppingCart = () => {
     userShoppingCartContext
   );
 
-  const { user } = useContext(UserContext);
+  const { user, refetch } = useContext(UserContext);
 
   const { selectedCartItems, setSelectedCartItems } = useContext(
     selectedCartItemsContext
@@ -76,6 +76,12 @@ const ShoppingCart = () => {
   // <SelectSort sortArray={userShoppingCart} setSortArray={setUserShoppingCart}/>
   // TODO PRODUKTE WERDEN NACH NAMEN SORTIERT, HABEN IM CART ABER NUR ID's
 
+  useEffect(()=>{
+    refetch()
+    if (user) {
+      setUserShoppingCart(user.ProductCart)
+    }
+  },[]) 
   return (
     <>
       <HeaderNav />

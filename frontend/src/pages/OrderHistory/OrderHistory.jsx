@@ -9,7 +9,7 @@ import NoFeature from "../../components/nofeature/Nofeature";
 
 
 const OrderHistory = () => {
-  const { user } = useContext(UserContext);
+  const { user, refetch } = useContext(UserContext);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ const OrderHistory = () => {
       }
     };
     getOrders();
+    refetch()
   }, []);
 
   return (

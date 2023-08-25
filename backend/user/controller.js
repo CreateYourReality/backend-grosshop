@@ -59,7 +59,7 @@ export const loginUser = async (req, res) => {
 			const tokenUser = await User.findOne({ email });
 			//console.log("User: " + tokenUser);
 			const token = generateAccessToken(tokenUser);
-			//const refreshToken = generateRefreshToken(tokenUser);
+			/* 			const refreshToken = generateRefreshToken(tokenUser); */
 			res.cookie("auth", token, { httpOnly: true, maxAge: hoursInMillisec(4) });
 			/* 			res.cookie("refreshToken", refreshToken, {
 				httpOnly: true,
@@ -127,8 +127,6 @@ export const resetPassword = async (req, res) => {
 		await createResetToken(email);
 		return res.sendStatus(200);
 	} catch (e) {
-		//console.log(e);
-
 		if (e?.message === "No User is with this email") {
 			return res.status(404).send({ error: "User not found" });
 		}

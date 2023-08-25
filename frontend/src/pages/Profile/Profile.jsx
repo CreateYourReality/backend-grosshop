@@ -52,6 +52,10 @@ const Profile = () => {
       console.error("Error while saving the data:", error);
     }
   };
+
+  useEffect(()=>{
+    refetch()
+  },[]) 
   return (
     <>
     {user?

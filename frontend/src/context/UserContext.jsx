@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
     nav("/");
   };
 
-/*   useEffect(() => {
+/* useEffect(() => {
     const fetchAccessToken = async () => {
       try { 
         if (refreshToken) {
@@ -36,7 +36,7 @@ export const UserProvider = ({ children }) => {
       }
     }
     fetchAccessToken();
-  }, [refreshToken]) */
+  }, [refreshToken])  */
 
   useEffect(() => {
     axios

@@ -46,3 +46,5 @@ router.put(
 
 router.put("/updateUserFavProducts/:id", upload.none(), updateUserFavProducts);
 router.put("/deleteUserFavProducts/:id", upload.none(), deleteUserFavProducts);
+
+/* eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU1OGMwYWFiNjI0NmMxNmNlZTU5MjMiLCJpYXQiOjE2OTI5NjgwNzQsImV4cCI6MTY5MzU3Mjg3NH0.yvH4PKn7bD3pPKzT7Qv_K7s8_4_HzZtAzfbDiNK6niA */
