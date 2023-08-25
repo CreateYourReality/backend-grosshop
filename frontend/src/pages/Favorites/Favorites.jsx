@@ -17,6 +17,7 @@ import SelectSort from "../../components/SelectSort/SelectSort";
 import { NavLink } from "react-router-dom";
 import NoFeature from "../../components/nofeature/Nofeature";
 
+
 const Favorites = () => {
   const { data } = useContext(dataContext);
   const { favorites, setFavorites } = useContext(favoritesContext);

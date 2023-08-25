@@ -101,6 +101,7 @@ const ShoppingCart = () => {
                         product={findShoppingItemBy(cartItem.id)}
                       />
                     }
+
                   </article>
                 ))}
               </>
