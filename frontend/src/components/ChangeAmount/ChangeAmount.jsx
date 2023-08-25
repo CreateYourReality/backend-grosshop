@@ -155,6 +155,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
       amount: tempShoppingCartItem.amount,
     };
     try {
+      console.log(obj);
       await axios.put(`/api/users/updateUserProductCart/${user._id}`, obj);
       setUserShoppingCart((prevShoppingCart) => {
         const updatedCart = prevShoppingCart.map((item) => {
@@ -163,8 +164,11 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
           }
           return item;
         });
+        console.log([...updatedCart]);
         return [...updatedCart];
       });
+      refetch()
+      console.log(user);
     } catch (e) {
       // Fehlerbehandlung hier
       console.error(e);
@@ -218,7 +222,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
               ) : tempShoppingCartItem ? (
                 detailProduct == "/detailproduct" ? ( //TODO * weight
                   <>
-                    {tempShoppingCartItem.amount * product.rating}
+                    {Math.round(tempShoppingCartItem.amount * product.rating)}
                     {detailProduct == "/detailproduct"
                       ? "KG"
                       : location.pathname == "/favorites"
