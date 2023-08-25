@@ -19,6 +19,7 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
 
 
   let isThisProductSelected = false;
+  console.log(product);
   const productID = product._id;
 
   //TODO ####### AUSLAGERN ? ##############

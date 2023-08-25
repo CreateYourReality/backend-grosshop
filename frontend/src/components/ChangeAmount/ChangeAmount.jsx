@@ -37,17 +37,28 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     }
   }, [userShoppingCart]);
 
-  //TODO BUGGY
+  const updateProductCart = async (id,amount) => {
+    await axios.put(`/api/users/updateUserProductCart/${user._id}`, {id:id,amount:amount});
+  }
+
+  const updateFavs = async (id,amount) => {
+    await axios.put(`/api/users/updateUserFavProducts/${user._id}`, {id:id,amount:amount} )
+  }
+
+  //TODO add +1 -1
   const increaseAmountCart = (incOrDecrement) => {
     setUserShoppingCart((prevCartItem) => {
-      return prevCartItem.map(async (cartItem) => {
+      return prevCartItem.map((cartItem) => {
         if (cartItem.id === product._id) {
+          //axios
+         const updateCount = cartItem.amount + incOrDecrement <= 0
+          ? 1
+          : cartItem.amount + incOrDecrement
+          updateProductCart(cartItem.id, updateCount);
           return {
             ...cartItem,
-            amount:
-              cartItem.amount + incOrDecrement <= 0
-                ? 1
-                : cartItem.amount + incOrDecrement,
+            amount: updateCount
+             ,
           };
         }
         return cartItem;
@@ -77,12 +88,15 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     setFavorites((prevFavorites) => {
       return prevFavorites.map((fav) => {
         if (fav.id === product._id) {
+        //axios
+         const updateCount = fav.amount + incOrDecrement <= 0
+         ? 1
+         : fav.amount + incOrDecrement
+         updateFavs(fav.id, updateCount);
           return {
             ...fav,
-            amount:
-              fav.amount + incOrDecrement <= 0
-                ? 1
-                : fav.amount + incOrDecrement,
+            amount: updateCount
+              ,
           };
         }
         return fav;
