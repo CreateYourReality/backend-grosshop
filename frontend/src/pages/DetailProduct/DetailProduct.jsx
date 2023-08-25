@@ -12,6 +12,7 @@ import ChangeAmount from "../../components/ChangeAmount/ChangeAmount";
 import emtpyHearth from "../../assets/img/like.svg";
 import fullHearth from "../../assets/img/likeActive.svg";
 import axios from "axios";
+import star from "../../assets/img/star.svg";
 
 const DetailProduct = () => {
   const { data } = useContext(dataContext);
@@ -80,7 +81,6 @@ const DetailProduct = () => {
     <>
       <main>
         <HeaderNav />
-        <h2>DETAIL PRODUCT PAGE</h2>
         <section className="detailProduct-section">
           {product ? (
             <>
@@ -90,7 +90,10 @@ const DetailProduct = () => {
               <p className="detailProduct-weight">{product.rating}kg</p>
               <p className="detailProduct-price">${product.price}</p>
               <p className="detailProduct-name">{product.productName}</p>
-              <p className="detailProduct-rating">*{product.rating}</p>
+              <p className="detailProduct-rating">
+                <img src={star} alt="star" />
+                {product.rating}
+              </p>
               <div className="detailProduct-div">
                 <ChangeAmount product={product} />
               </div>

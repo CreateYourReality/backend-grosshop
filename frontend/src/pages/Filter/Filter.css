@@ -1,14 +1,26 @@
-.remove-filter-btn{
-    padding: 2.5px 5px;
-    display: inline-block;
+.clearAll-section {
+  display: flex;
+  justify-content: center;
 }
 
-.filter-section{
-    padding: 10px
+.remove-filter-btn {
+  padding: 5px 15px;
+  display: inline-block;
+  background-color: var(--second-color);
+  border-radius: 5px;
+  cursor: pointer;
 }
 
+.remove-filter-btn:active {
+  background-color: var(--main-green-color);
+  color: var(--white-color);
+}
 
-.filter-section h2{
-    margin-top: 25px;
-    margin-bottom: 5px;
+.filter-section {
+  padding: 10px;
+}
+
+.filter-section h2 {
+  margin-top: 25px;
+  margin-bottom: 5px;
 }

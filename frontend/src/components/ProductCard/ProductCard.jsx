@@ -1,22 +1,20 @@
-import "./ProductCard.css"
-import { Link, useLocation } from "react-router-dom"
-import { useState, useContext,useEffect } from "react"
-import { favoritesContext, selectedFavsContext } from "../../context/Context"
-import ChangeAmount from "../ChangeAmount/ChangeAmount"
-import emtpyHearth from "../../assets/img/like.svg"
-import fullHearth from "../../assets/img/likeActive.svg"
-import axios from "axios"
-import { UserContext } from "../../context/UserContext"
+import "./ProductCard.css";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { favoritesContext, selectedFavsContext } from "../../context/Context";
+import ChangeAmount from "../ChangeAmount/ChangeAmount";
+import emtpyHearth from "../../assets/img/like.svg";
+import fullHearth from "../../assets/img/likeActive.svg";
+import axios from "axios";
+import { UserContext } from "../../context/UserContext";
 import star from "../../assets/img/star.svg";
 import placeholderImg from "../../assets/img/testimg.svg";
 //{product,setSelectedFavs,setSelectedCartItems,isSelected,test}
-const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
-
-  const {favorites, setFavorites} = useContext(favoritesContext)
-  const [favItem, setFavItem] = useState(undefined)
-  const {user} = useContext(UserContext)
-  const {selectedFavs, setSelectedFavs} = useContext(selectedFavsContext)
-
+const ProductCard = ({ product, setSelectedCartItems, isSelected }) => {
+  const { favorites, setFavorites } = useContext(favoritesContext);
+  const [favItem, setFavItem] = useState(undefined);
+  const { user } = useContext(UserContext);
+  const { selectedFavs, setSelectedFavs } = useContext(selectedFavsContext);
 
   let isThisProductSelected = false;
   const productID = product._id;
@@ -39,7 +37,7 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
   const locationIsHome = () => {
     const locationHome = "/home";
     return location.pathname == locationHome;
-  }
+  };
 
   //TODO #######################################
 
@@ -48,34 +46,38 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
   }
 
   const removeFromFavorites = async (id) => {
-    try{
-     await axios.put(`/api/users/deleteUserFavProducts/${user._id}`, {id:id} )
-      setFavorites(prevFavorites => prevFavorites.filter(fav => fav.id !== id));
-    }catch(e){
-   //   console.error(e);
+    try {
+      await axios.put(`/api/users/deleteUserFavProducts/${user._id}`, {
+        id: id,
+      });
+      setFavorites((prevFavorites) =>
+        prevFavorites.filter((fav) => fav.id !== id)
+      );
+    } catch (e) {
+      //   console.error(e);
     }
-  }
+  };
 
   const addToFavorites = async (newFavorite) => {
-    try{
-      await axios.put(`/api/users/updateUserFavProducts/${user._id}`, newFavorite )
-          setFavorites(prevFavorites => [...prevFavorites, newFavorite]);
-    }catch(e){
-          //   console.error(e);
+    try {
+      await axios.put(
+        `/api/users/updateUserFavProducts/${user._id}`,
+        newFavorite
+      );
+      setFavorites((prevFavorites) => [...prevFavorites, newFavorite]);
+    } catch (e) {
+      //   console.error(e);
     }
-  }
+  };
 
   const toggleFavorite = () => {
-      if(favItem != undefined && favItem.id == productID) {
-        removeFromFavorites(favItem.id)
-        setFavItem(undefined)
-      }else{
-      addToFavorites({id:productID,amount:1})
-      }
+    if (favItem != undefined && favItem.id == productID) {
+      removeFromFavorites(favItem.id);
+      setFavItem(undefined);
+    } else {
+      addToFavorites({ id: productID, amount: 1 });
     }
-
-
-
+  };
 
   const handleCheckbox = () => {
     locationIsFavorites()
@@ -123,9 +125,15 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
               </div>
             ) : null
           }
-          <div className={`productCard-wrapper ${location.pathname == "/home" || location.pathname == "/productlist" ? "productCard-wrapper-home":""}`}>
-              <img src={placeholderImg} alt="placeholderImg" />
-              <div className="product-card-details">
+          <div
+            className={`productCard-wrapper ${
+              location.pathname == "/home" ||
+              location.pathname == "/productlist"
+                ? "productCard-wrapper-home"
+                : ""
+            }`}>
+            <img src={placeholderImg} alt="placeholderImg" />
+            <div className="product-card-details">
               <Link to={"/detailproduct/" + productID}>
                 <h3>{product.productName}</h3>
                 <article className="product-rating">
@@ -138,8 +146,11 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
                 </article>
               </Link>
 
-              <article className={`product-favor ${location.pathname=="/home"?"product-favor-home":""}`}>
-              {location.pathname != "/home" ? <p>${product.price}</p> : ""}
+              <article
+                className={`product-favor ${
+                  location.pathname == "/home" ? "product-favor-home" : ""
+                }`}>
+                {location.pathname != "/home" ? <p>${product.price}</p> : ""}
 
                 <a onClick={toggleFavorite}>
                   <img
@@ -147,7 +158,6 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
                     alt="hearth"
                   />
                 </a>
-
               </article>
             </div>
             <ChangeAmount

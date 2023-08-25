@@ -1,3 +1,8 @@
+.totalCost-section {
+  padding: 1rem 0 0 0;
+  margin-bottom: 12rem;
+}
+
 .totalCost-section button {
   cursor: pointer;
   border-radius: 0.5rem;

@@ -29,9 +29,11 @@ const Filter = () => {
     <>
       <main>
         <HeaderNav />
-        <button className="remove-filter-btn" onClick={removeAllFilter}>
-          all clear
-        </button>
+        <section className="clearAll-section">
+          <button className="remove-filter-btn" onClick={removeAllFilter}>
+            All clear
+          </button>
+        </section>
         <section className="filter-section">
           <h2>Sort by</h2>
           <SelectSort sortArray={data} setSortArray={setData} />

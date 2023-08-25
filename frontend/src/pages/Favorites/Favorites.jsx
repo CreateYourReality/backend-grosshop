@@ -17,7 +17,6 @@ import SelectSort from "../../components/SelectSort/SelectSort";
 import { NavLink } from "react-router-dom";
 import NoFeature from "../../components/nofeature/Nofeature";
 
-
 const Favorites = () => {
   const { data } = useContext(dataContext);
   const { favorites, setFavorites } = useContext(favoritesContext);
@@ -108,55 +107,62 @@ const Favorites = () => {
     <>
       <HeaderNav />
       <main>
-        {user?
-        <section className="favorites-section">
-          {<SelectSort setSortArray={setFavorites} sortArray={favorites}/>}
-          {favorites ? (
-            favorites.length != 0 ? (
-              <>
-                <div className="favorite-selection-btns">
-                  <a onClick={selectAll}>{selectAllText}</a>
-                  <a onClick={deleteSelectedFavs}>
-                    <img src={trash} alt="delete" />
-                  </a>
-                </div>
-                {favorites.map((fav, index) => (
-                  <article key={index}>
+        {user ? (
+          <section className="favorites-section">
+            {favorites ? (
+              favorites.length != 0 ? (
+                <>
+                  <div className="favorite-selection-btns">
+                    <a onClick={selectAll}>{selectAllText}</a>
                     {
-                      <ProductCard
-                        isSelected={isSelected}
-                        setSelectedFavs={setSelectedFavs}
-                        setFavorites={setFavorites}
-                        product={findFavoriteById(fav.id)}
-                        selectedFavs={selectedFavs}
+                      <SelectSort
+                        setSortArray={setFavorites}
+                        sortArray={favorites}
                       />
                     }
+                    <a onClick={deleteSelectedFavs}>
+                      <img src={trash} alt="delete" />
+                    </a>
+                  </div>
+                  {favorites.map((fav, index) => (
+                    <article key={index}>
+                      {
+                        <ProductCard
+                          isSelected={isSelected}
+                          setSelectedFavs={setSelectedFavs}
+                          setFavorites={setFavorites}
+                          product={findFavoriteById(fav.id)}
+                          selectedFavs={selectedFavs}
+                        />
+                      }
+                    </article>
+                  ))}
+                  <article className="add-to-cart-box">
+                    <button
+                      onClick={addSelectedFavsToShoppingCart}
+                      className="add-to-cart-btn">
+                      Add to Cart
+                    </button>
                   </article>
-                ))}
-                <article className="add-to-cart-box">
-                  <button
-                    onClick={addSelectedFavsToShoppingCart}
-                    className="add-to-cart-btn">
-                    Add to Cart
-                  </button>
+                </>
+              ) : (
+                <article className="fav-empty">
+                  <div>
+                    <img src={favEmpty} alt="fav-empty" />
+                  </div>
+                  <NavLink to="/home">Continue Shopping</NavLink>
                 </article>
-              </>
+              )
             ) : (
-              <article className="fav-empty">
-                <div>
-                  <img src={favEmpty} alt="fav-empty" />
-                </div>
-                <NavLink to="/home">Continue Shopping</NavLink>
-              </article>
-            )
-          ) : (
-            <p>loading favorites...</p>
-          )}
-        </section>
-        :
-        <NoFeature/>}
+              <p>loading favorites...</p>
+            )}
+          </section>
+        ) : (
+          <NoFeature />
+        )}
       </main>
-      {favorites.length != 0 && <FooterNav />}
+      <FooterNav />
+      {/* {favorites.length != 0 && <FooterNav />} Alternative */}
     </>
   );
 };
