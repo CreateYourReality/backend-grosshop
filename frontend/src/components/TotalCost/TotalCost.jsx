@@ -19,9 +19,9 @@ const TotalCost = () => {
       return selectedCartItems.reduce((total, cartItem) => {
           const cartProduct = data.find(prod => prod._id == cartItem);
           console.log(cartProduct);
+          //console.log(userShoppingCart);
           if (cartProduct) {
-              const cartAmount = userShoppingCart.find(cartItem => cartItem._id == cartProduct._id).amount;
-              //console.log();
+              const cartAmount = userShoppingCart.find(cartItem => cartItem.id == cartProduct._id).amount;
               const itemTotal = cartProduct.price * cartAmount
               return total + itemTotal;
           } else {
