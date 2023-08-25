@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import "./DetailProduct.css";
-import { dataContext } from "../../context/Context";
+import { dataContext, userShoppingCartContext } from "../../context/Context";
 import { useLocation } from "react-router-dom";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import { UserContext } from "../../context/UserContext";
@@ -19,11 +19,14 @@ const DetailProduct = () => {
   const pathProductID = location.pathname.substring(
     location.pathname.lastIndexOf("/") + 1
   );
+  const { setUserShoppingCart } = useContext(
+    userShoppingCartContext
+  );
 
   // TODO DRY AUSLAGERN?????
   const { favorites, setFavorites } = useContext(favoritesContext);
   const [favItem, setFavItem] = useState(undefined);
-  const { user } = useContext(UserContext);
+  const { user, refetch } = useContext(UserContext);
 
   let isThisProductSelected = false;
   const productID = pathProductID;
@@ -75,6 +78,12 @@ const DetailProduct = () => {
   };
   //TODO WEIGHT!!!!!!!!
 
+  useEffect(()=>{
+    refetch()
+    if (user) {
+      setUserShoppingCart(user.ProductCart)
+    }
+  },[]) 
   const product = findProductById();
   return (
     <>

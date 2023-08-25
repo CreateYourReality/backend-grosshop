@@ -15,8 +15,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
   const [tempShoppingCartItem, setTempShoppingCartItem] = useState(undefined);
   const [updateTotal, setUpdateTotal] = useState(false); //toogle refresher
   const [stop, setStop] = useState(false);
-
-  const { user } = useContext(UserContext);
+  const {user, refetch} = useContext(UserContext)
 
   const findShoppingItemBy = (prodID) => {
     return userShoppingCart.find((cartItem) => cartItem._id === prodID);
@@ -133,7 +132,23 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     }
   }, [tempShoppingCartItem]);
 
+  useEffect(() => {
+    refetch()
+    const foundCartItem = user?.ProductCart.find(
+    (cartItem) => cartItem.id === product._id
+    );
+    //console.log(user);
+    //console.log(foundCartItem);
+    setShoppingCartItem(foundCartItem);
+
+    // keine ahnung warum +1 need maybe fix
+    setTempShoppingCartItem({
+      id: product._id,
+      amount: foundCartItem.amount +1,
+    });  },[])
+
   //TODO added gerade n neues obj
+
   const updateCart = async () => {
     const obj = {
       id: tempShoppingCartItem.id,
