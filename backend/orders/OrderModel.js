@@ -24,7 +24,7 @@ export const orderSchema = new mongoose.Schema({
 	},
 	products: [
 		{
-			productId: { type: mongoose.Types.ObjectId, ref: "Product" },
+			id: { type: mongoose.Types.ObjectId, ref: "Product" },
 			amount: { type: Number, default: 1 },
 		},
 	],
