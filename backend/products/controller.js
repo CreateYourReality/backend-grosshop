@@ -32,6 +32,10 @@ export const postProduct = async (req, res) => {
 	}
 };
 
+export const getQuarryProducts = async (req, res) => {
+	res.status(501).send("Not implemented yet");
+};
+
 export const putProduct = async (req, res) => {
 	try {
 		const id = req.params.id;

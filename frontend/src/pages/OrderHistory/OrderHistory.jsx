@@ -5,6 +5,8 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import OrderItem from "../../components/OrderItem/OrderItem";
+import NoFeature from "../../components/nofeature/Nofeature";
+
 
 const OrderHistory = () => {
   const { user } = useContext(UserContext);
@@ -24,11 +26,15 @@ const OrderHistory = () => {
     <>
       <HeaderNav />
       <main>
+        {user?
         <section className="orderHistory">
           {orders?.map((order, i) => (
             <OrderItem order={order} key={i} />
           ))}
         </section>
+        :
+        <NoFeature/>
+        }
       </main>
       <FooterNav />
     </>

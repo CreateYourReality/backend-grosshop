@@ -1,7 +1,11 @@
 import { User } from "./UserModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import { createResetToken, validateResetToken } from "./ResetTokenModel.js";
-import { authenticateToken, generateAccessToken } from "./authToken.js";
+import {
+	authenticateToken,
+	generateAccessToken,
+	generateRefreshToken,
+} from "./authToken.js";
 
 const hoursInMillisec = (hours) => {
 	return 1000 * 60 * 60 * hours;
@@ -13,9 +17,25 @@ export const getAllUser = async (req, res) => {
 };
 
 export const secureUser = async (req, res) => {
-	console.log(req.user);
-	const newUser = await User.findById(req.user._id);
-	res.send(newUser);
+	//console.log(req);
+	try {
+		const newUser = await User.findById(req.user);
+		//console.log(newUser);
+		const newRefreshToken = generateRefreshToken(newUser);
+		newUser.refreshToken = newRefreshToken;
+		console.log(newRefreshToken);
+		await newUser.save();
+		res.send({ user: newUser, refreshToken: newRefreshToken });
+	} catch (e) {
+		console.log(e);
+		res.sendStatus(500);
+	}
+};
+
+export const refreshUser = async (req, res) => {
+	const user = req.user;
+	const newAccessToken = generateAccessToken(user);
+	res.json({ accessToken: newAccessToken });
 };
 
 export const getOneUser = async (req, res) => {
@@ -37,8 +57,14 @@ export const loginUser = async (req, res) => {
 
 		if (passwordIsValid) {
 			const tokenUser = await User.findOne({ email });
-			const token = generateAccessToken({ tokenUser });
+			//console.log("User: " + tokenUser);
+			const token = generateAccessToken(tokenUser);
+			//const refreshToken = generateRefreshToken(tokenUser);
 			res.cookie("auth", token, { httpOnly: true, maxAge: hoursInMillisec(4) });
+			/* 			res.cookie("refreshToken", refreshToken, {
+				httpOnly: true,
+				maxAge: hoursInMillisec(7 * 24),
+			}); */
 
 			res.send({ message: "Success", data: user });
 		} else {
@@ -193,8 +219,8 @@ export const deleteUser = async (req, res) => {
 
 export const updateUserProductCart = async (req, res) => {
 	const id = req.params.id;
-	const amount  = req.body.amount;
-	const productId = req.body.id
+	const amount = req.body.amount;
+	const productId = req.body.id;
 	try {
 		const countAsNumber = Number(amount);
 		const updateUserProduct = await User.findOneAndUpdate(
@@ -227,7 +253,7 @@ export const updateUserProductCart = async (req, res) => {
 
 export const deleteOneUserProductCart = async (req, res) => {
 	const _id = req.params.id;
-	const  productId = req.body.id;
+	const productId = req.body.id;
 	try {
 		const updateUserProduct = await User.findByIdAndUpdate(
 			{ _id: _id },
