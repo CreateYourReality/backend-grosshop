@@ -30,7 +30,6 @@ const Home = () => {
       setUserShoppingCart(user.ProductCart)
       setFavorites(user.favProducts)
     }
-    console.log("hi");
   },[]) 
 
   return (

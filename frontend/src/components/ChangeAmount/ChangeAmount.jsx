@@ -139,13 +139,24 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     );
     //console.log(user);
     //console.log(foundCartItem);
+    //console.log(user);
+    if(foundCartItem){
     setShoppingCartItem(foundCartItem);
 
     // keine ahnung warum +1 need maybe fix
     setTempShoppingCartItem({
       id: product._id,
-      amount: foundCartItem.amount +1,
-    });  },[])
+      amount: foundCartItem?.amount +1,
+    }); 
+  } else {
+
+    setTempShoppingCartItem({
+      id: product._id,
+      amount: 1,
+    }); 
+  }
+
+  },[])
 
   //TODO added gerade n neues obj
 

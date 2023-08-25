@@ -73,6 +73,8 @@ const Favorites = () => {
 
   useEffect(()=>{
     refetch()
+    //console.log("fav");
+    //console.log(user);
     if (user) {
       setUserShoppingCart(user.ProductCart)
       setFavorites(user.favProducts)
@@ -81,6 +83,7 @@ const Favorites = () => {
 
   //TODO ADD SELECTED FAVS TO USER SHOPPING CART
   const addSelectedFavsToShoppingCart = () => {
+    refetch()
     console.log("HIER KÖNNTEN IHRE FAVS STEHEN");
     //AUS SELECTED LÖSCHEN
     //AUS FAVORITEN LÖSCHEN
@@ -93,10 +96,10 @@ const Favorites = () => {
       );
 
       if (cartItemToUpdate) {
-        console.log(cartItemToUpdate.amount);
+        //console.log(cartItemToUpdate.amount);
         cartItemToUpdate.amount =
           favorites.filter((favItem) => favItem.id === selectedFavID).amount;
-          console.log(cartItemToUpdate.amount);
+          //console.log(cartItemToUpdate.amount);
         
       } else {
         const selectedFav = favorites.find((fav) => fav.id === selectedFavID);

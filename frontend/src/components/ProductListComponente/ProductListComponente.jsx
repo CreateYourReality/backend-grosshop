@@ -1,6 +1,6 @@
 import "./ProductListComponente.css"
 import { useContext, useEffect, useState } from "react";
-import { categoryContext, dataContext,priceContext } from "../../context/Context";
+import { categoryContext, dataContext,favoritesContext,priceContext } from "../../context/Context";
 import ProductCard from "../ProductCard/ProductCard";
 
 import deals from "../../assets/img/deals.png"
@@ -13,7 +13,8 @@ const ProductListComponente = () => {
     const {categoryFilter} = useContext(categoryContext)
     const {priceFilter} = useContext(priceContext)
     const [filteredData,setFilteredData] = useState(data)
-    const {user} = useContext(UserContext)
+    const {user, refetch} = useContext(UserContext)
+    const {setFavorites} = useContext(favoritesContext)
 
     useEffect(() => {
         let newFilteredData = data;
@@ -31,6 +32,12 @@ const ProductListComponente = () => {
         
     },[data,categoryFilter,priceFilter])
 
+    useEffect(()=>{
+        refetch()
+        if (user) {
+          setFavorites(user.favProducts)
+        }
+      },[]) 
 
     return ( 
         <>

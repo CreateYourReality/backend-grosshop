@@ -14,7 +14,7 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
 
   const {favorites, setFavorites} = useContext(favoritesContext)
   const [favItem, setFavItem] = useState(undefined)
-  const {user} = useContext(UserContext)
+  const {user, refetch} = useContext(UserContext)
   const {selectedFavs, setSelectedFavs} = useContext(selectedFavsContext)
 
 
@@ -72,6 +72,7 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
       }else{
       addToFavorites({id:productID,amount:1})
       }
+      refetch();
     }
 
 

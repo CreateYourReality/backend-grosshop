@@ -21,7 +21,7 @@ const TotalCost = () => {
           console.log(cartProduct);
           if (cartProduct) {
               const cartAmount = userShoppingCart.find(cartItem => cartItem._id == cartProduct._id).amount;
-              console.log();
+              //console.log();
               const itemTotal = cartProduct.price * cartAmount
               return total + itemTotal;
           } else {
