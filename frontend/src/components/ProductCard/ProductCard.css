@@ -35,6 +35,26 @@
   justify-content: center;
 }
 
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid #333;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.custom-checkbox:checked {
+  border-color: var(--main-green-color);
+  background-color: var(--main-green-color);
+  background-image: url("../../assets/img/whiteCheckmark.svg");
+  background-size: 100% 100%;
+}
+
 .productCard-wrapper {
   display: flex;
   justify-content: center;

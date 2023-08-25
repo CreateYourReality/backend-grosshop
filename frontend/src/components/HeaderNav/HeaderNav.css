@@ -15,9 +15,9 @@
   object-fit: cover;
   height: 5rem;
 }
- {
-  /* Productlist Section*/
-}
+
+/* Productlist Section*/
+
 .productlist-box {
   display: flex;
   align-items: center;
@@ -25,9 +25,8 @@
   /* gap: 3rem; */
   margin-left: 1rem;
 }
- {
-  /* BackBtn Section*/
-}
+
+/* BackBtn Section*/
 .backBtn-box {
   display: flex;
   align-items: center;
@@ -38,9 +37,9 @@
 .backBtn-box h2 {
   margin: -6px 0 0 0;
 }
- {
-  /* Searchbar Section*/
-}
+
+/* Searchbar Section*/
+
 .headerNav-searchBox {
   padding: 1rem 2rem;
   position: relative;

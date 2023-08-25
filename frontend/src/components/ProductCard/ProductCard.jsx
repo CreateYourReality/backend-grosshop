@@ -118,6 +118,7 @@ const ProductCard = ({ product, setSelectedCartItems, isSelected }) => {
               <div className="product-card-select">
                 <input
                   checked={isThisProductSelected}
+                  className="custom-checkbox"
                   name="fav-select"
                   type="checkbox"
                   onChange={handleCheckbox}
