@@ -37,13 +37,19 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     }
   }, [userShoppingCart]);
 
-  const updateProductCart = async (id,amount) => {
-    await axios.put(`/api/users/updateUserProductCart/${user._id}`, {id:id,amount:amount});
-  }
+  const updateProductCart = async (id, amount) => {
+    await axios.put(`/api/users/updateUserProductCart/${user._id}`, {
+      id: id,
+      amount: amount,
+    });
+  };
 
-  const updateFavs = async (id,amount) => {
-    await axios.put(`/api/users/updateUserFavProducts/${user._id}`, {id:id,amount:amount} )
-  }
+  const updateFavs = async (id, amount) => {
+    await axios.put(`/api/users/updateUserFavProducts/${user._id}`, {
+      id: id,
+      amount: amount,
+    });
+  };
 
   //TODO add +1 -1
   const increaseAmountCart = (incOrDecrement) => {
@@ -51,14 +57,14 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
       return prevCartItem.map((cartItem) => {
         if (cartItem.id === product._id) {
           //axios
-         const updateCount = cartItem.amount + incOrDecrement <= 0
-          ? 1
-          : cartItem.amount + incOrDecrement
+          const updateCount =
+            cartItem.amount + incOrDecrement <= 0
+              ? 1
+              : cartItem.amount + incOrDecrement;
           updateProductCart(cartItem.id, updateCount);
           return {
             ...cartItem,
-            amount: updateCount
-             ,
+            amount: updateCount,
           };
         }
         return cartItem;
@@ -88,15 +94,13 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     setFavorites((prevFavorites) => {
       return prevFavorites.map((fav) => {
         if (fav.id === product._id) {
-        //axios
-         const updateCount = fav.amount + incOrDecrement <= 0
-         ? 1
-         : fav.amount + incOrDecrement
-         updateFavs(fav.id, updateCount);
+          //axios
+          const updateCount =
+            fav.amount + incOrDecrement <= 0 ? 1 : fav.amount + incOrDecrement;
+          updateFavs(fav.id, updateCount);
           return {
             ...fav,
-            amount: updateCount
-              ,
+            amount: updateCount,
           };
         }
         return fav;
@@ -204,6 +208,9 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                 detailProduct == "/detailproduct" ? ( //TODO * weight
                   <>
                     {tempShoppingCartItem.amount * product.rating}
+                    {/* {Number(
+                      (tempShoppingCartItem.amount * product.rating).toFixed(1)
+                    )} */}
                     {detailProduct == "/detailproduct"
                       ? "KG"
                       : location.pathname == "/favorites"
