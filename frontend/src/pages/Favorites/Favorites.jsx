@@ -86,6 +86,8 @@ const Favorites = () => {
       if (cartItemToUpdate) {
         cartItemToUpdate.amount ==
           favorites.filter((favItem) => favItem.id === selectedFavID).amount;
+          console.log(cartItemToUpdate);
+          console.log(favorites);
       } else {
         const selectedFav = favorites.find((fav) => fav.id === selectedFavID);
         const newCartItem = { id: selectedFavID, amount: selectedFav.amount };
@@ -102,6 +104,9 @@ const Favorites = () => {
     });
     setSelectedFavs([]);
   };
+
+  console.log(user);
+  console.log(userShoppingCart);
 
   return (
     <>

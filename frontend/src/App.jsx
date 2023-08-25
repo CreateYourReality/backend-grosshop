@@ -54,9 +54,16 @@ function App() {
   );
   const [favorites, setFavorites] = useState(user ? user.favProducts : []);
 
+  useEffect(()=>{
+    refetch()
+    if (user) {
+      setUserShoppingCart(user.ProductCart)
+      setFavorites(user.favProducts)
+    }
+  },[]) 
 
-
-
+  console.log(user);
+  console.log(userShoppingCart);
 
   return (
     <>
