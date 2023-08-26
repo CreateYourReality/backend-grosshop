@@ -20,9 +20,9 @@
   gap: 1rem;
 }
 
-.welcome-svgBox {
+/* .welcome-svgBox {
   margin: 0 3rem 0 0;
-}
+} */
 
 .welcome-textBox {
   display: flex;
