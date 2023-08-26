@@ -47,7 +47,7 @@ const TotalCost = () => {
             await axios.post("/api/orders/", {products:userShoppingCart.map(item => ({
               id:item._id,
               amount:item.amount
-            })),user:user})
+            })),user:user,invoice:updateTotalCost()})
             userShoppingCart.forEach(async cartItem => {
               try {
                 await axios.put(`/api/users/deleteUserProductCart/${user._id}`, {
