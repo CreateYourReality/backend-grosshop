@@ -45,6 +45,8 @@
 }
 .dd-list.hidden {
 	opacity: 0;
+	display: none;
+	visibility: hidden;
 }
 .dd-list .dd-list-item {
 	position: relative;
@@ -111,20 +113,29 @@
 	0% {
 		top: 0;
 		opacity: 1;
+		display: flex;
+		visibility: visible;
 	}
+
 	100% {
 		top: -300px;
 		opacity: 0;
+		display: none;
+		visibility: hidden;
 	}
 }
 @keyframes dropIn {
 	0% {
 		top: -300px;
 		opacity: 0;
+		display: none;
+		visibility: hidden;
 	}
 
 	100% {
 		top: 0;
 		opacity: 1;
+		display: flex;
+		visibility: visible;
 	}
 }
