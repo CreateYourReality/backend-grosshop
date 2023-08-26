@@ -26,6 +26,8 @@ const Favorites = () => {
   );
   const { selectedFavs, setSelectedFavs } = useContext(selectedFavsContext);
   const { user, refetch } = useContext(UserContext);
+  const [resetFavItem, setResetFavItem] = useState(true)
+  const [FavToggle, setFavToggle] = useState(true)
 
   const findFavoriteById = (favID) => {
     return data.find((favoriteItem) => favoriteItem._id === favID);
@@ -81,30 +83,87 @@ const Favorites = () => {
     }
   },[]) 
 
+/*   useEffect(()=> {
+    console.log("we toggle");
+    console.log(userShoppingCart);
+    console.log(user.ProductCart);
+    if(user)
+    setFavorites(user.favProducts)
+  },[FavToggle]) */
   //TODO ADD SELECTED FAVS TO USER SHOPPING CART
   const addSelectedFavsToShoppingCart = () => {
     refetch()
     console.log("HIER KÖNNTEN IHRE FAVS STEHEN");
+    setFavorites(user.favProducts)
+
     //AUS SELECTED LÖSCHEN
     //AUS FAVORITEN LÖSCHEN
     //ÜBERPRÜFEN OB IN USERSHOPPINGCART VORHANDEN
     //WENN JA ERHÖHE NUR AMOUNT
     //WENN NEIN SETZE DIE FAVS IN DEN SHOPPINGCART
     selectedFavs.forEach(async (selectedFavID) => {
-      const cartItemToUpdate = userShoppingCart.find(
+      //console.log(favorites);
+      setFavorites(user.favProducts)
+
+      const cartItemToUpdate = favorites.find(
         (cartItem) => cartItem.id === selectedFavID
       );
-
-      if (cartItemToUpdate) {
-        //console.log(cartItemToUpdate.amount);
-        cartItemToUpdate.amount =
-          favorites.filter((favItem) => favItem.id === selectedFavID).amount;
-          //console.log(cartItemToUpdate.amount);
+      //console.log(favorites);
+      //setFavorites(user.favProducts)
+      //setFavToggle((prev)=> !prev)
+      //console.log("hi");
+//console.log(cartItemToUpdate);
+      if (cartItemToUpdate) {        
+        const ItemToUpdate = // actualler state + neuer state
+        user.ProductCart.find((favItem) => favItem.id === selectedFavID);
+        if(ItemToUpdate) {
+          cartItemToUpdate.amount += ItemToUpdate.amount
+        }
+        await axios.put(`/api/users/updateUserProductCart/${user._id}`,
+        cartItemToUpdate)
+        //refetch();
+/*         setUserShoppingCart((prevShoppingCart) => [
+          ...prevShoppingCart,
+          newCartItem,
+        ]); */
+/*         setUserShoppingCart((prev) => {
+          console.log(prev);
+          return [...prev]
+        }) */
+/*         setUserShoppingCart((prev)=> {
+          console.log(prev);
+          const newShoppingCart = [...userShoppingCart]
+          const newCart = newShoppingCart.map((productItem) => {
+            if( productItem.id === cartItemToUpdate.id) {
+              console.log(productItem);
+              console.log(cartItemToUpdate);
+              return {...productItem, amount: productItem.amount + cartItemToUpdate.amount}
+            } else {
+              return {... productItem}
+            }
+          })
+          return newCart
+        })
+        console.log(userShoppingCart); */
+        //setResetFavItem((prev)=>!prev)
+/*         const favs = favorites.map((favorite)=> {
+          console.log(favorite.id);
+          console.log(ItemToUpdate);
+          if(favorite.id === ItemToUpdate[0].id) {
+            console.log("hi");
+            return {...favorite, amount: 1}
+          }
+          else {
+            return {...favorite}
+          }
+        }) */
+        //console.log(favs);
         
       } else {
         const selectedFav = favorites.find((fav) => fav.id === selectedFavID);
         const newCartItem = { id: selectedFavID, amount: selectedFav.amount };
         selectedFav.amount = 1;
+        
         await axios.put(
           `/api/users/updateUserProductCart/${user._id}`,
           newCartItem
@@ -143,6 +202,7 @@ const Favorites = () => {
                         setFavorites={setFavorites}
                         product={findFavoriteById(fav.id)}
                         selectedFavs={selectedFavs}
+                        resetFavItem={resetFavItem}
                       />
                     }
                   </article>

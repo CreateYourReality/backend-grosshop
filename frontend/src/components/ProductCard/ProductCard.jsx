@@ -75,9 +75,6 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
       refetch();
     }
 
-
-
-
   const handleCheckbox = () => {
     locationIsFavorites()
       ? handleItemSelect(setSelectedFavs)
@@ -98,7 +95,7 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
     //TODO ? FavItem nur setzen wenn noch nicht gesetzt?
     const foundFavItem = favorites.find((fav) => fav.id === productID);
     setFavItem(foundFavItem);
-  }, [favorites, favItem, productID]);
+  }, [favorites, productID]);
 
   return (
     <>

@@ -16,7 +16,6 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
   const [updateTotal, setUpdateTotal] = useState(false); //toogle refresher
   const [stop, setStop] = useState(false);
   const {user, refetch} = useContext(UserContext)
-
   const findShoppingItemBy = (prodID) => {
     return userShoppingCart.find((cartItem) => cartItem._id === prodID);
   };
@@ -84,14 +83,17 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
   };
 
   const increaseAmountFav = (incOrDecrement) => {
+    //console.log(favItem);
+    favItem.amount = favItem.amount + incOrDecrement <= 0
+    ? 1 : favItem.amount + incOrDecrement
+
     setFavorites((prevFavorites) => {
       return prevFavorites.map((fav) => {
         if (fav.id === product._id) {
         //axios
-         const updateCount = fav.amount + incOrDecrement <= 0
-         ? 1
-         : fav.amount + incOrDecrement
-         updateFavs(fav.id, updateCount);
+
+         const updateCount = favItem.amount
+         //updateFavs(fav.id, updateCount);
           return {
             ...fav,
             amount: updateCount
@@ -195,7 +197,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     }
     setUserShoppingCart((prevShoppingCart) => [...prevShoppingCart, obj]);
   };
-
+  //console.log(tempShoppingCartItem);
   return (
     <>
       {detailProduct == "/detailproduct" ? <h2>QUANTITY</h2> : null}
@@ -236,7 +238,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                       : location.pathname == "/favorites"
                       ? ""
                       : ""}
-                    <span>{tempShoppingCartItem.amount + "€"}</span>
+                    <span>{"$"+tempShoppingCartItem.amount}</span>
                   </>
                 ) : (
                   tempShoppingCartItem.amount
@@ -290,7 +292,8 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
               PUT IN CART
             </button>
           )
-        ) : null}
+        ) : 
+            null}
       </div>
     </>
   );
