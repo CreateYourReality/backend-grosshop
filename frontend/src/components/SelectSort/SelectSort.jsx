@@ -3,6 +3,7 @@ import "./SelectSort.css"
 import { dataContext, sortContext } from "../../context/Context";
 import { useLocation } from "react-router-dom";
 import { sortFavsContext, sortCartContext } from "../../context/Context";
+import SelectSortType from "./SelectSortType/SelectSortType";
 
 const SelectSort = ({sortArray,setSortArray}) => {
  //   const {data, setData} = useContext(dataContext)
@@ -105,7 +106,7 @@ const SelectSort = ({sortArray,setSortArray}) => {
         
         setSortArray(sortedArray);
     };
-
+    const mySortArray = ["abc", "zyx", "$", "$$$", "***", "*"]
     const getSortType = (sortType) => {
         if(location.pathname=="/filter"){
 
@@ -164,8 +165,10 @@ const SelectSort = ({sortArray,setSortArray}) => {
                 <a className={`filter-btn ${sortBy=="*"?"active-filter":""}`} onClick={()=>changeSortByBtns("*")}>WORST</a>
                 <a className={`filter-btn ${sortBy=="***"?"active-filter":""}`} onClick={()=>changeSortByBtns("***")} >BEST</a>
             </div>
-            :
-            <select value={location.pathname=="/favorites"?sortByFavs:location.pathname=="/shoppingcart"?sortByCart:sortBy} onChange={()=>changeSortBy(event)} name="select-sort" id="select-sort">
+            :location.pathname=="/shoppingcart"?
+            <SelectSortType mySortArray={mySortArray} sortBy={sortByCart} setSortBy={setSortByCart}/>:
+            <SelectSortType mySortArray={mySortArray} sortBy={sortByFavs} setSortBy={setSortByFavs}/>
+/*             <select value={location.pathname=="/favorites"?sortByFavs:location.pathname=="/shoppingcart"?sortByCart:sortBy} onChange={()=>changeSortBy(event)} name="select-sort" id="select-sort">
                 <option value="abc">ABC</option>
                 <option value="zyx">ZYX</option>
                 <option value="$">LOW</option>
@@ -173,6 +176,7 @@ const SelectSort = ({sortArray,setSortArray}) => {
                 <option value="*">WORST</option>
                 <option value="***">BEST</option>
             </select>
+            </> */
             }
         </>
      );

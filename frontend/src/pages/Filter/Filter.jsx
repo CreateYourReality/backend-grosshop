@@ -10,6 +10,7 @@ import {
   sortContext,
 } from "../../context/Context";
 import { useContext } from "react";
+import BackBtn3 from "../../components/BackBtn3OneBack/BackBtn3";
 const Filter = () => {
   const { categoryFilter, setCategoryFilter } = useContext(categoryContext);
   const { priceFilter, setPriceFilter } = useContext(priceContext);
@@ -41,6 +42,8 @@ const Filter = () => {
           <SelectPriceRange />
           <h2>Category</h2>
           <SelectCategory />
+          {/* todo change backbtn3 to apply btn */}
+          <BackBtn3 />
         </section>
       </main>
     </>
