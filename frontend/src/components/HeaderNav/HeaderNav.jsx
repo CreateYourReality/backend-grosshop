@@ -29,7 +29,7 @@ const HeaderNav = () => {
               <input
                 type="search"
                 className="search-bar"
-                placeholder="Search for Product1"
+                placeholder="Search for Product"
               />
               <span className="search-icon">
                 <img src={lupe} alt="lupe" />
@@ -41,6 +41,13 @@ const HeaderNav = () => {
           {/* Productlist Section*/}
           <article className="productlist-box">
             {location.pathname == "/productlist" ? <BackBtn3 /> : ""}
+            {location.pathname == "/productlist" ? (
+              <NavLink to="/filter">
+                <img src={filterPopup} alt="filter-popup" />
+              </NavLink>
+            ) : (
+              ""
+            )}
             {location.pathname == "/productlist" ? (
               <div className="headerNav-searchBox">
                 <input

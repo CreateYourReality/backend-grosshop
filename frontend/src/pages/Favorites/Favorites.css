@@ -10,11 +10,22 @@
 .favorite-selection-btns {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: space-between;
+  gap: 22vw;
+  /* width: 100%; */
+  padding: 1rem 0;
+}
+
+.favorite-selection-btns a {
+  cursor: pointer;
+}
+
+.favorite-selection-btns a:nth-child(1) {
+  width: 8rem;
 }
 
 .add-to-cart-box {
+  padding: 1rem 0 0 0;
   margin-bottom: 12rem;
 }
 
@@ -40,13 +51,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 80vh;
 }
 
-.fav-empty div {
+.fav-empty div:nth-child(1) {
   display: flex;
   justify-content: center;
-  height: 80vh;
+  height: 25rem;
 }
 
 .fav-empty a {

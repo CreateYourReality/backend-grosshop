@@ -1,11 +1,16 @@
 .product-card-amount p span {
   display: block;
   text-align: center;
+  width: 5rem;
+}
+.product-card-amount p {
+  text-align: center;
 }
 
 .detail-btn {
   border-radius: 50%;
   padding: 25px;
+  cursor: pointer;
 }
 
 .updateOrPutInCart-btn {

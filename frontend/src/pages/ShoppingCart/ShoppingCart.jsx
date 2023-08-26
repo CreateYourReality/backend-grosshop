@@ -86,54 +86,59 @@ const ShoppingCart = () => {
     <>
       <HeaderNav />
       <main>
-        {user?
-        <section className="shoppingCart-section">
-        {<SelectSort setSortArray={setUserShoppingCart} sortArray={userShoppingCart}/>}
-          {userShoppingCart ? (
-            userShoppingCart.length != 0 ? (
-              <>
-                <div className="favorite-selection-btns">
-                  <a onClick={selectAll}>{selectAllText}</a>
-                  <a onClick={deleteSelectedShoppingItems}>
-                    <img src={trash} alt="delete" />
-                  </a>
-                </div>
-                {userShoppingCart.map((cartItem, index) => (
-                  <article key={index}>
+        {user ? (
+          <section className="shoppingCart-section">
+            {userShoppingCart ? (
+              userShoppingCart.length != 0 ? (
+                <>
+                  <div className="favorite-selection-btns">
+                    <a onClick={selectAll}>{selectAllText}</a>
                     {
-                      <ProductCard
-                        isSelected={isSelected}
-                        setSelectedCartItems={setSelectedCartItems}
-                        product={findShoppingItemBy(cartItem.id)}
+                      <SelectSort
+                        setSortArray={setUserShoppingCart}
+                        sortArray={userShoppingCart}
                       />
                     }
-
-                  </article>
-                ))}
-              </>
+                    <a onClick={deleteSelectedShoppingItems}>
+                      <img src={trash} alt="delete" />
+                    </a>
+                  </div>
+                  {userShoppingCart.map((cartItem, index) => (
+                    <article key={index}>
+                      {
+                        <ProductCard
+                          isSelected={isSelected}
+                          setSelectedCartItems={setSelectedCartItems}
+                          product={findShoppingItemBy(cartItem.id)}
+                        />
+                      }
+                    </article>
+                  ))}
+                </>
+              ) : (
+                <article className="cart-empty">
+                  <div>
+                    <img src={cartEmpty} alt="cart-empty" />
+                  </div>
+                  <NavLink to="/home">Start Shopping </NavLink>
+                </article>
+              )
             ) : (
-              <article className="cart-empty">
-                <div>
-                  <img src={cartEmpty} alt="cart-empty" />
-                </div>
-                <NavLink to="/home">Start Shopping </NavLink>
-              </article>
-            )
-          ) : (
-            <p>loading shopping items...</p>
-          )}
+              <p>loading shopping items...</p>
+            )}
 
-          {userShoppingCart.length !== 0 ? (
-            <section className="checkOut-section">
-              <TotalCost />
-            </section>
-          ) : null}
-        </section>
-        :
-        <NoFeature />
-        }
+            {userShoppingCart.length !== 0 ? (
+              <section className="checkOut-section">
+                <TotalCost />
+              </section>
+            ) : null}
+          </section>
+        ) : (
+          <NoFeature />
+        )}
       </main>
-      {userShoppingCart.length !== 0 && <FooterNav />}
+      <FooterNav />
+      {/* {userShoppingCart.length !== 0 && <FooterNav />} Alternative */}
     </>
   );
 };

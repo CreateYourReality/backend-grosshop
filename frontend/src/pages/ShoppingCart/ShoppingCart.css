@@ -6,29 +6,26 @@
   min-height: 80vh;
   gap: 1rem;
 }
-
-.favorite-selection-btns a {
-  cursor: pointer;
-}
+/* ! favorite-selection-btn siehe unter Favorites.css */
 
 .cart-empty {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 80vh;
 }
 
 .cart-empty div {
   display: flex;
   justify-content: center;
-  height: 80vh;
+  height: 25rem;
 }
 
 .cart-empty a {
   cursor: pointer;
-  border-radius: 0.5rem;
-  padding: 1rem 5rem;
+  border-radius: 1rem;
+  padding: 1rem 2.5rem;
   font-size: 1.8rem;
   color: var(--white-color);
   background: var(--main-green-color);
@@ -40,4 +37,8 @@
 
 .cart-empty a:active {
   background: var(--signUp-bg-color);
+}
+
+.checkOut-section {
+  height: 30vh;
 }
