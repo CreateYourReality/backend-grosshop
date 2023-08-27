@@ -3,7 +3,7 @@ import trash from "../../assets/img/trash.svg";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import { useContext } from "react";
-import { userShoppingCartContext, dataContext } from "../../context/Context";
+import { userShoppingCartContext, dataContext, favoritesContext } from "../../context/Context";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { useState, useEffect } from "react";
 import TotalCost from "../../components/TotalCost/TotalCost";
@@ -17,11 +17,13 @@ import NoFeature from "../../components/nofeature/Nofeature";
 
 const ShoppingCart = () => {
   const { data } = useContext(dataContext);
+  const {setFavorites} = useContext(favoritesContext)
   const { userShoppingCart, setUserShoppingCart } = useContext(
     userShoppingCartContext
   );
 
   const { user, refetch } = useContext(UserContext);
+  
 
   const { selectedCartItems, setSelectedCartItems } = useContext(
     selectedCartItemsContext
@@ -80,6 +82,7 @@ const ShoppingCart = () => {
     refetch()
     if (user) {
       setUserShoppingCart(user.ProductCart)
+      setFavorites(user.favProducts)
     }
   },[]) 
   return (

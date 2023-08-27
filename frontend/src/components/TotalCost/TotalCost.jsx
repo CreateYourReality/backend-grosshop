@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./TotalCost.css";
 import {
   dataContext,
@@ -42,12 +42,6 @@ const TotalCost = () => {
         console.log("CHECKOUT CART ITEMS");
         //wenn alle oder nix selected dann userShoppingcart checkout
         if(userShoppingCart.length == selectedCartItems.length || selectedCartItems.length == 0){
-          console.log("checkout all");
-            console.log(userShoppingCart);
-            console.log(userShoppingCart.map(item => ({
-              id:item._id,
-              amount:item.amount
-            })))
             await axios.post("/api/orders/", {products:userShoppingCart.map(item => ({
               id:item._id,
               amount:item.amount
@@ -64,8 +58,41 @@ const TotalCost = () => {
             setUserShoppingCart([])
             setSelectedCartItems([])
         }else{ //wenn einzelne ausgewählt dann nur die einzelnen checkout
-            await axios.post("/api/orders/", selectedCartItems) //TODO
-        }
+                
+          console.log(userShoppingCart);
+          console.log(selectedCartItems);
+          
+          const deleteArray = userShoppingCart.filter(item => selectedCartItems.includes(item.id));
+
+
+                console.log(deleteArray);
+
+          //TODO           
+          await axios.post("/api/orders/", {
+            products: userShoppingCart.filter(item => selectedCartItems.includes(item.id)
+              ).map(item => ({
+                id: item._id,
+                amount: item.amount
+              })),
+            user: user,
+            invoice: updateSelectedCost()
+          });
+
+     
+
+          //TODO jedes sekected item was in shoppingcart vorkommt
+          deleteArray.forEach(async cartItem => {
+            try {
+              await axios.put(`/api/users/deleteUserProductCart/${user._id}`, {
+                id: cartItem.id,
+              });
+            } catch (e) {
+              console.log(e);
+            }
+          });
+
+          setUserShoppingCart(userShoppingCart.filter(item => !deleteArray.includes(item)))
+          setSelectedCartItems([])        }
   };
 
   return (
@@ -73,11 +100,11 @@ const TotalCost = () => {
       {selectedCartItems.length == 0 ||
       selectedCartItems.length == userShoppingCart.length ? (
         <button onClick={checkoutCartItems}>
-          CHECKOUT - Total ${updateTotalCost()}
+          CHECKOUT - Total ${updateTotalCost().toFixed(2)}
         </button>
       ) : (
         <button onClick={checkoutCartItems}>
-          CHECKOUT - Selected ${updateSelectedCost()}
+          CHECKOUT - Selected ${updateSelectedCost().toFixed(2)}
         </button>
       )}
     </section>

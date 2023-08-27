@@ -237,7 +237,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
               ) : tempShoppingCartItem ? (
                 detailProduct == "/detailproduct" ? ( //TODO * weight
                   <>
-                    {Math.round(tempShoppingCartItem.amount * product.rating)}
+                    {(tempShoppingCartItem.amount * product.weight).toFixed(1)}
                     {detailProduct == "/detailproduct"
                       ? "KG"
                       : location.pathname == "/favorites"

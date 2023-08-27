@@ -20,6 +20,7 @@ import NoFeature from "../../components/nofeature/Nofeature";
 const Favorites = () => {
   const { data } = useContext(dataContext);
   const { favorites, setFavorites } = useContext(favoritesContext);
+  
   const { userShoppingCart, setUserShoppingCart } = useContext(
     userShoppingCartContext
   );

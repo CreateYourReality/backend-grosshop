@@ -6,6 +6,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import deals from "../../assets/img/deals.png"
 import deals2 from "../../assets/img/deals2.png"
 import { UserContext } from "../../context/UserContext";
+import { searchContext } from "../../context/Context";
 
 
 const ProductListComponente = () => {
@@ -15,6 +16,7 @@ const ProductListComponente = () => {
     const [filteredData,setFilteredData] = useState(data)
     const {user, refetch} = useContext(UserContext)
     const {setFavorites} = useContext(favoritesContext)
+    const {searchfield, setSearchfield} = useContext(searchContext)
 
     useEffect(() => {
         let newFilteredData = data;
@@ -88,13 +90,20 @@ const ProductListComponente = () => {
 
             <section className="product-list">
               {data && location.pathname == "/productlist"? 
-                filteredData.map((product,index) => {
-                    return(
-                        <ProductCard key={index} product={product}/>
-                    )
-                })
-                : <p>fetch data...</p>
-            }
+             //   filteredData.filter(filtered => filtered.prodctName.includes(searchfield)).map((product,index) => {
+              //      return(
+              //          <ProductCard key={index} product={product}/>
+             //       )
+           //     })
+           filteredData
+           .filter(filtered => filtered.productName.toLowerCase().includes(searchfield))
+           .map((product, index) => (
+               <ProductCard key={index} product={product} />
+           ))
+               : <p>fetch data...</p>
+
+    
+           }
             </section>
         </>
      );

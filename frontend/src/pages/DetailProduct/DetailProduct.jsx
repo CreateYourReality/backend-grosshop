@@ -96,7 +96,7 @@ const DetailProduct = () => {
               <div className="detailProduct-image">
                 <img src="" alt="" />
               </div>
-              <p className="detailProduct-weight">{product.rating}kg</p>
+              <p className="detailProduct-weight">{product.weight}kg</p>
               <p className="detailProduct-price">${product.price}</p>
               <p className="detailProduct-name">{product.productName}</p>
               <p className="detailProduct-rating">

@@ -4,13 +4,20 @@ import BackBtn3 from "../BackBtn3OneBack/BackBtn3"; // navigation ein Schritt zu
 import filterPopup from "../../assets/img/filterPopup.svg";
 import { NavLink, useLocation } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { useContext } from "react";
 import lupe from "../../assets/img/lupe.svg";
+import { useContext } from "react";
+import { searchContext } from "../../context/Context";
 
 const HeaderNav = () => {
   const { isLoggedIn, logout } = useContext(UserContext);
   const location = useLocation();
   const detailProduct = "/" + location.pathname.split("/")[1];
+  const {searchfield, setSearchfield} = useContext(searchContext)
+
+
+  const handleSearchField = (event) => {
+    setSearchfield(event.target.value.toLowerCase()) 
+  }
 
   return (
     <>
@@ -27,9 +34,11 @@ const HeaderNav = () => {
           {location.pathname == "/home" ? (
             <div className="headerNav-searchBox">
               <input
+                onChange={handleSearchField}
                 type="search"
                 className="search-bar"
                 placeholder="Search for Product"
+                value={searchfield}
               />
               <span className="search-icon">
                 <img src={lupe} alt="lupe" />
@@ -51,9 +60,11 @@ const HeaderNav = () => {
             {location.pathname == "/productlist" ? (
               <div className="headerNav-searchBox">
                 <input
+                onChange={handleSearchField}
                   type="search"
                   className="search-bar"
                   placeholder="Search for Product"
+                  value={searchfield}
                 />
                 <span className="search-icon">
                   <img src={lupe} alt="lupe" />
