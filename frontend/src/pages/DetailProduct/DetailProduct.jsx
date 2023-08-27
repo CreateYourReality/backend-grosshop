@@ -94,7 +94,7 @@ const DetailProduct = () => {
           {product ? (
             <>
               <div className="detailProduct-image">
-                <img src="" alt="" />
+                <img src={product.image.url} alt="" />
               </div>
               <p className="detailProduct-weight">{product.rating}kg</p>
               <p className="detailProduct-price">${product.price}</p>

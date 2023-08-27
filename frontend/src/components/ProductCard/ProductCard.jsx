@@ -134,7 +134,7 @@ const ProductCard = ({ product, setSelectedCartItems, isSelected }) => {
                 ? "productCard-wrapper-home"
                 : "productCard-wrapper-cartFavorite"
             }`}>
-            <img src={placeholderImg} alt="placeholderImg" />
+            <img src={product.image.url} alt="placeholderImg" />
             <div className="product-card-details">
               <Link to={"/detailproduct/" + productID}>
                 <h3>{product.productName}</h3>
