@@ -5,10 +5,10 @@ import { categoryContext } from "../../context/Context"
 const SelectCategory = () => {
     const {categoryFilter, setCategoryFilter} = useContext(categoryContext)
 
-    const categoryList = ["All","Meat","Animal","Vegetable","Legume","Drupe","Herbs"]
+    const categoryList = ["All","Meat","Fruits","Vegetables","Seafood","Bread","MilkEgg"]
 
     const selectCategory = (event) => {
-        setCategoryFilter(event.target.text)
+        setCategoryFilter(event.target.text == "Milk & Egg"?"MilkEgg":event.target.text)
     }
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const SelectCategory = () => {
                     location.pathname == "/filter"?
                         "active-filter"
                         :"active"
-                    : null}`} onClick={selectCategory} key={index}>{category}</a>
+                    : null}`} onClick={selectCategory} key={index}>{category=="MilkEgg"?"Milk & Egg":category}</a>
                 })}
             </section>
         </>

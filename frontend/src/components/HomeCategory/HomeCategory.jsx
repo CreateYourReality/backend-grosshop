@@ -17,9 +17,9 @@ const HomeCategory = () => {
       <section className="home-category-section">
         <Link to="/productlist">
           <img
-            onClick={() => setCategoryFilter("Vegetable")}
+            onClick={() => setCategoryFilter("Vegetables")}
             src={veggetableImg}
-            alt="vegetable"
+            alt="vegetables"
           />
         </Link>
         <Link to="/productlist">
@@ -31,9 +31,9 @@ const HomeCategory = () => {
         </Link>
         <Link to="/productlist">
           <img
-            onClick={() => setCategoryFilter("Animal")}
+            onClick={() => setCategoryFilter("Fruits")}
             src={animalImg}
-            alt="animal"
+            alt="fruits"
           />
         </Link>
         <Link to="/productlist">

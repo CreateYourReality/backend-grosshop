@@ -43,6 +43,7 @@ const ShoppingCart = () => {
         console.log(e);
       }
     });
+    refetch();
     setUserShoppingCart(updatedShoppingItems);
     setSelectedCartItems([]);
   };
@@ -69,7 +70,7 @@ const ShoppingCart = () => {
     } else {
       setSelectAllText("SELECT ALL");
     }
-  }, [selectedCartItems]);
+  }, [selectedCartItems, userShoppingCart, selectAllText]);
 
   const findShoppingItemBy = (favID) => {
     return data.find((favoriteItem) => favoriteItem._id === favID);

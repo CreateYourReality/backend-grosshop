@@ -16,7 +16,7 @@ const TotalCost = () => {
     selectedCartItemsContext
   );
   const { data } = useContext(dataContext);
-  const { user } = useContext(UserContext);
+  const { user,refetch } = useContext(UserContext);
 
   const updateTotalCost = () => {
     return userShoppingCart.reduce((total, cartItem) => {
@@ -59,6 +59,7 @@ const TotalCost = () => {
                 console.log(e);
               }
             });
+            refetch();
             setUserShoppingCart([])
             setSelectedCartItems([])
         }else{ //wenn einzelne ausgewählt dann nur die einzelnen checkout
@@ -94,7 +95,7 @@ const TotalCost = () => {
               console.log(e);
             }
           });
-
+          refetch();
           setUserShoppingCart(userShoppingCart.filter(item => !deleteArray.includes(item)))
           setSelectedCartItems([])        }
   };

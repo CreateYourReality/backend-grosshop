@@ -61,6 +61,7 @@ const Favorites = () => {
         console.log(e);
       }
     });
+    refetch()
     setFavorites(updatedFavorites);
     setSelectedFavs([]);
   };
