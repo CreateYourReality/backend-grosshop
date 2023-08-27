@@ -15,7 +15,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
   const [tempShoppingCartItem, setTempShoppingCartItem] = useState(undefined);
   const [updateTotal, setUpdateTotal] = useState(false); //toogle refresher
   const [stop, setStop] = useState(false);
-  const {user, refetch} = useContext(UserContext)
+  const { user, refetch } = useContext(UserContext);
   const findShoppingItemBy = (prodID) => {
     return userShoppingCart.find((cartItem) => cartItem._id === prodID);
   };
@@ -90,16 +90,18 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
 
   const increaseAmountFav = (incOrDecrement) => {
     //console.log(favItem);
-    favItem.amount = favItem.amount + incOrDecrement <= 0
-    ? 1 : favItem.amount + incOrDecrement
+    favItem.amount =
+      favItem.amount + incOrDecrement <= 0
+        ? 1
+        : favItem.amount + incOrDecrement;
 
     setFavorites((prevFavorites) => {
       return prevFavorites.map((fav) => {
         if (fav.id === product._id) {
-        //axios
+          //axios
 
-         const updateCount = favItem.amount
-         //updateFavs(fav.id, updateCount);
+          const updateCount = favItem.amount;
+          //updateFavs(fav.id, updateCount);
           return {
             ...fav,
             amount: updateCount,
@@ -140,30 +142,28 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
   }, [tempShoppingCartItem]);
 
   useEffect(() => {
-    refetch()
+    refetch();
     const foundCartItem = user?.ProductCart.find(
-    (cartItem) => cartItem.id === product._id
+      (cartItem) => cartItem.id === product._id
     );
     //console.log(user);
     //console.log(foundCartItem);
     //console.log(user);
-    if(foundCartItem){
-    setShoppingCartItem(foundCartItem);
+    if (foundCartItem) {
+      setShoppingCartItem(foundCartItem);
 
-    // keine ahnung warum +1 need maybe fix
-    setTempShoppingCartItem({
-      id: product._id,
-      amount: foundCartItem?.amount +1,
-    }); 
-  } else {
-
-    setTempShoppingCartItem({
-      id: product._id,
-      amount: 1,
-    }); 
-  }
-
-  },[])
+      // keine ahnung warum +1 need maybe fix
+      setTempShoppingCartItem({
+        id: product._id,
+        amount: foundCartItem?.amount + 1,
+      });
+    } else {
+      setTempShoppingCartItem({
+        id: product._id,
+        amount: 1,
+      });
+    }
+  }, []);
 
   //TODO added gerade n neues obj
 
@@ -183,7 +183,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
         });
         return [...updatedCart];
       });
-      refetch()
+      refetch();
     } catch (e) {
       // Fehlerbehandlung hier
       console.error(e);
@@ -214,7 +214,9 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
         detailProduct == "/detailproduct" ? (
           <div
             className={`product-card-amount ${
-              detailProduct == "/detailproduct" ? "detail-amount" : ""
+              detailProduct == "/detailproduct"
+                ? "detail-amount"
+                : "cart-favorite-amount"
             }`}>
             <button
               className={detailProduct == "/detailproduct" ? "detail-btn" : ""}
@@ -243,7 +245,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                       : location.pathname == "/favorites"
                       ? ""
                       : ""}
-                    <span>{"$"+tempShoppingCartItem.amount}</span>
+                    <span>{"$" + tempShoppingCartItem.amount}</span>
                   </>
                 ) : (
                   tempShoppingCartItem.amount
@@ -297,8 +299,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
               PUT IN CART
             </button>
           )
-        ) : 
-            null}
+        ) : null}
       </div>
     </>
   );

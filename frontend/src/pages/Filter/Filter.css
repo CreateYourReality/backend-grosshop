@@ -24,3 +24,28 @@
   margin-top: 25px;
   margin-bottom: 5px;
 }
+
+.applyBtn-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15rem;
+}
+
+.applyBtn-box button {
+  color: var(--h-tag-btn-color);
+  background-color: rgb(184, 226, 184);
+  padding: 1rem 6rem;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.applyBtn-box button:hover {
+  color: var(--white-color);
+  background-color: var(--main-green-color);
+}
+.applyBtn-box button:active {
+  background: var(--signUp-bg-color);
+  color: var(--h-tag-btn-color);
+}

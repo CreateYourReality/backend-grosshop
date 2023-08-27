@@ -20,6 +20,10 @@
 	gap: 1rem;
 }
 
+/* .welcome-svgBox {
+  margin: 0 3rem 0 0;
+} */
+
 .welcome-textBox {
 	display: flex;
 	flex-direction: column;
