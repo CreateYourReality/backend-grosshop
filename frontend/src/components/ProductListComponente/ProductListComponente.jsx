@@ -17,19 +17,21 @@ const ProductListComponente = () => {
     const {setFavorites} = useContext(favoritesContext)
 
     useEffect(() => {
-        let newFilteredData = data;
-        if(categoryFilter != "All"){
-            const filteredByCategory =  newFilteredData.filter(filtered => filtered.category == categoryFilter)
-            newFilteredData = filteredByCategory;
+        if(data) {
+            let newFilteredData = data;
+            if(categoryFilter != "All"){
+                const filteredByCategory =  newFilteredData.filter(filtered => filtered.category == categoryFilter)
+                newFilteredData = filteredByCategory;
+            }
+                const filteredByPrice = newFilteredData.filter(filtered => 
+                    filtered.price >= priceFilter.min && 
+                    filtered.price <= priceFilter.max
+                )
+    
+                newFilteredData = filteredByPrice
+                setFilteredData(newFilteredData)
+             
         }
-            const filteredByPrice = newFilteredData.filter(filtered => 
-                filtered.price >= priceFilter.min && 
-                filtered.price <= priceFilter.max
-            )
-
-            newFilteredData = filteredByPrice
-            setFilteredData(newFilteredData)
-        
     },[data,categoryFilter,priceFilter])
 
     useEffect(()=>{
