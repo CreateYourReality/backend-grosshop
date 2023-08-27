@@ -11,11 +11,18 @@ import {
 } from "../../context/Context";
 import { useContext } from "react";
 import BackBtn3 from "../../components/BackBtn3OneBack/BackBtn3";
+import { useNavigate } from "react-router-dom";
+
 const Filter = () => {
   const { categoryFilter, setCategoryFilter } = useContext(categoryContext);
   const { priceFilter, setPriceFilter } = useContext(priceContext);
   const { sortBy, setSortBy } = useContext(sortContext);
   const { data, setData } = useContext(dataContext);
+  const navigate = useNavigate();
+
+  const navigateOneBack = () => {
+    navigate(-1);
+  };
 
   //TODO REMOVE SORTBY FEHLT, SORT UNSORTED HINZUFÜGEN?
 
@@ -43,7 +50,9 @@ const Filter = () => {
           <h2>Category</h2>
           <SelectCategory />
           {/* todo change backbtn3 to apply btn */}
-          <BackBtn3 />
+          <article className="applyBtn-box">
+            <button onClick={navigateOneBack}>Apply</button>
+          </article>
         </section>
       </main>
     </>

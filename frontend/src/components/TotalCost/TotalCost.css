@@ -5,9 +5,11 @@
 
 .totalCost-section button {
   cursor: pointer;
-  border-radius: 0.5rem;
-  padding: 1rem 5rem;
-  font-size: 1.2rem;
+  border-radius: 1rem;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.5rem;
+  width: 28rem;
+  font-family: poppins-regular;
   color: var(--white-color);
   background: var(--main-green-color);
 }

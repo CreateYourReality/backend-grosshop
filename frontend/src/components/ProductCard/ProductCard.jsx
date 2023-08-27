@@ -10,13 +10,11 @@ import { UserContext } from "../../context/UserContext";
 import star from "../../assets/img/star.svg";
 import placeholderImg from "../../assets/img/testimg.svg";
 //{product,setSelectedFavs,setSelectedCartItems,isSelected,test}
-const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
-
-  const {favorites, setFavorites} = useContext(favoritesContext)
-  const [favItem, setFavItem] = useState(undefined)
-  const {user, refetch} = useContext(UserContext)
-  const {selectedFavs, setSelectedFavs} = useContext(selectedFavsContext)
-
+const ProductCard = ({ product, setSelectedCartItems, isSelected }) => {
+  const { favorites, setFavorites } = useContext(favoritesContext);
+  const [favItem, setFavItem] = useState(undefined);
+  const { user, refetch } = useContext(UserContext);
+  const { selectedFavs, setSelectedFavs } = useContext(selectedFavsContext);
 
   let isThisProductSelected = false;
   const productID = product._id;
@@ -73,14 +71,14 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
   };
 
   const toggleFavorite = () => {
-      if(favItem != undefined && favItem.id == productID) {
-        removeFromFavorites(favItem.id)
-        setFavItem(undefined)
-      }else{
-      addToFavorites({id:productID,amount:1})
-      }
-      refetch();
+    if (favItem != undefined && favItem.id == productID) {
+      removeFromFavorites(favItem.id);
+      setFavItem(undefined);
+    } else {
+      addToFavorites({ id: productID, amount: 1 });
     }
+    refetch();
+  };
 
   const handleCheckbox = () => {
     locationIsFavorites()
@@ -134,9 +132,9 @@ const ProductCard = ({product,setSelectedCartItems,isSelected}) => {
               location.pathname == "/home" ||
               location.pathname == "/productlist"
                 ? "productCard-wrapper-home"
-                : ""
+                : "productCard-wrapper-cartFavorite"
             }`}>
-            <img src={placeholderImg} alt="placeholderImg" />
+            <img src={product.image.url} alt="placeholderImg" />
             <div className="product-card-details">
               <Link to={"/detailproduct/" + productID}>
                 <h3>{product.productName}</h3>

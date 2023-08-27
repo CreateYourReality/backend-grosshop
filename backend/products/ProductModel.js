@@ -37,7 +37,7 @@ export const productSchema = new mongoose.Schema({
 			if (this.price && this.memberDiscount) {
 				return this.price - this.price * (this.memberDiscount / 100);
 			} else {
-				return null;
+				return 9999;
 			}
 		},
 	},

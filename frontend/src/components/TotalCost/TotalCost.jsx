@@ -9,12 +9,14 @@ import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 
 const TotalCost = () => {
-  const {setUserShoppingCart,  userShoppingCart } = useContext(userShoppingCartContext);
+  const { setUserShoppingCart, userShoppingCart } = useContext(
+    userShoppingCartContext
+  );
   const { selectedCartItems, setSelectedCartItems } = useContext(
     selectedCartItemsContext
   );
   const { data } = useContext(dataContext);
-    const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
 
   const updateTotalCost = () => {
     return userShoppingCart.reduce((total, cartItem) => {
@@ -24,18 +26,20 @@ const TotalCost = () => {
     }, 0);
   };
 
-    const updateSelectedCost = () => {
-      return selectedCartItems.reduce((total, cartItem) => {
-          const cartProduct = data.find(prod => prod._id == cartItem);
-          if (cartProduct) {
-              const cartAmount = userShoppingCart.find(cartItem => cartItem.id == cartProduct._id).amount;
-              const itemTotal = cartProduct.price * cartAmount
-              return total + itemTotal;
-          } else {
-              return total;
-          }
-      }, 0);
-  }
+  const updateSelectedCost = () => {
+    return selectedCartItems.reduce((total, cartItem) => {
+      const cartProduct = data.find((prod) => prod._id == cartItem);
+      if (cartProduct) {
+        const cartAmount = userShoppingCart.find(
+          (cartItem) => cartItem.id == cartProduct._id
+        ).amount;
+        const itemTotal = cartProduct.price * cartAmount;
+        return total + itemTotal;
+      } else {
+        return total;
+      }
+    }, 0);
+  };
 
     //TODO CHECKOUT
     const checkoutCartItems = async () => {
@@ -100,11 +104,11 @@ const TotalCost = () => {
       {selectedCartItems.length == 0 ||
       selectedCartItems.length == userShoppingCart.length ? (
         <button onClick={checkoutCartItems}>
-          CHECKOUT - Total ${updateTotalCost().toFixed(2)}
+          Check Out - Total ${updateTotalCost().toFixed(2)}
         </button>
       ) : (
         <button onClick={checkoutCartItems}>
-          CHECKOUT - Selected ${updateSelectedCost().toFixed(2)}
+          Check Out - Selected ${updateSelectedCost().toFixed(2)}
         </button>
       )}
     </section>

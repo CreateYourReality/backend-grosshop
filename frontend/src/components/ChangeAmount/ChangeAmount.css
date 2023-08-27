@@ -6,6 +6,20 @@
 .product-card-amount p {
   text-align: center;
 }
+/* Styling for ShoopingCart and Favorite Page */
+.cart-favorite-amount {
+  margin: 0 -2.5rem 0 0;
+}
+
+.cart-favorite-amount button {
+  border-radius: 20%;
+  cursor: pointer;
+}
+
+.cart-favorite-amount p {
+  width: 3rem;
+  font-size: 1.3rem;
+}
 
 .detail-btn {
   border-radius: 50%;

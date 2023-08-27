@@ -19,19 +19,21 @@ const ProductListComponente = () => {
     const {searchfield, setSearchfield} = useContext(searchContext)
 
     useEffect(() => {
-        let newFilteredData = data;
-        if(categoryFilter != "All"){
-            const filteredByCategory =  newFilteredData.filter(filtered => filtered.category == categoryFilter)
-            newFilteredData = filteredByCategory;
+        if(data) {
+            let newFilteredData = data;
+            if(categoryFilter != "All"){
+                const filteredByCategory =  newFilteredData.filter(filtered => filtered.category == categoryFilter)
+                newFilteredData = filteredByCategory;
+            }
+                const filteredByPrice = newFilteredData.filter(filtered => 
+                    filtered.price >= priceFilter.min && 
+                    filtered.price <= priceFilter.max
+                )
+    
+                newFilteredData = filteredByPrice
+                setFilteredData(newFilteredData)
+             
         }
-            const filteredByPrice = newFilteredData.filter(filtered => 
-                filtered.price >= priceFilter.min && 
-                filtered.price <= priceFilter.max
-            )
-
-            newFilteredData = filteredByPrice
-            setFilteredData(newFilteredData)
-        
     },[data,categoryFilter,priceFilter])
 
     useEffect(()=>{
@@ -44,12 +46,12 @@ const ProductListComponente = () => {
     return ( 
         <>
             {location.pathname == "/home" ?<h2 className="groceryDeal">Today Grocery Deals</h2>:""}
-            <section className="product-list deal-list">
+            <section id="deal" className="product-list deal-list">
     {data ? (
         data.length > 0 ? (
             <>
                 {data
-                    .filter(product => product.price > 0) //TODO isDeal
+                    .filter(product => product.isDeal) //TODO isDeal
                     .slice(0, 6)
                     .map((product, index) => (
                         <ProductCard key={index} product={product} />
@@ -69,12 +71,12 @@ const ProductListComponente = () => {
 
 
 {location.pathname == "/home" ?<h2 className="groceryDeal">Today Grocery Member Deals</h2>:""}
-            <section className="product-list deal-list">
+            <section id="memberDeal" className="product-list deal-list">
     {data && location.pathname == "/home"? (
         data.length > 0 ? (
             <>
                 {data
-                    .filter(product => product.price > 0) //TODO isMemberDeal
+                    .filter(product => product.isMemberDeal) //TODO isMemberDeal
                     .slice(0, 3)
                     .map((product, index) => (
                         <ProductCard key={index} product={product} />
@@ -88,6 +90,7 @@ const ProductListComponente = () => {
     )}
 </section>
 
+            {data && location.pathname == "/productlist"? 
             <section className="product-list">
               {data && location.pathname == "/productlist"? 
              //   filteredData.filter(filtered => filtered.prodctName.includes(searchfield)).map((product,index) => {
@@ -105,6 +108,8 @@ const ProductListComponente = () => {
     
            }
             </section>
+                : null
+            }
         </>
      );
 }
