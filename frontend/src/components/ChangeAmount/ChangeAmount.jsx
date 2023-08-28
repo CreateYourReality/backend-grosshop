@@ -196,6 +196,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     };
     try {
       await axios.put(`/api/users/updateUserProductCart/${user._id}`, obj);
+      refetch();
     } catch (e) {
       //   console.error(e);
     }

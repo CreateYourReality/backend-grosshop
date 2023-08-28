@@ -96,7 +96,7 @@ const DetailProduct = () => {
               <div className="detailProduct-image product-detail-fav-wrap">
                 <img src={product.image.url} alt="" />
                 <a className="product-detail-fav" onClick={toggleFavorite}>
-            <img
+            <img className={favItem != undefined ? "" : "empty"}
               src={favItem != undefined ? fullHearth : emtpyHearth}
               alt="hearth"
             />

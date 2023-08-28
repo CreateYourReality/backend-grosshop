@@ -18,6 +18,9 @@
 	width: 30px;
 	height: 30px;
 }
+.empty {
+	filter: contrast(0.1);
+}
 
 .detailProduct-price {
 	font-size: clamp(4rem, 4.2vw, 8rem);
