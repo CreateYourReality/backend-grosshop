@@ -76,25 +76,16 @@ const Favorites = () => {
 
   useEffect(()=>{
     refetch()
-    //console.log("fav");
-    //console.log(user);
+
     if (user) {
       setUserShoppingCart(user.ProductCart)
       setFavorites(user.favProducts)
     }
   },[]) 
 
-/*   useEffect(()=> {
-    console.log("we toggle");
-    console.log(userShoppingCart);
-    console.log(user.ProductCart);
-    if(user)
-    setFavorites(user.favProducts)
-  },[FavToggle]) */
   //TODO ADD SELECTED FAVS TO USER SHOPPING CART
   const addSelectedFavsToShoppingCart = () => {
     refetch()
-    console.log("HIER KÖNNTEN IHRE FAVS STEHEN");
     setFavorites(user.favProducts)
 
     //AUS SELECTED LÖSCHEN
@@ -109,11 +100,7 @@ const Favorites = () => {
       const cartItemToUpdate = favorites.find(
         (cartItem) => cartItem.id === selectedFavID
       );
-      //console.log(favorites);
-      //setFavorites(user.favProducts)
-      //setFavToggle((prev)=> !prev)
-      //console.log("hi");
-//console.log(cartItemToUpdate);
+
       if (cartItemToUpdate) {        
         const ItemToUpdate = // actualler state + neuer state
         user.ProductCart.find((favItem) => favItem.id === selectedFavID);
@@ -128,16 +115,13 @@ const Favorites = () => {
           newCartItem,
         ]); */
 /*         setUserShoppingCart((prev) => {
-          console.log(prev);
           return [...prev]
         }) */
 /*         setUserShoppingCart((prev)=> {
-          console.log(prev);
           const newShoppingCart = [...userShoppingCart]
           const newCart = newShoppingCart.map((productItem) => {
             if( productItem.id === cartItemToUpdate.id) {
-              console.log(productItem);
-              console.log(cartItemToUpdate);
+
               return {...productItem, amount: productItem.amount + cartItemToUpdate.amount}
             } else {
               return {... productItem}
@@ -145,20 +129,15 @@ const Favorites = () => {
           })
           return newCart
         })
-        console.log(userShoppingCart); */
-        //setResetFavItem((prev)=>!prev)
-/*         const favs = favorites.map((favorite)=> {
-          console.log(favorite.id);
+         const favs = favorites.map((favorite)=> {
           console.log(ItemToUpdate);
           if(favorite.id === ItemToUpdate[0].id) {
-            console.log("hi");
             return {...favorite, amount: 1}
           }
           else {
             return {...favorite}
           }
         }) */
-        //console.log(favs);
         
       } else {
         const selectedFav = favorites.find((fav) => fav.id === selectedFavID);

@@ -61,9 +61,6 @@ function App() {
     if (user) {
       setUserShoppingCart(user.ProductCart)
       setFavorites(user.favProducts)
-      //console.log(user);
-      //console.log(user.ProductCart);
-      //console.log(userShoppingCart);
     }
   },[])  
 

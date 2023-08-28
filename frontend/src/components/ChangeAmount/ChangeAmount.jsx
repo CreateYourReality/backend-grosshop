@@ -92,7 +92,6 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
   };
 
   const increaseAmountFav = (incOrDecrement) => {
-    //console.log(favItem);
     favItem.amount =
       favItem.amount + incOrDecrement <= 0
         ? 1
@@ -149,9 +148,6 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     const foundCartItem = user?.ProductCart.find(
       (cartItem) => cartItem.id === product._id
     );
-    //console.log(user);
-    //console.log(foundCartItem);
-    //console.log(user);
     if (foundCartItem) {
       setShoppingCartItem(foundCartItem);
 
@@ -205,7 +201,6 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
     }
     setUserShoppingCart((prevShoppingCart) => [...prevShoppingCart, obj]);
   };
-  //console.log(tempShoppingCartItem);
   return (
     <>
       {detailProduct == "/detailproduct" ? <h2>Quantity</h2> : null}

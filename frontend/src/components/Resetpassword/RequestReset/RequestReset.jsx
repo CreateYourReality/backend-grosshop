@@ -26,7 +26,6 @@ const RequestReset = () => {
           }, 1500);
           e.target.reset();
         } catch (err) {
-          //console.log(err);
           setError("Please check your Email");
           e.target.reset();
         }
