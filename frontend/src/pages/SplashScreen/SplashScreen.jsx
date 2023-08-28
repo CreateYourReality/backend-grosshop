@@ -17,13 +17,10 @@ const SplashScreen = () => {
             setData(newData.data)
         }
         refetch()
-        //console.log(user);
         if (user) {
           setUserShoppingCart(user.ProductCart)
           setFavorites(user.favProducts)
-          //console.log(user);
-          //console.log(user.ProductCart);
-          //console.log(userShoppingCart);
+
         }
         fetchData();
 	}, []);
