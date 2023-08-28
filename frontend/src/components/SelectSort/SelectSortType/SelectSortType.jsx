@@ -6,7 +6,7 @@ const SelectSortType = ({mySortArray, sortBy, setSortBy}) => {
     return ( 
         <>
         <div className='selectSortType'>
-        {/* <p className='label'>Sort by: </p> */}
+        <p className='label'>Sort by: </p>
         <div  className='dd-wrapper'>
             <div onClick={() => setVisible((prev) => !prev)} className='dd-header'>
                 <div className='dd-header-title'>

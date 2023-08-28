@@ -271,8 +271,8 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
         ) : null
       }
 
-      <div>
         {detailProduct == "/detailproduct" && tempShoppingCartItem ? (
+      <div>
           <div className="cart-icon-container">
             <img
               src={shoppingCart}
@@ -283,24 +283,24 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
               <p>{tempShoppingCartItem.amount}</p>
             </div>
           </div>
+      </div>
         ) : (
           ""
         )}
-      </div>
 
-      <div>
         {detailProduct == "/detailproduct" ? (
           shoppingCartItem ? (
+            <div>
             <button className="updateOrPutInCart-btn" onClick={updateCart}>
               UPDATE CART
-            </button>
+            </button></div>
           ) : (
+            <div>
             <button className="updateOrPutInCart-btn" onClick={putInCart}>
               PUT IN CART
-            </button>
+            </button></div>
           )
         ) : null}
-      </div>
     </>
   );
 };

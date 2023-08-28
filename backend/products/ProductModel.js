@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 export const productSchema = new mongoose.Schema({
+	category: String,
 	productName: {
 		type: String,
 		minlength: 1,
