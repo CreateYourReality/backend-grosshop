@@ -14,7 +14,7 @@ export default function SignUp() {
 
     const data = new FormData(e.currentTarget);
     try {
-      await axios.post("http://localhost:3001/api/users/signup", data);
+      await axios.post("/api/users/signup", data);
 
       setTimeout(() => {
         nav("/welcomescreen");
