@@ -156,7 +156,7 @@ const ProductCard = ({ product, setSelectedCartItems, isSelected }) => {
                 <h3>{product.productName}</h3>
                 </Link>
                 <article className="product-rating">
-                  {location.pathname == "/home" ? <><p className={product.isDeal || product.isMemberDeal?"underline":null}>${product.price}</p>{product.isDeal?<p>${product.reducedDealPrice.toFixed(2)}</p>:product.isMemberDeal?<p>${product.reducedMemberPrice.toFixed(2)}</p>:null}</> : ""}
+                  {location.pathname == "/home" ? <><div className="helper"><p className={product.isDeal || product.isMemberDeal?"underline":null}>${product.price}</p>{product.isDeal?<p>${product.reducedDealPrice.toFixed(2)}</p>:product.isMemberDeal?<p>${product.reducedMemberPrice.toFixed(2)}</p>:null}</div></> : ""}
 
                   <div>
                     <img src={star} alt="star" />

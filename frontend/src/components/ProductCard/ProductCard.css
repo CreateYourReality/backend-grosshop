@@ -100,6 +100,12 @@
 	height: 100%;
 	object-fit: cover;
 }
+.helper {
+	display: flex;
+	justify-content: space-around !important;
+	align-items: center;
+	width: 100%;
+}
 .productCard-wrapper-home .fav-a {
 	position: absolute;
 	top: 0;
@@ -160,6 +166,8 @@
 	display: flex;
 	justify-content: space-between;
 	padding: 0 5px;
+	flex-direction: column-reverse;
+	align-items: flex-start;
 }
 
 .product-rating div {

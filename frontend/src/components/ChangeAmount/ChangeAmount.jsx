@@ -89,6 +89,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
       return prevCartItem;
     });
     setUpdateTotal((prev) => !prev);
+    refetch();
   };
 
   const increaseAmountFav = (incOrDecrement) => {
@@ -201,6 +202,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
       //   console.error(e);
     }
     setUserShoppingCart((prevShoppingCart) => [...prevShoppingCart, obj]);
+    
   };
   return (
     <>
