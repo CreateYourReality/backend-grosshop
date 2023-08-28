@@ -15,7 +15,7 @@ import { selectedFavsContext } from "../../context/Context";
 import axios from "axios";
 import SelectSort from "../../components/SelectSort/SelectSort";
 import { NavLink } from "react-router-dom";
-import NoFeature from "../../components/nofeature/Nofeature";
+import NoFeature from "../../components/Nofeature/Nofeature";
 
 const Favorites = () => {
   const { data } = useContext(dataContext);

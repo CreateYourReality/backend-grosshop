@@ -13,7 +13,7 @@ import { UserContext } from "../../context/UserContext";
 import cartEmpty from "../../assets/img/cartEmpty.svg";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import NoFeature from "../../components/nofeature/Nofeature";
+import NoFeature from "../../components/Nofeature/Nofeature";
 
 const ShoppingCart = () => {
   const { data } = useContext(dataContext);

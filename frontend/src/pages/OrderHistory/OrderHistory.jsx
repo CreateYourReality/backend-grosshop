@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import OrderItem from "../../components/OrderItem/OrderItem";
-import NoFeature from "../../components/nofeature/Nofeature";
+import NoFeature from "../../components/Nofeature/Nofeature";
 
 
 const OrderHistory = () => {
