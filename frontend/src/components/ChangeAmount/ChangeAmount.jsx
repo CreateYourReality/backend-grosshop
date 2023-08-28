@@ -8,6 +8,7 @@ import axios from "axios";
 import shoppingCart from "../../assets/img/shopping-cart-small.svg";
 
 import minus from "../../assets/img/minus.png"
+import plus from "../../assets/img/plus.png"
 
 const ChangeAmount = ({ product, setFavorites, favItem }) => {
   const { userShoppingCart, setUserShoppingCart } = useContext(
@@ -231,7 +232,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                   ? increaseTempAmountCart(-1)
                   : increaseAmountCart(-1)
               }>
-              -
+              <img src={minus} alt="minus" />
             </button>
             <p>
               {location.pathname == "/favorites" ? (
@@ -267,7 +268,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                   ? increaseTempAmountCart(+1)
                   : increaseAmountCart(+1)
               }>
-              +
+              <img src={plus} alt="plus" />
             </button>
           </div>
         ) : null
