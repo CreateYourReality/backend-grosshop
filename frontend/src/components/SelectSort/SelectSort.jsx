@@ -160,10 +160,10 @@ const SelectSort = ({sortArray,setSortArray}) => {
          <div className="sortBy-btns">
                 <a className={`filter-btn ${sortBy=="abc"?"active-filter":""}`} onClick={()=>changeSortByBtns("abc")} >ABC</a>
                 <a className={`filter-btn ${sortBy=="zyx"?"active-filter":""}`} onClick={()=>changeSortByBtns("zyx")} >ZYX</a>
-                <a className={`filter-btn ${sortBy=="$"?"active-filter":""}`} onClick={()=>changeSortByBtns("$")} >LOW</a>
-                <a className={`filter-btn ${sortBy=="$$$"?"active-filter":""}`} onClick={()=>changeSortByBtns("$$$")} >HIGH</a>
-                <a className={`filter-btn ${sortBy=="*"?"active-filter":""}`} onClick={()=>changeSortByBtns("*")}>WORST</a>
-                <a className={`filter-btn ${sortBy=="***"?"active-filter":""}`} onClick={()=>changeSortByBtns("***")} >BEST</a>
+                <a className={`filter-btn ${sortBy=="$"?"active-filter":""}`} onClick={()=>changeSortByBtns("$")} >Price low</a>
+                <a className={`filter-btn ${sortBy=="$$$"?"active-filter":""}`} onClick={()=>changeSortByBtns("$$$")} >Price high</a>
+                <a className={`filter-btn ${sortBy=="*"?"active-filter":""}`} onClick={()=>changeSortByBtns("*")}>Worst rating</a>
+                <a className={`filter-btn ${sortBy=="***"?"active-filter":""}`} onClick={()=>changeSortByBtns("***")} >Best rating</a>
             </div>
             :location.pathname=="/shoppingcart"?
             <SelectSortType mySortArray={mySortArray} sortBy={sortByCart} setSortBy={setSortByCart}/>:

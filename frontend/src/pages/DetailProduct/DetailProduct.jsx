@@ -108,7 +108,7 @@ const DetailProduct = () => {
               </div>
             </>
           ) : null}
-          <a href="#" onClick={toggleFavorite}>
+          <a onClick={toggleFavorite}>
             <img
               src={favItem != undefined ? fullHearth : emtpyHearth}
               alt="hearth"

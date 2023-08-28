@@ -77,3 +77,10 @@
 .fav-empty a:active {
   background: var(--signUp-bg-color);
 }
+
+.select-btn{
+  color:var(--main-green-color, #40aa54);
+  font-size: 1rem;
+  line-height: 2rem;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}

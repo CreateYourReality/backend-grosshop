@@ -96,7 +96,7 @@ const ShoppingCart = () => {
               userShoppingCart.length != 0 ? (
                 <>
                   <div className="favorite-selection-btns">
-                    <a onClick={selectAll}>{selectAllText}</a>
+                    <a className="select-btn" onClick={selectAll}>{selectAllText}</a>
                     {
                       <SelectSort
                         setSortArray={setUserShoppingCart}

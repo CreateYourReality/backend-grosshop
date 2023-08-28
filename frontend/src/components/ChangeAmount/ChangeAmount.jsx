@@ -7,6 +7,8 @@ import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import shoppingCart from "../../assets/img/shopping-cart-small.svg";
 
+import minus from "../../assets/img/minus.png"
+
 const ChangeAmount = ({ product, setFavorites, favItem }) => {
   const { userShoppingCart, setUserShoppingCart } = useContext(
     userShoppingCartContext
@@ -205,7 +207,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
   //console.log(tempShoppingCartItem);
   return (
     <>
-      {detailProduct == "/detailproduct" ? <h2>QUANTITY</h2> : null}
+      {detailProduct == "/detailproduct" ? <h2>Quantity</h2> : null}
 
       {
         // Wenn Favoriten oder ShoppingCart Page >> Füge - + hinzu

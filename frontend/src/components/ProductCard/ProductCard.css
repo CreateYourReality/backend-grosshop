@@ -112,7 +112,9 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 30%;
+  width: 100%;
+  font-size: 3rem;
+
 }
 
 .productCard-wrapper-home .product-rating {
@@ -131,7 +133,7 @@
   font-size: clamp(2rem, 3vw, 5rem);
   background-color: white;
   border: gray 2px solid;
-  color: green;
+  color: var(--p-tag-color);
   width: 38px;
   height: 30px;
   display: flex;
