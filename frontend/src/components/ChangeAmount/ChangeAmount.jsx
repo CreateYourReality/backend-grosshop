@@ -277,7 +277,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
               className="cart-icon"
             />
             <div className="cart-item-count">
-              <p>{tempShoppingCartItem.amount}</p>
+              <p>{shoppingCartItem.amount}</p>
             </div>
           </div>
       </div>
