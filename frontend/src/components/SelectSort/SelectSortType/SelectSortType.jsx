@@ -5,7 +5,7 @@ const SelectSortType = ({mySortArray, sortBy, setSortBy}) => {
     const [visible, setVisible] = useState(false)
     return ( 
         <>
-        <div className='selectSortType'>
+        <div className='g'>
         <p className='label'>Sort by: </p>
         <div  className='dd-wrapper'>
             <div onClick={() => setVisible((prev) => !prev)} className='dd-header'>

@@ -232,8 +232,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                   ? increaseTempAmountCart(-1)
                   : increaseAmountCart(-1)
               }>
-              <img src={minus} alt="minus" />
-            </button>
+-            </button>
             <p>
               {location.pathname == "/favorites" ? (
                 favItem ? (
@@ -268,8 +267,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                   ? increaseTempAmountCart(+1)
                   : increaseAmountCart(+1)
               }>
-              <img src={plus} alt="plus" />
-            </button>
++            </button>
           </div>
         ) : null
       }

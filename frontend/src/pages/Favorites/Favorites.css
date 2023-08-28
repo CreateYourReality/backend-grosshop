@@ -18,7 +18,7 @@
 
 .favorite-selection-btns a {
 	cursor: pointer;
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 }
 
 .favorite-selection-btns a:nth-child(1) {
@@ -79,9 +79,9 @@
 	background: var(--signUp-bg-color);
 }
 
-.select-btn{
-  color:var(--main-green-color, #40aa54);
-  font-size: 1rem;
-  line-height: 2rem;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
+.select-btn {
+	color: var(--main-green-color, #40aa54);
+	font-size: 1rem;
+	line-height: 2rem;
+	font-family: "Poppins", Arial, Helvetica, sans-serif;
 }

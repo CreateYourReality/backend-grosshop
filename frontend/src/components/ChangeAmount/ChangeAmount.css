@@ -5,15 +5,14 @@
 }
 .product-card-amount p {
 	text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin:10px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin: 10px 0;
 }
 /* Styling for ShoopingCart and Favorite Page */
 .cart-favorite-amount {
-	margin: 0 15px 0 0;
 }
 
 .cart-favorite-amount button {
@@ -22,13 +21,12 @@
 }
 
 .cart-favorite-amount p {
-	width: 3rem;
 	font-size: 1.3rem;
 }
 
 .detail-btn {
-  border-radius: 50%;
-  cursor: pointer;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 .updateOrPutInCart-btn {

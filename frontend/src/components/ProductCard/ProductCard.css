@@ -59,6 +59,11 @@
 }
 .underline {
 	text-decoration: line-through;
+	color: var(--p-tag-color) !important;
+}
+.g {
+	display: flex;
+	align-items: center;
 }
 .productCard-wrapper {
 	position: relative;
@@ -167,9 +172,9 @@
 	font-size: clamp(2rem, 3vw, 5rem);
 	background-color: white;
 	border: gray 2px solid;
-	color: var(--p-tag-color);
-	width: 60px;
-	height: 60px;
+	color: var(--main-green-color);
+	width: 30px;
+	height: 24px;
 	display: flex;
 	align-items: center;
 	justify-content: center;

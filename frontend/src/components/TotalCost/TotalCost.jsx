@@ -21,7 +21,17 @@ const TotalCost = () => {
   const updateTotalCost = () => {
     return userShoppingCart.reduce((total, cartItem) => {
       const newProduct = data.find((prod) => prod._id === cartItem.id);
-      const itemTotal = newProduct.price * cartItem.amount;
+      let itemTotal = 0;
+      if (newProduct.isDeal ) {
+        itemTotal = newProduct.reducedDealPrice * cartItem.amount;
+
+      } else if(newProduct.isMemberDeal) {
+        itemTotal = newProduct.reducedMemberPrice * cartItem.amount;
+
+      } else {
+        
+        itemTotal = newProduct.price * cartItem.amount;
+      }
       return total + itemTotal;
     }, 0);
   };
@@ -33,7 +43,17 @@ const TotalCost = () => {
         const cartAmount = userShoppingCart.find(
           (cartItem) => cartItem.id == cartProduct._id
         ).amount;
-        const itemTotal = cartProduct.price * cartAmount;
+        let itemTotal = 0;
+        if (newProduct.isDeal ) {
+          itemTotal = newProduct.reducedDealPrice * cartItem.amount;
+  
+        } else if(newProduct.isMemberDeal) {
+          itemTotal = newProduct.reducedMemberPrice * cartItem.amount;
+  
+        } else {
+          
+          itemTotal = newProduct.price * cartItem.amount;
+        }
         return total + itemTotal;
       } else {
         return total;
