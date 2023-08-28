@@ -218,7 +218,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                 : "cart-favorite-amount"
             }`}>
             <button
-              className={detailProduct == "/detailproduct" ? "detail-btn" : ""}
+              className={detailProduct == "/detailproduct" ? "detail-btn" : "other-btn"}
               onClick={() =>
                 location.pathname == "/favorites"
                   ? increaseAmountFav(-1)
@@ -227,8 +227,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                   : detailProduct == "/detailproduct"
                   ? increaseTempAmountCart(-1)
                   : increaseAmountCart(-1)
-              }>
--            </button>
+              }>-</button>
             <p>
               {location.pathname == "/favorites" ? (
                 favItem ? (
@@ -253,7 +252,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
               )}
             </p>
             <button
-              className={detailProduct == "/detailproduct" ? "detail-btn" : ""}
+              className={detailProduct == "/detailproduct" ? "detail-btn" : "other-btn"}
               onClick={() =>
                 location.pathname == "/favorites"
                   ? increaseAmountFav(+1)
@@ -262,8 +261,7 @@ const ChangeAmount = ({ product, setFavorites, favItem }) => {
                   : detailProduct == "/detailproduct"
                   ? increaseTempAmountCart(+1)
                   : increaseAmountCart(+1)
-              }>
-+            </button>
+              }>+</button>
           </div>
         ) : null
       }

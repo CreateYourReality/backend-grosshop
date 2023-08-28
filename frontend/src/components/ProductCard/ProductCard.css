@@ -219,6 +219,7 @@
 	justify-content: space-between;
 	gap: 1.5rem;
 	width: 40rem;
+	min-width: 111px;
 }
 
 .productCard-wrapper-cartFavorite .product-rating div p {
