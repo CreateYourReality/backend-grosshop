@@ -63,7 +63,6 @@ const TotalCost = () => {
 
     //TODO CHECKOUT
     const checkoutCartItems = async () => {
-        console.log("CHECKOUT CART ITEMS");
         //wenn alle oder nix selected dann userShoppingcart checkout
         if(userShoppingCart.length == selectedCartItems.length || selectedCartItems.length == 0){
             await axios.post("/api/orders/", {products:userShoppingCart.map(item => ({
@@ -84,13 +83,10 @@ const TotalCost = () => {
             setSelectedCartItems([])
         }else{ //wenn einzelne ausgewählt dann nur die einzelnen checkout
                 
-          console.log(userShoppingCart);
-          console.log(selectedCartItems);
           
           const deleteArray = userShoppingCart.filter(item => selectedCartItems.includes(item.id));
 
 
-                console.log(deleteArray);
 
           //TODO           
           await axios.post("/api/orders/", {
