@@ -57,7 +57,12 @@
 	align-items: center;
 	/* width: 24vw; */
 }
-
+.underline {
+	text-decoration: line-through;
+}
+.productCard-wrapper {
+	position: relative;
+}
 .productCard-wrapper-cartFavorite .product-img-wrapper {
 	height: 100px;
 }
@@ -139,12 +144,11 @@
 }
 
 .product-card-amount {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  font-size: 3rem;
-
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	font-size: 3rem;
 }
 
 .productCard-wrapper-home .product-rating {
@@ -160,16 +164,16 @@
 }
 
 .product-card-amount button {
-  font-size: clamp(2rem, 3vw, 5rem);
-  background-color: white;
-  border: gray 2px solid;
-  color: var(--p-tag-color);
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px;
+	font-size: clamp(2rem, 3vw, 5rem);
+	background-color: white;
+	border: gray 2px solid;
+	color: var(--p-tag-color);
+	width: 60px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 5px;
 }
 
 /* Card Select Section */

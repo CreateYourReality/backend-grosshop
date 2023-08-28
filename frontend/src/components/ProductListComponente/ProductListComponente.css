@@ -1,19 +1,14 @@
 .product-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: auto;
+}
+.groceryDeal {
+	margin: 5px 0 10px 0;
 }
 
-.deal-list{
-  grid-template-rows: 1fr 1fr 1fr;
-}
-
-.groceryDeal{
-  margin: 5px 0 10px 0;
-}
-
-.deals-img{
-  margin-top: 10px;
-  width: 100%;
-  grid-area: 3 / 1 / 3 / 4;
+.deals-img {
+	margin-top: 10px;
+	width: 100%;
+	grid-area: 3 / 1 / 3 / 4;
 }
