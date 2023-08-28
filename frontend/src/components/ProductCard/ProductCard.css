@@ -108,7 +108,7 @@
 }
 
 .product-card-details h3 {
-	font-size: 1.6rem;
+	font-size: 1.54rem;
 	color: var(--h-tag-btn-color);
 }
 
@@ -216,10 +216,8 @@
 
 .productCard-wrapper-cartFavorite {
 	display: flex;
-	justify-content: space-between;
 	gap: 1.5rem;
 	width: 40rem;
-	min-width: 111px;
 }
 
 .productCard-wrapper-cartFavorite .product-rating div p {
