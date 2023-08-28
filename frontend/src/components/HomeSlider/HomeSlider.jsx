@@ -4,7 +4,7 @@ import HomeSliderContainer from "./HomeSliderContainer/HomeSliderContainer";
 import { useState } from "react";
 import { useEffect } from "react";
 const HomeSlider = ({setDealFilter}) => {
-    const slides = [{tag: "deal", text: "Hier steht was."}, {tag: "memberDeal", text: "woop woop."}]
+    const slides = [{tag: "deal", text: "Get 20% off"}, {tag: "memberDeal", text: "Members get 30% off"}]
     const [tagText, setTagText] = useState("")
 
     useEffect(()=> {

@@ -1,5 +1,5 @@
 import sliderImg0 from "../../../assets/img/slider.png"
-import sliderImg1 from "../../../assets/img/slider.png"
+import sliderImg1 from "../../../assets/img/slider2.png"
 import "./HomeSliderContainer.css"
 const HomeSliderContainer = ({tagText, setTagText, index, sliderItem, text}) => {
     const hyperlink = `#${sliderItem}`
