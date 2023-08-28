@@ -1,6 +1,13 @@
 .selectSortType {
 	display: flex;
 	padding: 10px;
+	align-items: center;
+}
+.label {
+	color: var(--gray-04, #b9c1cc);
+	font-size: 1.2rem;
+	font-weight: 500;
+	line-height: 2rem;
 }
 .dd-wrapper {
 	position: relative;
@@ -23,7 +30,8 @@
 	font-weight: 500;
 	line-height: 2rem;
 	padding: 6.5px 5px;
-	border: 1px solid var(--signUp-bg-color, #9e9e9e);
+	text-align: left;
+	/* border: 1px solid var(--signUp-bg-color, #9e9e9e); */
 }
 .dd-list {
 	display: flex;
@@ -70,14 +78,13 @@
 	appearance: none;
 	min-width: 125px;
 	color: #5c6574;
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	font-family: "Poppins", Arial, Helvetica, sans-serif;
 	font-weight: 500;
 	line-height: 2rem;
 	/* 	border-radius: 5px;
  */
 	border-bottom: 1px solid var(--signUp-bg-color, #9e9e9e);
-	font-size: 1.5rem;
 }
 .dd-list-item:nth-of-type(1) {
 	animation-delay: 0.6s;
@@ -106,7 +113,7 @@
 	color: var(--white);
 }
 .dd-wrapper span {
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 }
 
 @keyframes dropdown {

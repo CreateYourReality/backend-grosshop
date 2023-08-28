@@ -134,10 +134,27 @@ const ProductCard = ({ product, setSelectedCartItems, isSelected }) => {
                 ? "productCard-wrapper-home"
                 : "productCard-wrapper-cartFavorite"
             }`}>
-            <img src={product.image.url} alt="placeholderImg" />
-            <div className="product-card-details">
+            <div className="wrappwrapp">
               <Link to={"/detailproduct/" + productID}>
+              <div className="product-img-wrapper">
+            <img className="product-img" src={product.image.url} alt="placeholderImg" />
+            </div>
+            </Link>
+
+            {location.pathname === "/home"?
+                        <a className="fav-a" onClick={toggleFavorite}>
+                        <img
+                          src={favItem != undefined ? fullHearth : emtpyHearth}
+                          alt="hearth"
+                          />
+                      </a>:null}
+
+                </div>
+            <div className="product-card-details">
+            <Link to={"/detailproduct/" + productID}>
+
                 <h3>{product.productName}</h3>
+                </Link>
                 <article className="product-rating">
                   {location.pathname == "/home" ? <p>${product.price}</p> : ""}
 
@@ -146,27 +163,26 @@ const ProductCard = ({ product, setSelectedCartItems, isSelected }) => {
                     <p>{product.rating}</p>
                   </div>
                 </article>
-              </Link>
 
               <article
                 className={`product-favor ${
                   location.pathname == "/home" ? "product-favor-home" : ""
                 }`}>
                 {location.pathname != "/home" ? <p>${product.price}</p> : ""}
-
-                <a onClick={toggleFavorite}>
-                  <img
-                    src={favItem != undefined ? fullHearth : emtpyHearth}
-                    alt="hearth"
-                  />
-                </a>
+                {location.pathname !== "/home"?
+                        <a className="fav-a" onClick={toggleFavorite}>
+                        <img
+                          src={favItem != undefined ? fullHearth : emtpyHearth}
+                          alt="hearth"
+                          />
+                      </a>:null}
               </article>
             </div>
             <ChangeAmount
               favItem={favItem}
               product={product}
               setFavorites={setFavorites}
-            />
+              />
           </div>
         </article>
       ) : null}

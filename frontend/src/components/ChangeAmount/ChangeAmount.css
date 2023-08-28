@@ -1,10 +1,10 @@
 .product-card-amount p span {
-  display: block;
-  text-align: center;
-  width: 5rem;
+	display: block;
+	text-align: center;
+	width: 5rem;
 }
 .product-card-amount p {
-  text-align: center;
+	text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,17 +13,17 @@
 }
 /* Styling for ShoopingCart and Favorite Page */
 .cart-favorite-amount {
-  margin: 0 -2.5rem 0 0;
+	margin: 0 15px 0 0;
 }
 
 .cart-favorite-amount button {
-  border-radius: 20%;
-  cursor: pointer;
+	border-radius: 20%;
+	cursor: pointer;
 }
 
 .cart-favorite-amount p {
-  width: 3rem;
-  font-size: 1.3rem;
+	width: 3rem;
+	font-size: 1.3rem;
 }
 
 .detail-btn {
@@ -32,48 +32,48 @@
 }
 
 .updateOrPutInCart-btn {
-  cursor: pointer;
-  font-size: 1.8rem;
-  padding: 1rem 8rem;
-  background-color: var(--second-color);
-  font-family: poppins-regular;
-  color: var(--h-tag-btn-color);
-  border-radius: 0.5rem;
+	cursor: pointer;
+	font-size: 1.8rem;
+	padding: 1rem 8rem;
+	background-color: var(--second-color);
+	font-family: poppins-regular;
+	color: var(--h-tag-btn-color);
+	border-radius: 0.5rem;
 }
 
 .updateOrPutInCart-btn:hover {
-  background-color: var(--main-green-color);
+	background-color: var(--main-green-color);
 
-  color: var(--white-color);
+	color: var(--white-color);
 }
 
 .updateOrPutInCart-btn:active {
-  background-color: var(--signUp-bg-color);
+	background-color: var(--signUp-bg-color);
 }
 
 .cart-icon-container {
-  position: relative;
-  display: inline-block;
+	position: relative;
+	display: inline-block;
 }
 
 .cart-icon {
-  width: 3.5rem;
-  height: 7rem;
+	width: 3.5rem;
+	height: 7rem;
 }
 
 .cart-item-count {
-  position: absolute;
-  top: 16px;
-  right: -19px;
-  background-color: var(--main-green-color);
-  color: var(--white-color);
-  border-radius: 50%;
-  padding: 3px 6px;
+	position: absolute;
+	top: 16px;
+	right: -19px;
+	background-color: var(--main-green-color);
+	color: var(--white-color);
+	border-radius: 50%;
+	padding: 3px 6px;
 }
 
 .cart-item-count p {
-  font-family: poppins-regular;
-  font-size: 1.1rem;
-  width: 14px;
-  text-align: center;
+	font-family: poppins-regular;
+	font-size: 1.1rem;
+	width: 14px;
+	text-align: center;
 }
