@@ -11,9 +11,6 @@
 	flex-direction: column;
 	margin: 10px 0;
 }
-/* Styling for ShoopingCart and Favorite Page */
-.cart-favorite-amount {
-}
 
 .cart-favorite-amount button {
 	border-radius: 20%;
@@ -27,6 +24,7 @@
 .detail-btn {
 	border-radius: 50%;
 	cursor: pointer;
+	height: 30px !important;
 }
 
 .updateOrPutInCart-btn {

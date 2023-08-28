@@ -93,8 +93,14 @@ const DetailProduct = () => {
         <section className="detailProduct-section">
           {product ? (
             <>
-              <div className="detailProduct-image">
+              <div className="detailProduct-image product-detail-fav-wrap">
                 <img src={product.image.url} alt="" />
+                <a className="product-detail-fav" onClick={toggleFavorite}>
+            <img
+              src={favItem != undefined ? fullHearth : emtpyHearth}
+              alt="hearth"
+            />
+          </a>
               </div>
               <p className="detailProduct-weight">{product.weight}kg</p>
               <p className="detailProduct-price">${product.price}</p>
@@ -108,12 +114,7 @@ const DetailProduct = () => {
               </div>
             </>
           ) : null}
-          <a onClick={toggleFavorite}>
-            <img
-              src={favItem != undefined ? fullHearth : emtpyHearth}
-              alt="hearth"
-            />
-          </a>
+
         </section>
         <FooterNav />
       </main>

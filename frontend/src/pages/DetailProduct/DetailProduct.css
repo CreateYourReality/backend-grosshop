@@ -1,58 +1,70 @@
 .detailProduct-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 140vh;
-  flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.product-detail-fav-wrap {
+	position: relative;
+}
+.product-detail-fav {
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+}
+
+.product-detail-fav img {
+	width: 30px;
+	height: 30px;
 }
 
 .detailProduct-price {
-  font-size: clamp(4rem, 4.2vw, 8rem);
+	font-size: clamp(4rem, 4.2vw, 8rem);
 }
 
 .detailProduct-rating {
-  font-size: clamp(1.5rem, 1.8vw, 2.5rem);
-  margin-bottom: 20px;
+	font-size: clamp(1.5rem, 1.8vw, 2.5rem);
+	margin-bottom: 20px;
 }
 
 .detailProduct-rating img {
-  width: 1.5rem;
-  height: 1.5rem;
+	width: 1.5rem;
+	height: 1.5rem;
 }
 
 .detailProduct-name {
-  font-size: clamp(2rem, 2.2vw, 4rem);
+	font-size: clamp(2rem, 2.2vw, 4rem);
 }
 
 .detailProduct-image {
-  width: 80%;
-  margin: 10px 0 20px 0;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-
+	width: 80%;
+	margin: 10px 0 20px 0;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .detailProduct-weight {
-  padding: 8px 15px;
-  border-radius: 5px;
-  color: var(--white-color);
-  background-color: var(--main-green-color);
-  margin-bottom: 15px;
+	padding: 8px 15px;
+	border-radius: 5px;
+	color: var(--white-color);
+	background-color: var(--main-green-color);
+	margin-bottom: 15px;
 }
 
 .detailProduct-div {
-  border-top: 1px solid gray;
-  height: 30%;
-  width: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 10px;
+	border-top: 1px solid gray;
+	height: 30%;
+	width: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
 }
 
-.detailProduct-div h2{
-  margin: 10px 0;
-  color: var(--p-tag-color);
-  font-size:2rem;
-  font-weight: normal
+.detailProduct-div h2 {
+	margin: 10px 0;
+	color: var(--p-tag-color);
+	font-size: 2rem;
+	font-weight: normal;
 }
