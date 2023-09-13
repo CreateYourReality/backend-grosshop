@@ -35,18 +35,18 @@ const TotalCost = () => {
 
   const updateSelectedCost = () => {
     return selectedCartItems.reduce((total, cartItem) => {
-      const cartProduct = data.find((prod) => prod._id == cartItem);
+      const cartProduct = data.find((prod) => prod._id === cartItem);
       if (cartProduct) {
-        const cartAmount = userShoppingCart.find(
-          (cartItem) => cartItem.id == cartProduct._id
-        ).amount;
+        const cartItem = userShoppingCart.find(
+          (cartItem) => cartItem.id === cartProduct._id
+        );
         let itemTotal = 0;
-        if (newProduct.isDeal) {
-          itemTotal = newProduct.reducedDealPrice * cartItem.amount;
-        } else if (newProduct.isMemberDeal) {
-          itemTotal = newProduct.reducedMemberPrice * cartItem.amount;
+        if (cartProduct.isDeal) {
+          itemTotal = cartProduct.reducedDealPrice * cartItem.amount;
+        } else if (cartProduct.isMemberDeal) {
+          itemTotal = cartProduct.reducedMemberPrice * cartItem.amount;
         } else {
-          itemTotal = newProduct.price * cartItem.amount;
+          itemTotal = cartProduct.price * cartItem.amount;
         }
         return total + itemTotal;
       } else {
@@ -54,6 +54,27 @@ const TotalCost = () => {
       }
     }, 0);
   };
+  // const updateSelectedCost = () => {
+  //   return selectedCartItems.reduce((total, cartItem) => {
+  //     const cartProduct = data.find((prod) => prod._id == cartItem);
+  //     if (cartProduct) {
+  //       const cartAmount = userShoppingCart.find(
+  //         (cartItem) => cartItem.id == cartProduct._id
+  //       ).amount;
+  //       let itemTotal = 0;
+  //       if (newProduct.isDeal) {
+  //         itemTotal = newProduct.reducedDealPrice * cartItem.amount;
+  //       } else if (newProduct.isMemberDeal) {
+  //         itemTotal = newProduct.reducedMemberPrice * cartItem.amount;
+  //       } else {
+  //         itemTotal = newProduct.price * cartItem.amount;
+  //       }
+  //       return total + itemTotal;
+  //     } else {
+  //       return total;
+  //     }
+  //   }, 0);
+  // };
 
   //TODO CHECKOUT
   const checkoutCartItems = async () => {
